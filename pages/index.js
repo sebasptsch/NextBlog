@@ -3,18 +3,15 @@ import useSWR from "swr";
 import { fetcher } from "../utils";
 
 export default function Home() {
-  const [pageIndex, setPageIndex] = useState(0);
-  const { data } = useSWR(`/posts?page=${pageIndex}`, fetcher);
+  const { data } = useSWR(`/posts`, fetcher);
+  console.log(data);
   return (
     <div>
       <h1>Hello</h1>
-      {data?.posts.map((post) => (
-        <>
-          <a href={`/${post.slug}`} key={post.id}>
-            {post.title}
-          </a>
-          <br />
-        </>
+      {data?.map((post) => (
+        <a href={`/${post.slug}`} key={post.id}>
+          {post.title}
+        </a>
       ))}
     </div>
   );
