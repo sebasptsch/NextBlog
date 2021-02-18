@@ -17,6 +17,7 @@
     "next": "10.0.7",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "rehype-highlight": "^4.0.1",
     "rehype-react": "^6.2.0",
     "rehype-slug": "^4.0.1",
     "rehype-toc": "^3.0.2",
