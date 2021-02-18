@@ -28,6 +28,7 @@ const Heading2 = (props) => <Heading size="2xl" as="h2" {...props} />;
 const Heading3 = (props) => <Heading size="xl" as="h3" {...props} />;
 const Heading4 = (props) => <Heading size="md" as="h4" {...props} />;
 const Heading5 = (props) => <Heading size="sm" as="h5" {...props} />;
+const Heading6 = (props) => <Heading size="sm" as="h6" {...props} />;
 const Blockquote = props => <Alert {...props} variant="left-accent" status="info" />
 
 export default function BlogPost(props) {
