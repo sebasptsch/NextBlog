@@ -1,65 +1,41 @@
-import {
-  Alert, Code, Divider, Heading,
-
-
-  ListItem,
-
-  OrderedList,
-
-
-
-  Tag, Text,
-
-
-
-
-  UnorderedList
-} from "@chakra-ui/react";
-import { NextSeo } from "next-seo";
-// import highlight from 'rehype-highlight'
-import React from "react";
-import rehype2react from "rehype-react";
-import remark2rehype from "remark-rehype";
-import Layout from "../../components/Layout";
-import { NextChakraLink } from "../../components/NextChakraLink";
-import { fetcher } from "../../utils";
+import useSWR from "swr";
+import { fetcher } from "../utils";
 var unified = require("unified");
 var parse = require("remark-parse");
+import remark2react from "remark-react";
+import {
+  Heading,
+  Text,
+  List,
+  ListItem,
+  ListIcon,
+  OrderedList,
+  UnorderedList,
+} from "@chakra-ui/react";
+import remark2rehype from "remark-rehype";
+import rehype2react from "rehype-react";
+import React from "react";
+import Link from "next/link";
+import toc from "rehype-toc";
+import slug from "rehype-slug";
+import NextChakraLink from "../components/NextChakraLink";
 
-const Heading1 = (props) => <Heading size="2xl" as="h1" {...props} />;
-const Heading2 = (props) => <Heading size="xl" as="h2" {...props} />;
-const Heading3 = (props) => <Heading size="md" as="h3" {...props} />;
-const Blockquote = (props) => (
-  <Alert variant="left-accent" status="info" {...props} />
-);
+const Heading1 = (props) => <Heading size="xl" {...props} />;
+const Heading2 = (props) => <Heading size="md" {...props} />;
+const Heading3 = (props) => <Heading size="sm" {...props} />;
 
 export default function BlogPost(props) {
   const { post } = props;
   return (
-    <Layout>
-      <NextSeo title={`${post.title} | Seb's Blog`} />
-      <Heading size="2xl">{post.title}</Heading>
-      {post.authors.map((author) => (
-        <Text m={2} key={"author" + author.id}>
-          <NextChakraLink href={`/authors/${author.slug}`}>
-            {author.name + " " + `(${author.handle})`}
-          </NextChakraLink>
-        </Text>
-      ))}
-
-      {post.tags.map((tag) => (
-        <Tag m={2} key={"tag" + tag.id}>
-          <a href={`/tags/${tag.slug}`}>{tag.tag}</a>
-        </Tag>
-      ))}
-      <br />
-      <Divider />
-      <br />
+    <>
+      <h1>{post.title}</h1>
       <div>
         {
           unified()
             .use(parse)
             .use(remark2rehype)
+            .use(slug)
+            .use(toc)
             .use(rehype2react, {
               createElement: React.createElement,
               components: {
@@ -68,16 +44,14 @@ export default function BlogPost(props) {
                 h2: Heading2,
                 h1: Heading1,
                 ol: OrderedList,
-                ul: UnorderedList,
                 li: ListItem,
-                code: Code,
-                blockquote: Blockquote,
+                a: NextChakraLink,
               },
             })
             .processSync(post.content).result
         }
       </div>
-    </Layout>
+    </>
   );
 }
 
