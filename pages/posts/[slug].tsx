@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import remark2rehype from "remark-rehype";
 import rehype2react from "rehype-react";
-import highlight from 'rehype-highlight'
+// import highlight from 'rehype-highlight'
 import React from "react";
 import Layout from "../../components/Layout";
 import { NextSeo } from "next-seo";
@@ -26,18 +26,29 @@ import { NextSeo } from "next-seo";
 const Heading1 = (props) => <Heading size="2xl" as="h1" {...props} />;
 const Heading2 = (props) => <Heading size="xl" as="h2" {...props} />;
 const Heading3 = (props) => <Heading size="md" as="h3" {...props} />;
-const Blockquote = props => <Alert variant="left-accent" status="info" {...props} />
+const Blockquote = (props) => (
+  <Alert variant="left-accent" status="info" {...props} />
+);
 
 export default function BlogPost(props) {
   const { post } = props;
   return (
-
     <Layout>
       <NextSeo title={`${post.title} | Seb's Blog`} />
       <Heading size="2xl">{post.title}</Heading>
-      {post.authors.map(author => <Text m={2} key={"author" + author.id}><a href={`/authors/${author.slug}`}>{author.name + " " + `(${author.handle})`}</a></Text>)}
+      {post.authors.map((author) => (
+        <Text m={2} key={"author" + author.id}>
+          <a href={`/authors/${author.slug}`}>
+            {author.name + " " + `(${author.handle})`}
+          </a>
+        </Text>
+      ))}
 
-      {post.tags.map(tag => <Tag m={2} key={"tag" + tag.id}><a href={`/tags/${tag.slug}`}>{tag.tag}</a></Tag>)}
+      {post.tags.map((tag) => (
+        <Tag m={2} key={"tag" + tag.id}>
+          <a href={`/tags/${tag.slug}`}>{tag.tag}</a>
+        </Tag>
+      ))}
       <br />
       <Divider />
       <br />
@@ -45,7 +56,7 @@ export default function BlogPost(props) {
         {
           unified()
             .use(parse)
-            .use(remark2rehype).use(highlight)
+            .use(remark2rehype)
             .use(rehype2react, {
               createElement: React.createElement,
               components: {
