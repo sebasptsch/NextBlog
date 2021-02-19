@@ -16,6 +16,7 @@ import {
   UnorderedList
 } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
+import Image from "next/image";
 // import highlight from 'rehype-highlight'
 import React from "react";
 import rehype2react from "rehype-react";
@@ -29,6 +30,7 @@ var parse = require("remark-parse");
 const Heading1 = (props) => <Heading size="2xl" as="h1" {...props} />;
 const Heading2 = (props) => <Heading size="xl" as="h2" {...props} />;
 const Heading3 = (props) => <Heading size="md" as="h3" {...props} />;
+const ImageEmbed = (props) => <Image layout="fill" {...props} />;
 const Blockquote = (props) => (
   <Alert variant="left-accent" status="info" {...props} />
 );
@@ -63,15 +65,17 @@ export default function BlogPost(props) {
             .use(rehype2react, {
               createElement: React.createElement,
               components: {
-                p: Text,
+
                 h3: Heading3,
                 h2: Heading2,
                 h1: Heading1,
                 ol: OrderedList,
                 ul: UnorderedList,
                 li: ListItem,
-                code: Code,
+                inlineCode: Code,
+                code: "pre",
                 blockquote: Blockquote,
+                // img: Image
               },
             })
             .processSync(post.content).result
