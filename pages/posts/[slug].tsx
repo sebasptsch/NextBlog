@@ -1,8 +1,6 @@
-import useSWR from "swr";
-import { fetcher } from "../utils";
+import { fetcher } from "../../utils";
 var unified = require("unified");
 var parse = require("remark-parse");
-import remark2react from "remark-react";
 import {
   Heading,
   Text,
@@ -22,23 +20,24 @@ import remark2rehype from "remark-rehype";
 import rehype2react from "rehype-react";
 import highlight from 'rehype-highlight'
 import React from "react";
+import Layout from "../../components/Layout";
+import { NextSeo } from "next-seo";
 
-const Heading1 = (props) => <Heading size="3xl" as="h1" {...props} />;
-const Heading2 = (props) => <Heading size="2xl" as="h2" {...props} />;
-const Heading3 = (props) => <Heading size="xl" as="h3" {...props} />;
-const Heading4 = (props) => <Heading size="md" as="h4" {...props} />;
-const Heading5 = (props) => <Heading size="sm" as="h5" {...props} />;
-const Heading6 = (props) => <Heading size="sm" as="h6" {...props} />;
-const Blockquote = props => <Alert {...props} variant="left-accent" status="info" />
+const Heading1 = (props) => <Heading size="2xl" as="h1" {...props} />;
+const Heading2 = (props) => <Heading size="xl" as="h2" {...props} />;
+const Heading3 = (props) => <Heading size="md" as="h3" {...props} />;
+const Blockquote = props => <Alert variant="left-accent" status="info" {...props} />
 
 export default function BlogPost(props) {
   const { post } = props;
   return (
-    <>
-      <Heading1>{post.title}</Heading1>
-      {post.authors.map(author => <Text m={2} key={"author" + author.id}><a href={`/author/${author.slug}`}>{author.name + " " + `(${author.handle})`}</a></Text>)}
 
-      {post.tags.map(tag => <Tag m={2} key={"tag" + tag.id}><a href={`/tag/${tag.slug}`}>{tag.tag}</a></Tag>)}
+    <Layout>
+      <NextSeo title={`${post.title} | Seb's Blog`} />
+      <Heading size="2xl">{post.title}</Heading>
+      {post.authors.map(author => <Text m={2} key={"author" + author.id}><a href={`/authors/${author.slug}`}>{author.name + " " + `(${author.handle})`}</a></Text>)}
+
+      {post.tags.map(tag => <Tag m={2} key={"tag" + tag.id}><a href={`/tags/${tag.slug}`}>{tag.tag}</a></Tag>)}
       <br />
       <Divider />
       <br />
@@ -51,12 +50,11 @@ export default function BlogPost(props) {
               createElement: React.createElement,
               components: {
                 p: Text,
-                h5: Heading6,
-                h4: Heading5,
-                h3: Heading4,
-                h2: Heading3,
-                h1: Heading2,
+                h3: Heading3,
+                h2: Heading2,
+                h1: Heading1,
                 ol: OrderedList,
+                ul: UnorderedList,
                 li: ListItem,
                 code: Code,
                 blockquote: Blockquote,
@@ -65,7 +63,7 @@ export default function BlogPost(props) {
             .processSync(post.content).result
         }
       </div>
-    </>
+    </Layout>
   );
 }
 
