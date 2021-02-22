@@ -16,8 +16,10 @@ import {
     Code,
     Alert,
     Flex,
-    Image,
     Center,
+    Stack,
+    Spacer,
+    HStack,
 } from "@chakra-ui/react";
 import remark2rehype from "remark-rehype";
 import rehype2react from "rehype-react";
@@ -25,11 +27,16 @@ import highlight from 'rehype-highlight'
 import React from "react";
 import Layout from "../../components/Layout";
 import { NextSeo } from "next-seo";
+import useSWR from "swr";
+import Image from 'next/image'
+import { NextChakraLink } from '../../components/NextChakraLink'
 
 
 
 export default function BlogPost(props) {
     const { tag } = props;
+    const { posts } = tag;
+    // const { data } = useSWR(`/posts?tags=${tag.slug}`, fetcher);
     return (
         <Layout>
             <NextSeo title={`${tag.tag} | Seb's Blog`} />
@@ -48,8 +55,42 @@ export default function BlogPost(props) {
             <br />
             <div>
 
+
+                <Stack>
+                    {posts?.map((post) => (
+                        <Box borderWidth="1px" borderRadius="10px" overflow="hidden" key={post.id}>
+                            {post.cover ? (
+                                <Image
+                                    src={`https://blog.sebasptsch.dev` + post.cover.url}
+                                    width={post.cover.width}
+                                    height={post.cover.height}
+                                    layout={"responsive"}
+                                />
+                            ) : null}
+                            <Box p={4}>
+                                <Flex>
+                                    <Heading
+                                        as={NextChakraLink}
+                                        size="md"
+                                        href={`/posts/${post.slug}`}
+                                    >
+                                        {post.title}
+                                    </Heading>
+                                    <Spacer />
+                                    <Text fontWeight="semibold" fontSize="s" ml={2}>
+                                        {new Date(Date.parse(post.published_at)).toLocaleDateString()}
+                                    </Text>
+                                </Flex>
+                                <Text>
+                                    {post.excerpt}
+                                </Text>
+
+                            </Box>
+                        </Box>
+                    ))}
+                </Stack>
             </div>
-        </Layout>
+        </Layout >
     );
 }
 

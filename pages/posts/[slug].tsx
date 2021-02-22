@@ -1,21 +1,15 @@
 import {
-  Alert, Code, Divider, Heading,
-
-
+  Alert,
+  Code,
+  Divider,
+  Heading,
   ListItem,
-
   OrderedList,
-
-
-
-  Tag, Text,
-
-
-
-
-  UnorderedList
+  Tag,
+  Text,
+  UnorderedList,
 } from "@chakra-ui/react";
-import { NextSeo } from "next-seo";
+import { BlogJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
 // import highlight from 'rehype-highlight'
 import React from "react";
@@ -39,15 +33,49 @@ export default function BlogPost(props) {
   const { post } = props;
   return (
     <Layout>
-      <NextSeo title={`${post.title} | Seb's Blog`} />
+      <NextSeo
+        title={`${post.title} | Seb's Blog`}
+        description={post.excerpt}
+        openGraph={{
+          url: `https://sebasptsch.dev/posts/${post.slug}`,
+          title: post.title,
+          description: post.description,
+          images: post.cover
+            ? [
+                {
+                  url: `https://blog.sebasptsch.dev${post.cover?.url}`,
+                  width: post.cover.width,
+                  height: post.cover.height,
+                  alt: post.cover.alternativeText,
+                },
+              ]
+            : null,
+          site_name: "Seb's Blog",
+        }}
+        twitter={{
+          handle: `${post.author.handle}`,
+          site: `@sebasptsch`,
+          cardType: post.cover ? "summary_large_image" : "summary_large",
+        }}
+      />
+      <BlogJsonLd
+        url={`https://sebasptsch.dev/posts/${post.slug}`}
+        title={post.title}
+        images={
+          post.cover ? [`https://blog.sebasptsch.dev${post.cover?.url}`] : []
+        }
+        dateModified={post.updated_at}
+        datePublished={post.published_at}
+        description={post.excerpt}
+        authorName={"Sebastian Pietschner"}
+      />
       <Heading size="2xl">{post.title}</Heading>
-      {post.authors.map((author) => (
-        <Text m={2} key={"author" + author.id}>
-          <NextChakraLink href={`/authors/${author.slug}`}>
-            {author.name + " " + `(${author.handle})`}
-          </NextChakraLink>
-        </Text>
-      ))}
+
+      <Text m={2} key={"author" + post.author.id}>
+        <NextChakraLink href={`/authors/${post.author.slug}`}>
+          {post.author.name + " " + `(${post.author.handle})`}
+        </NextChakraLink>
+      </Text>
 
       {post.tags.map((tag) => (
         <Tag m={2} key={"tag" + tag.id}>
@@ -65,7 +93,6 @@ export default function BlogPost(props) {
             .use(rehype2react, {
               createElement: React.createElement,
               components: {
-
                 h3: Heading3,
                 h2: Heading2,
                 h1: Heading1,
@@ -73,7 +100,7 @@ export default function BlogPost(props) {
                 ul: UnorderedList,
                 li: ListItem,
                 inlineCode: Code,
-                code: "pre",
+                code: Code,
                 blockquote: Blockquote,
                 // img: Image
               },
@@ -102,8 +129,5 @@ export async function getStaticPaths() {
   const paths = posts.map((post) => ({
     params: { slug: post.slug },
   }));
-
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
   return { paths, fallback: false };
 }
