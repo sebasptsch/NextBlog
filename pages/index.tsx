@@ -49,7 +49,8 @@ export default function Home() {
                 </Heading>
                 <Spacer />
                 <Text fontWeight="semibold" fontSize="s" ml={2}>
-                  {new Date(Date.parse(post.published_at)).toLocaleDateString()}
+                  {new Date(Date.parse(post.published_at)).toLocaleDateString()}{" "}
+                  // useeffect to do date on page load
                 </Text>
               </Flex>
               <HStack spacing={4} mt={2} mb={2}>
