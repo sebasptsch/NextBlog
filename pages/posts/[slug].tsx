@@ -7,7 +7,7 @@ import {
   OrderedList,
   Tag,
   Text,
-  UnorderedList,
+  UnorderedList
 } from "@chakra-ui/react";
 import { BlogJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
@@ -42,13 +42,13 @@ export default function BlogPost(props) {
           description: post.description,
           images: post.cover
             ? [
-                {
-                  url: `https://blog.sebasptsch.dev${post.cover?.url}`,
-                  width: post.cover.width,
-                  height: post.cover.height,
-                  alt: post.cover.alternativeText,
-                },
-              ]
+              {
+                url: `https://blog.sebasptsch.dev${post.cover?.url}`,
+                width: post.cover.width,
+                height: post.cover.height,
+                alt: post.cover.alternativeText,
+              },
+            ]
             : null,
           site_name: "Seb's Blog",
         }}
@@ -78,7 +78,7 @@ export default function BlogPost(props) {
       </Text>
 
       {post.tags.map((tag) => (
-        <Tag m={2} key={"tag" + tag.id}>
+        <Tag m={2} key={"tag" + tag.id} colorScheme="blue">
           <a href={`/tags/${tag.slug}`}>{tag.tag}</a>
         </Tag>
       ))}

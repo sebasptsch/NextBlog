@@ -1,5 +1,4 @@
-import { Box, Container } from "@chakra-ui/react";
-import { NextSeo } from "next-seo";
+import { Box } from "@chakra-ui/react";
 import Footer from "./Footer";
 import Nav from "./Nav";
 export default function Layout({ children }) {
@@ -8,7 +7,7 @@ export default function Layout({ children }) {
     <>
       <Nav />
       <main>
-        <Box pl={[5, 10, 20, 60]} pr={[5, 10, 20, 60]}>
+        <Box pl={["10%", "20%", "25%", "30%"]} pr={["10%", "20%", "25%", "30%"]} w="100%">
           {children}
         </Box>
       </main>

@@ -1,19 +1,18 @@
 import {
   Box,
-  Center,
-  Divider,
+
+
   Flex,
   Heading,
   HStack,
   Spacer,
   Stack,
   Tag,
-  Text,
+  Text
 } from "@chakra-ui/react";
-import React from "react";
 import Image from "next/image";
+import React from "react";
 import useSWR from "swr";
-import unified from "unified";
 import Layout from "../components/Layout";
 import { NextChakraLink } from "../components/NextChakraLink";
 import { fetcher } from "../utils";
@@ -23,8 +22,8 @@ export default function Home() {
   return (
     <Layout>
       <Stack>
-        {data?.map((post) => (
-          <Box
+        {data?.map((post) => {
+          return <Box
             borderWidth="1px"
             borderRadius="10px"
             overflow="hidden"
@@ -50,7 +49,7 @@ export default function Home() {
                 <Spacer />
                 <Text fontWeight="semibold" fontSize="s" ml={2}>
                   {new Date(Date.parse(post.published_at)).toLocaleDateString()}{" "}
-                  // useeffect to do date on page load
+
                 </Text>
               </Flex>
               <HStack spacing={4} mt={2} mb={2}>
@@ -59,6 +58,7 @@ export default function Home() {
                     as={NextChakraLink}
                     href={`/tags/${tag.slug}`}
                     key={tag.id}
+                    colorScheme="blue"
                   >
                     {tag.tag}
                   </Tag>
@@ -67,7 +67,7 @@ export default function Home() {
               <Text>{post.excerpt}</Text>
             </Box>
           </Box>
-        ))}
+        })}
       </Stack>
     </Layout>
   );
