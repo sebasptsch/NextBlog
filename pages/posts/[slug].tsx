@@ -1,5 +1,6 @@
 import {
   Alert,
+  Box,
   Code,
   Divider,
   Heading,
@@ -7,7 +8,7 @@ import {
   OrderedList,
   Tag,
   Text,
-  UnorderedList
+  UnorderedList,
 } from "@chakra-ui/react";
 import { BlogJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
@@ -31,6 +32,7 @@ const Blockquote = (props) => (
 
 export default function BlogPost(props) {
   const { post } = props;
+  console.log(post.comments);
   return (
     <Layout>
       <NextSeo
@@ -42,13 +44,13 @@ export default function BlogPost(props) {
           description: post.description,
           images: post.cover
             ? [
-              {
-                url: `https://blog.sebasptsch.dev${post.cover?.url}`,
-                width: post.cover.width,
-                height: post.cover.height,
-                alt: post.cover.alternativeText,
-              },
-            ]
+                {
+                  url: `https://blog.sebasptsch.dev${post.cover?.url}`,
+                  width: post.cover.width,
+                  height: post.cover.height,
+                  alt: post.cover.alternativeText,
+                },
+              ]
             : null,
           site_name: "Seb's Blog",
         }}
@@ -108,6 +110,11 @@ export default function BlogPost(props) {
             .processSync(post.content).result
         }
       </div>
+      <Box>
+        <Heading2>Comments</Heading2>
+        <br />
+        {/* {post.comments.map(comment => )} */}
+      </Box>
     </Layout>
   );
 }
