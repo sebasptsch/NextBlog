@@ -25,7 +25,13 @@ var parse = require("remark-parse");
 const Heading1 = (props) => <Heading size="2xl" as="h1" {...props} />;
 const Heading2 = (props) => <Heading size="xl" as="h2" {...props} />;
 const Heading3 = (props) => <Heading size="md" as="h3" {...props} />;
-const ImageEmbed = (props) => <Image layout="fill" {...props} />;
+const ImageEmbed = (props) => (
+  <Image
+    layout="fill"
+    objectFit="contain"
+    src={`https://blog.sebasptsch.dev${props.src}`}
+  />
+);
 const Blockquote = (props) => (
   <Alert variant="left-accent" status="info" {...props} />
 );
@@ -104,7 +110,7 @@ export default function BlogPost(props) {
                 inlineCode: Code,
                 code: Code,
                 blockquote: Blockquote,
-                // img: Image
+                img: ImageEmbed,
               },
             })
             .processSync(post.content).result
