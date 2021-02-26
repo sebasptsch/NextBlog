@@ -19,15 +19,8 @@ export const fetcher = (url) =>
 export function usePosts(limit?) {
   const itemLimit = limit || 20;
   const { data, error, mutate, size, setSize } = useSWRInfinite(
-    (pageIndex, previousPageData) => {
-      // console.log(pageIndex)
-      // reached the end
-      // console.log(previousPageData.length)
-      // if (previousPageData.length < itemLimit) return null;
-      // first page, we don't have `previousPageData`
+    (pageIndex) => {
       if (pageIndex === 0) return `/posts?_limit=${itemLimit}`;
-      // add the cursor to the API endpoint
-      console.log(previousPageData[previousPageData.length - 1].id)
       return `/posts?_start=${pageIndex * itemLimit}&_limit=${itemLimit}`;
     },
     fetcher
