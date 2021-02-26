@@ -15,7 +15,7 @@ import {
   Text
 } from "@chakra-ui/react";
 import Image from "next/image";
-import React from "react";
+import React, { useRef } from "react";
 import Layout from "../../components/Layout";
 import { NextChakraLink } from "../../components/NextChakraLink";
 import { usePosts } from "../../utils";
@@ -32,6 +32,7 @@ export default function Home() {
     isLoadingMore,
   } = usePosts(10);
   // console.log(posts);
+  const testRef = useRef()
   return (
     <Layout>
       <Box mt={10} mb={10}>
@@ -100,6 +101,7 @@ export default function Home() {
             </Box>
           );
         })}
+        <div ref={testRef} style={{ display: "none" }} />
       </Stack>
       <br />
       <Center>
