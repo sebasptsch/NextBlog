@@ -7,7 +7,11 @@ export default function Layout({ children }) {
     <>
       <Nav />
       <main>
-        <Box pl={["10%", "20%", "25%", "30%"]} pr={["10%", "20%", "25%", "30%"]} w="100%">
+        <Box
+          pl={["5%", "20%", "25%", "30%"]}
+          pr={["5%", "20%", "25%", "30%"]}
+          w="100%"
+        >
           {children}
         </Box>
       </main>

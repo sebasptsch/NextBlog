@@ -26,11 +26,21 @@ const Heading1 = (props) => <Heading size="2xl" as="h1" {...props} />;
 const Heading2 = (props) => <Heading size="xl" as="h2" {...props} />;
 const Heading3 = (props) => <Heading size="md" as="h3" {...props} />;
 const ImageEmbed = (props) => (
-  <Image
-    layout="fill"
-    objectFit="contain"
-    src={`https://blog.sebasptsch.dev${props.src}`}
-  />
+  <Box
+    style={{
+      position: "relative",
+      width: "100%",
+      height: "20em",
+    }}
+    m={2}
+  >
+    <Image
+      layout="fill"
+      objectFit="contain"
+      {...props}
+      src={`https://blog.sebasptsch.dev${props.src}`}
+    />
+  </Box>
 );
 const Blockquote = (props) => (
   <Alert variant="left-accent" status="info" {...props} />
@@ -38,7 +48,7 @@ const Blockquote = (props) => (
 
 export default function BlogPost(props) {
   const { post } = props;
-  console.log(post.comments);
+  // console.log(post.comments);
   return (
     <Layout>
       <NextSeo

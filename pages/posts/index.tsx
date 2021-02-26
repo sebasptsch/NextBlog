@@ -15,10 +15,20 @@ import React from "react";
 import useSWR from "swr";
 import Layout from "../../components/Layout";
 import { NextChakraLink } from "../../components/NextChakraLink";
-import { fetcher } from "../../utils";
+import { fetcher, usePosts } from "../../utils";
 
 export default function Home() {
-  const { data } = useSWR(`/posts`, fetcher);
+  // const { data } = useSWR(`/posts`, fetcher);
+  const {
+    setSize,
+    size,
+    posts,
+    isLoading,
+    isError,
+    mutate,
+    isLoadingMore,
+  } = usePosts();
+  // console.log(posts);
   return (
     <Layout>
       <Box mt={10} mb={10}>
@@ -29,7 +39,7 @@ export default function Home() {
       </Box>
 
       <Stack>
-        {data?.map((post) => {
+        {posts?.map((post) => {
           return (
             <Box
               borderWidth="1px"
