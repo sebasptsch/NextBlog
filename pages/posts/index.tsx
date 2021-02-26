@@ -1,6 +1,10 @@
 import {
   Box,
+
+  Button,
+
   Center,
+
   Divider,
   Flex,
   Heading,
@@ -8,14 +12,13 @@ import {
   Spacer,
   Stack,
   Tag,
-  Text,
+  Text
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
-import useSWR from "swr";
 import Layout from "../../components/Layout";
 import { NextChakraLink } from "../../components/NextChakraLink";
-import { fetcher, usePosts } from "../../utils";
+import { usePosts } from "../../utils";
 
 export default function Home() {
   // const { data } = useSWR(`/posts`, fetcher);
@@ -27,7 +30,7 @@ export default function Home() {
     isError,
     mutate,
     isLoadingMore,
-  } = usePosts();
+  } = usePosts(2);
   // console.log(posts);
   return (
     <Layout>
@@ -98,6 +101,13 @@ export default function Home() {
           );
         })}
       </Stack>
+      <Center>
+        <Button onClick={() => {
+
+          setSize(size + 1)
+          // console.log(size)
+        }}>Load More</Button>
+      </Center>
     </Layout>
   );
 }

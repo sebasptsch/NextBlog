@@ -9,7 +9,7 @@ export const fetcher = (url) =>
   axios
     .get(url)
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     })
     .catch((error) => {
@@ -20,19 +20,19 @@ export function usePosts(limit?) {
   const itemLimit = limit || 20;
   const { data, error, mutate, size, setSize } = useSWRInfinite(
     (pageIndex, previousPageData) => {
+      // console.log(pageIndex)
       // reached the end
-      if (previousPageData.length < itemLimit) return null;
+      // console.log(previousPageData.length)
+      // if (previousPageData.length < itemLimit) return null;
       // first page, we don't have `previousPageData`
       if (pageIndex === 0) return `/posts?_limit=${itemLimit}`;
       // add the cursor to the API endpoint
-      return `/posts?_start=${
-        previousPageData.data[itemLimit - 1].id
-      }&_limit=${itemLimit}`;
+      console.log(previousPageData[previousPageData.length - 1].id)
+      return `/posts?_start=${pageIndex * itemLimit}&_limit=${itemLimit}`;
     },
     fetcher
-    //   initialData ? { initialData: [initialData] } : undefined
   );
-  console.log(data);
+  // console.log(data)
   return {
     mutate,
     posts: data?.flatMap((customerLists) => customerLists),
