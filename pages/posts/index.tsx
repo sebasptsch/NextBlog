@@ -30,7 +30,7 @@ export default function Home() {
     isError,
     mutate,
     isLoadingMore,
-  } = usePosts(2);
+  } = usePosts(10);
   // console.log(posts);
   return (
     <Layout>
@@ -101,6 +101,7 @@ export default function Home() {
           );
         })}
       </Stack>
+      <br />
       <Center>
         <Button onClick={() => {
 
