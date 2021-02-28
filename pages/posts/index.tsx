@@ -26,6 +26,7 @@ export default function Home() {
     setSize,
     size,
     posts,
+    more,
     isLoading,
     isError,
     mutate,
@@ -105,10 +106,8 @@ export default function Home() {
       </Stack>
       <br />
       <Center>
-        <Button onClick={() => {
-
+        <Button disabled={!more} onClick={() => {
           setSize(size + 1)
-          // console.log(size)
         }}>Load More</Button>
       </Center>
     </Layout>
