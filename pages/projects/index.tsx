@@ -15,42 +15,41 @@ import Image from "next/image";
 import React, { useRef } from "react";
 import Layout from "../../components/Layout";
 import { NextChakraLink } from "../../components/NextChakraLink";
-import { usePosts } from "../../utils";
+import { useProjects } from "../../utils";
 
 export default function Home() {
-  // const { data } = useSWR(`/posts`, fetcher);
   const {
     setSize,
     size,
-    posts,
+    projects,
     more,
     isLoading,
     isError,
     mutate,
     isLoadingMore,
-  } = usePosts(10);
-  // console.log(posts);
+  } = useProjects(10);
+  console.log(projects);
   const testRef = useRef();
   return (
     <Layout>
       <Box mt={10} mb={10}>
         <Heading as="h1" size="4xl" textAlign="center">
-          Blog
+          Projects
         </Heading>
         <Divider mt={5} />
       </Box>
 
       <Stack>
-        {posts?.map((post) => {
+        {projects?.map((project) => {
           return (
             <Box
               borderWidth="1px"
               borderRadius="10px"
               overflow="hidden"
-              key={post.id}
+              key={project.id}
               w="100%"
             >
-              {post.cover ? (
+              {project.cover ? (
                 <div
                   style={{
                     position: "relative",
@@ -59,8 +58,8 @@ export default function Home() {
                   }}
                 >
                   <Image
-                    alt={post.cover.alternativeText}
-                    src={`https://blog.sebasptsch.dev` + post.cover.url}
+                    alt={project.cover.alternativeText}
+                    src={`https://blog.sebasptsch.dev` + project.cover.url}
                     layout="fill"
                     objectFit="cover"
                   />
@@ -71,30 +70,18 @@ export default function Home() {
                   <Heading
                     as={NextChakraLink}
                     size="md"
-                    href={`/posts/${post.slug}`}
+                    href={`/projects/${project.slug}`}
                   >
-                    {post.title}
+                    {project.title}
                   </Heading>
                   <Spacer />
                   <Text fontWeight="semibold" fontSize="s" ml={2}>
                     {new Date(
-                      Date.parse(post.published_at)
+                      Date.parse(project.published_at)
                     ).toLocaleDateString()}{" "}
                   </Text>
                 </Flex>
-                <HStack spacing={4} mt={2} mb={2}>
-                  {post.tags.map((tag) => (
-                    <Tag
-                      as={NextChakraLink}
-                      href={`/tags/${tag.slug}`}
-                      key={tag.id}
-                      colorScheme="blue"
-                    >
-                      {tag.tag}
-                    </Tag>
-                  ))}
-                </HStack>
-                <Text>{post.excerpt}</Text>
+                <Text>{project.excerpt}</Text>
               </Box>
             </Box>
           );

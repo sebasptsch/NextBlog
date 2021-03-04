@@ -12,12 +12,16 @@ import { NextChakraLink } from "./NextChakraLink";
 
 const links = [
   {
-    name: "Dashboard",
+    name: "Home",
     link: "/",
   },
   {
     name: "Blog",
     link: "/posts",
+  },
+  {
+    name: "Projects",
+    link: "/projects",
   },
 ];
 

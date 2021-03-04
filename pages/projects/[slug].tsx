@@ -4,7 +4,6 @@ import {
   Code,
   Divider,
   Heading,
-  HStack,
   ListItem,
   OrderedList,
   Tag,
@@ -13,10 +12,6 @@ import {
 } from "@chakra-ui/react";
 import { BlogJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
-import React from "react";
-import rehype2react from "rehype-react";
-import remark2rehype from "remark-rehype";
-import Layout from "../../components/Layout";
 import {
   CustomParagraph,
   Heading1,
@@ -25,29 +20,33 @@ import {
   ImageEmbed,
   Blockquote,
 } from "../../utils/customElements";
+import React from "react";
+import rehype2react from "rehype-react";
+import remark2rehype from "remark-rehype";
+import Layout from "../../components/Layout";
 import { fetcher } from "../../utils";
 var unified = require("unified");
 var parse = require("remark-parse");
 
 export default function BlogPost(props) {
-  const { post } = props;
+  const { project } = props;
   // console.log(post.comments);
   return (
     <Layout>
       <NextSeo
-        title={`${post.title} | Seb's Blog`}
-        description={post.excerpt}
+        title={`${project.title} | Seb's Blog`}
+        description={project.excerpt}
         openGraph={{
-          url: `https://sebasptsch.dev/posts/${post.slug}`,
-          title: post.title,
-          description: post.description,
-          images: post.cover
+          url: `https://sebasptsch.dev/projects/${project.slug}`,
+          title: project.title,
+          description: project.description,
+          images: project.cover
             ? [
                 {
-                  url: `https://blog.sebasptsch.dev${post.cover?.url}`,
-                  width: post.cover.width,
-                  height: post.cover.height,
-                  alt: post.cover.alternativeText,
+                  url: `https://blog.sebasptsch.dev${project.cover?.url}`,
+                  width: project.cover.width,
+                  height: project.cover.height,
+                  alt: project.cover.alternativeText,
                 },
               ]
             : null,
@@ -56,30 +55,25 @@ export default function BlogPost(props) {
         twitter={{
           handle: `@sebasptsch`,
           site: `@sebasptsch`,
-          cardType: post.cover ? "summary_large_image" : "summary_large",
+          cardType: project.cover ? "summary_large_image" : "summary_large",
         }}
       />
       <BlogJsonLd
-        url={`https://sebasptsch.dev/posts/${post.slug}`}
-        title={post.title}
+        url={`https://sebasptsch.dev/projects/${project.slug}`}
+        title={project.title}
         images={
-          post.cover ? [`https://blog.sebasptsch.dev${post.cover?.url}`] : []
+          project.cover
+            ? [`https://blog.sebasptsch.dev${project.cover?.url}`]
+            : []
         }
-        dateModified={post.updated_at}
-        datePublished={post.published_at}
-        description={post.excerpt}
+        dateModified={project.updated_at}
+        datePublished={project.published_at}
+        description={project.excerpt}
         authorName={"Sebastian Pietschner"}
       />
-      <Heading size="2xl">{post.title}</Heading>
-      <HStack spacing={2} m={5}>
-        {post.tags.map((tag) => (
-          <Tag key={"tag" + tag.id} colorScheme="blue">
-            <a href={`/tags/${tag.slug}`}>{tag.tag}</a>
-          </Tag>
-        ))}
-      </HStack>
-
-      {post.cover ? (
+      <Heading size="2xl">{project.title}</Heading>
+      <br />
+      {project.cover ? (
         <Box
           style={{
             position: "relative",
@@ -91,15 +85,14 @@ export default function BlogPost(props) {
           borderWidth="1px"
         >
           <Image
-            alt={post.cover.alternativeText}
-            src={`https://blog.sebasptsch.dev` + post.cover.url}
+            alt={project.cover.alternativeText}
+            src={`https://blog.sebasptsch.dev` + project.cover.url}
             layout="fill"
             objectFit="cover"
           />
         </Box>
       ) : null}
-      <br />
-      <article>
+      <div>
         {
           unified()
             .use(parse)
@@ -113,16 +106,16 @@ export default function BlogPost(props) {
                 ol: OrderedList,
                 ul: UnorderedList,
                 li: ListItem,
-                p: CustomParagraph,
                 inlineCode: Code,
                 code: Code,
                 blockquote: Blockquote,
                 img: ImageEmbed,
+                p: CustomParagraph,
               },
             })
-            .processSync(post.content).result
+            .processSync(project.content).result
         }
-      </article>
+      </div>
     </Layout>
   );
 }
@@ -131,18 +124,18 @@ export async function getStaticProps(context) {
   // `getStaticProps` is invoked on the server-side,
   // so this `fetcher` function will be executed on the server-side.
   const { slug } = context.params;
-  const posts = await fetcher(`/posts?slug=${slug}`);
+  const projects = await fetcher(`/projects?slug=${slug}`);
   // const html = unified().use(markdown).use(html).process(posts[0].content);
-  return { props: { post: posts[0], slug } };
+  return { props: { project: projects[0], slug } };
 }
 
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
-  const res = await fetcher("/posts");
-  const posts = await res;
+  const res = await fetcher("/projects");
+  const projects = await res;
   // Get the paths we want to pre-render based on posts
-  const paths = posts.map((post) => ({
-    params: { slug: post.slug },
+  const paths = projects.map((project) => ({
+    params: { slug: project.slug },
   }));
   return { paths, fallback: false };
 }
