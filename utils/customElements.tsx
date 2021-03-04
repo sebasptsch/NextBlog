@@ -1,4 +1,15 @@
-import { Alert, Box, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Alert,
+  Box,
+  Code,
+  Heading,
+  Image,
+  OrderedList,
+  Text,
+  UnorderedList,
+  ListItem,
+} from "@chakra-ui/react";
+import React from "react";
 
 export const Heading1 = (props) => (
   <Heading size="2xl" as="h1" mt={2} {...props} />
@@ -15,9 +26,11 @@ export const ImageEmbed = (props) => (
     style={{
       position: "relative",
       width: "100%",
-      height: "20em",
+      // height: "20em",
     }}
-    m={2}
+    overflow="hidden"
+    borderRadius="10px"
+    borderWidth="1px"
   >
     <Image
       layout="fill"
@@ -30,3 +43,20 @@ export const ImageEmbed = (props) => (
 export const Blockquote = (props) => (
   <Alert variant="left-accent" status="info" m={2} {...props} />
 );
+
+export const rehypeElement = {
+  createElement: React.createElement,
+  components: {
+    h3: Heading3,
+    h2: Heading2,
+    h1: Heading1,
+    ol: OrderedList,
+    ul: UnorderedList,
+    li: ListItem,
+    inlineCode: Code,
+    code: Code,
+    blockquote: Blockquote,
+    img: ImageEmbed,
+    p: CustomParagraph,
+  },
+};

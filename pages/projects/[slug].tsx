@@ -1,25 +1,7 @@
-import {
-  Alert,
-  Box,
-  Code,
-  Divider,
-  Heading,
-  ListItem,
-  OrderedList,
-  Tag,
-  Text,
-  UnorderedList,
-} from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import { BlogJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
-import {
-  CustomParagraph,
-  Heading1,
-  Heading2,
-  Heading3,
-  ImageEmbed,
-  Blockquote,
-} from "../../utils/customElements";
+import { rehypeElement } from "../../utils/customElements";
 import React from "react";
 import rehype2react from "rehype-react";
 import remark2rehype from "remark-rehype";
@@ -82,7 +64,6 @@ export default function BlogPost(props) {
           }}
           overflow="hidden"
           borderRadius="10px"
-          borderWidth="1px"
         >
           <Image
             alt={project.cover.alternativeText}
@@ -92,30 +73,15 @@ export default function BlogPost(props) {
           />
         </Box>
       ) : null}
-      <div>
+      <article>
         {
           unified()
             .use(parse)
             .use(remark2rehype)
-            .use(rehype2react, {
-              createElement: React.createElement,
-              components: {
-                h3: Heading3,
-                h2: Heading2,
-                h1: Heading1,
-                ol: OrderedList,
-                ul: UnorderedList,
-                li: ListItem,
-                inlineCode: Code,
-                code: Code,
-                blockquote: Blockquote,
-                img: ImageEmbed,
-                p: CustomParagraph,
-              },
-            })
+            .use(rehype2react, rehypeElement)
             .processSync(project.content).result
         }
-      </div>
+      </article>
     </Layout>
   );
 }

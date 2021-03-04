@@ -1,30 +1,11 @@
-import {
-  Alert,
-  Box,
-  Code,
-  Divider,
-  Heading,
-  HStack,
-  ListItem,
-  OrderedList,
-  Tag,
-  Text,
-  UnorderedList,
-} from "@chakra-ui/react";
+import { Box, Heading, HStack, Tag } from "@chakra-ui/react";
+import { rehypeElement } from "../../utils/customElements";
 import { BlogJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
 import React from "react";
 import rehype2react from "rehype-react";
 import remark2rehype from "remark-rehype";
 import Layout from "../../components/Layout";
-import {
-  CustomParagraph,
-  Heading1,
-  Heading2,
-  Heading3,
-  ImageEmbed,
-  Blockquote,
-} from "../../utils/customElements";
 import { fetcher } from "../../utils";
 var unified = require("unified");
 var parse = require("remark-parse");
@@ -71,7 +52,7 @@ export default function BlogPost(props) {
         authorName={"Sebastian Pietschner"}
       />
       <Heading size="2xl">{post.title}</Heading>
-      <HStack spacing={2} m={5}>
+      <HStack spacing={2} mt={5} mb={5}>
         {post.tags.map((tag) => (
           <Tag key={"tag" + tag.id} colorScheme="blue">
             <a href={`/tags/${tag.slug}`}>{tag.tag}</a>
@@ -88,7 +69,6 @@ export default function BlogPost(props) {
           }}
           overflow="hidden"
           borderRadius="10px"
-          borderWidth="1px"
         >
           <Image
             alt={post.cover.alternativeText}
@@ -98,28 +78,12 @@ export default function BlogPost(props) {
           />
         </Box>
       ) : null}
-      <br />
       <article>
         {
           unified()
             .use(parse)
             .use(remark2rehype)
-            .use(rehype2react, {
-              createElement: React.createElement,
-              components: {
-                h3: Heading3,
-                h2: Heading2,
-                h1: Heading1,
-                ol: OrderedList,
-                ul: UnorderedList,
-                li: ListItem,
-                p: CustomParagraph,
-                inlineCode: Code,
-                code: Code,
-                blockquote: Blockquote,
-                img: ImageEmbed,
-              },
-            })
+            .use(rehype2react, rehypeElement)
             .processSync(post.content).result
         }
       </article>
