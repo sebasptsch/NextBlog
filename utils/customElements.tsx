@@ -34,7 +34,6 @@ export const ImageEmbed = (props) => (
     style={{
       position: "relative",
       width: "100%",
-      // height: "20em",
     }}
     overflow="hidden"
     borderRadius="10px"
