@@ -2,22 +2,10 @@ import {
   Box,
   Button,
   Center,
-  Divider,
-  Flex,
-  Heading,
-  HStack,
-  Spacer,
-  Stack,
-  Tag,
-  Text,
+  Divider, Heading, Stack
 } from "@chakra-ui/react";
-import Image from "next/image";
 import React, { useRef } from "react";
 import Layout from "../../components/Layout";
-import {
-  NextChakraLink,
-  NextChakraLinkBox,
-} from "../../components/NextChakraLink";
 import { usePosts } from "../../utils";
 import { PostCard } from "../../utils/customElements";
 
@@ -44,23 +32,22 @@ export default function Home() {
         <Divider mt={5} />
       </Box>
 
-      <Stack>
+      <Stack divider={<Divider />}>
         {posts?.map((post) => {
           return <PostCard post={post} url={`/posts/${post.slug}`} />;
         })}
-        <div ref={testRef} style={{ display: "none" }} />
-      </Stack>
-      <br />
-      <Center>
-        <Button
-          disabled={!more}
-          onClick={() => {
-            setSize(size + 1);
-          }}
-        >
-          Load More
+        <Center>
+          <Button
+            disabled={!more}
+            onClick={() => {
+              setSize(size + 1);
+            }}
+          >
+            Load More
         </Button>
-      </Center>
+        </Center>
+      </Stack>
+
     </Layout>
   );
 }
