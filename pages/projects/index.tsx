@@ -14,7 +14,10 @@ import {
 import Image from "next/image";
 import React, { useRef } from "react";
 import Layout from "../../components/Layout";
-import { NextChakraLink } from "../../components/NextChakraLink";
+import {
+  NextChakraLink,
+  NextChakraLinkBox,
+} from "../../components/NextChakraLink";
 import { useProjects } from "../../utils";
 
 export default function Home() {
@@ -42,12 +45,13 @@ export default function Home() {
       <Stack>
         {projects?.map((project) => {
           return (
-            <Box
+            <NextChakraLinkBox
               borderWidth="1px"
               borderRadius="10px"
               overflow="hidden"
               key={project.id}
               w="100%"
+              href={`/projects/${project.slug}`}
             >
               {project.cover ? (
                 <div
@@ -67,13 +71,7 @@ export default function Home() {
               ) : null}
               <Box p={4}>
                 <Flex>
-                  <Heading
-                    as={NextChakraLink}
-                    size="md"
-                    href={`/projects/${project.slug}`}
-                  >
-                    {project.title}
-                  </Heading>
+                  <Heading size="md">{project.title}</Heading>
                   <Spacer />
                   <Text fontWeight="semibold" fontSize="s" ml={2}>
                     {new Date(
@@ -83,7 +81,7 @@ export default function Home() {
                 </Flex>
                 <Text>{project.excerpt}</Text>
               </Box>
-            </Box>
+            </NextChakraLinkBox>
           );
         })}
         <div ref={testRef} style={{ display: "none" }} />

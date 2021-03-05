@@ -1,10 +1,10 @@
 import { Box } from "@chakra-ui/react";
 import Footer from "./Footer";
 import Nav from "./Nav";
-export default function Layout({ children }) {
+export default function Layout(props) {
   // console.log(props.children)
   return (
-    <>
+    <Box {...props}>
       <Nav />
       <main>
         <Box
@@ -12,10 +12,10 @@ export default function Layout({ children }) {
           pr={["5%", "20%", "25%", "30%"]}
           w="100%"
         >
-          {children}
+          {props.children}
         </Box>
       </main>
       <Footer />
-    </>
+    </Box>
   );
 }
