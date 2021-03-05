@@ -19,6 +19,7 @@ import {
   NextChakraLinkBox,
 } from "../../components/NextChakraLink";
 import { useProjects } from "../../utils";
+import { PostCard } from "../../utils/customElements";
 
 export default function Home() {
   const {
@@ -44,45 +45,7 @@ export default function Home() {
 
       <Stack>
         {projects?.map((project) => {
-          return (
-            <NextChakraLinkBox
-              borderWidth="1px"
-              borderRadius="10px"
-              overflow="hidden"
-              key={project.id}
-              w="100%"
-              href={`/projects/${project.slug}`}
-            >
-              {project.cover ? (
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "20em",
-                  }}
-                >
-                  <Image
-                    alt={project.cover.alternativeText}
-                    src={`https://blog.sebasptsch.dev` + project.cover.url}
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
-              ) : null}
-              <Box p={4}>
-                <Flex>
-                  <Heading size="md">{project.title}</Heading>
-                  <Spacer />
-                  <Text fontWeight="semibold" fontSize="s" ml={2}>
-                    {new Date(
-                      Date.parse(project.published_at)
-                    ).toLocaleDateString()}{" "}
-                  </Text>
-                </Flex>
-                <Text>{project.excerpt}</Text>
-              </Box>
-            </NextChakraLinkBox>
-          );
+          return <PostCard post={project} url={`/projects/${project.slug}`} />;
         })}
         <div ref={testRef} style={{ display: "none" }} />
       </Stack>

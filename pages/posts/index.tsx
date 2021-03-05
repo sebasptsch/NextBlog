@@ -14,8 +14,12 @@ import {
 import Image from "next/image";
 import React, { useRef } from "react";
 import Layout from "../../components/Layout";
-import { NextChakraLink } from "../../components/NextChakraLink";
+import {
+  NextChakraLink,
+  NextChakraLinkBox,
+} from "../../components/NextChakraLink";
 import { usePosts } from "../../utils";
+import { PostCard } from "../../utils/customElements";
 
 export default function Home() {
   // const { data } = useSWR(`/posts`, fetcher);
@@ -42,62 +46,7 @@ export default function Home() {
 
       <Stack>
         {posts?.map((post) => {
-          return (
-            <Box
-              borderWidth="1px"
-              borderRadius="10px"
-              overflow="hidden"
-              key={post.id}
-              w="100%"
-            >
-              {post.cover ? (
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "20em",
-                  }}
-                >
-                  <Image
-                    alt={post.cover.alternativeText}
-                    src={`https://blog.sebasptsch.dev` + post.cover.url}
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
-              ) : null}
-              <Box p={4}>
-                <Flex>
-                  <Heading
-                    as={NextChakraLink}
-                    size="md"
-                    href={`/posts/${post.slug}`}
-                  >
-                    {post.title}
-                  </Heading>
-                  <Spacer />
-                  <Text fontWeight="semibold" fontSize="s" ml={2}>
-                    {new Date(
-                      Date.parse(post.published_at)
-                    ).toLocaleDateString()}{" "}
-                  </Text>
-                </Flex>
-                <HStack spacing={4} mt={2} mb={2}>
-                  {post.tags.map((tag) => (
-                    <Tag
-                      as={NextChakraLink}
-                      href={`/tags/${tag.slug}`}
-                      key={tag.id}
-                      colorScheme="blue"
-                    >
-                      {tag.tag}
-                    </Tag>
-                  ))}
-                </HStack>
-                <Text>{post.excerpt}</Text>
-              </Box>
-            </Box>
-          );
+          return <PostCard post={post} url={`/posts/${post.slug}`} />;
         })}
         <div ref={testRef} style={{ display: "none" }} />
       </Stack>

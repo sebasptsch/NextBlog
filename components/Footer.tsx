@@ -1,9 +1,12 @@
-import { Center, Box } from "@chakra-ui/react";
+import { Center, Box, Divider } from "@chakra-ui/react";
 
 export default function Footer() {
-    return <Box>
-        <Center>
-            By Seb
-        </Center>
-    </Box>
+  return (
+    <>
+      <Divider />
+      <Box m={50}>
+        <Center>By Seb</Center>
+      </Box>
+    </>
+  );
 }

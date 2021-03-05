@@ -8,12 +8,17 @@ import {
   Center,
   Stack,
   Spacer,
+  HStack,
+  Tag,
 } from "@chakra-ui/react";
 import React from "react";
 import Layout from "../../components/Layout";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
-import { NextChakraLink } from "../../components/NextChakraLink";
+import {
+  NextChakraLink,
+  NextChakraLinkBox,
+} from "../../components/NextChakraLink";
 
 export default function BlogPost(props) {
   const { tag } = props;
@@ -21,7 +26,6 @@ export default function BlogPost(props) {
   return (
     <Layout>
       <NextSeo title={`${tag.tag} | Seb's Blog`} />
-      <Center></Center>
       <Heading>{tag.tag}</Heading>
       <Text>{tag.description}</Text>
 
@@ -31,39 +35,55 @@ export default function BlogPost(props) {
       <div>
         <Stack>
           {posts?.map((post) => (
-            <Box
+            <NextChakraLinkBox
               borderWidth="1px"
               borderRadius="10px"
               overflow="hidden"
               key={post.id}
+              w="100%"
+              href={`/posts/${post.slug}`}
             >
               {post.cover ? (
-                <Image
-                  src={`https://blog.sebasptsch.dev` + post.cover.url}
-                  width={post.cover.width}
-                  height={post.cover.height}
-                  layout={"responsive"}
-                />
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    height: "20em",
+                  }}
+                >
+                  <Image
+                    alt={post.cover.alternativeText}
+                    src={`https://blog.sebasptsch.dev` + post.cover.url}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
               ) : null}
               <Box p={4}>
                 <Flex>
-                  <Heading
-                    as={NextChakraLink}
-                    size="md"
-                    href={`/posts/${post.slug}`}
-                  >
-                    {post.title}
-                  </Heading>
+                  <Heading size="md">{post.title}</Heading>
                   <Spacer />
                   <Text fontWeight="semibold" fontSize="s" ml={2}>
                     {new Date(
                       Date.parse(post.published_at)
-                    ).toLocaleDateString()}
+                    ).toLocaleDateString()}{" "}
                   </Text>
                 </Flex>
+                <HStack spacing={4} mt={2} mb={2}>
+                  {post?.tags?.map((tag) => (
+                    <Tag
+                      as={NextChakraLink}
+                      href={`/tags/${tag.slug}`}
+                      key={tag.id}
+                      colorScheme="blue"
+                    >
+                      {tag.tag}
+                    </Tag>
+                  ))}
+                </HStack>
                 <Text>{post.excerpt}</Text>
               </Box>
-            </Box>
+            </NextChakraLinkBox>
           ))}
         </Stack>
       </div>
