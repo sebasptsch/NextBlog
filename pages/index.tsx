@@ -2,16 +2,16 @@ import {
   Box,
   Center, Divider, Heading, HStack, IconButton, Image as ChakraImage, Stack, Text
 } from "@chakra-ui/react";
-import { useRouter } from 'next/router';
+import { NextSeo } from "next-seo";
 import React from "react";
 import { FaGithub, FaTwitter } from 'react-icons/fa';
 import Layout from "../components/Layout";
 import { NextChakraLink } from "../components/NextChakraLink";
 
 export default function Home() {
-  const router = useRouter()
   return (
     <Layout>
+      <NextSeo title={`Seb's Blog`} />
       <Stack divider={<Divider />}>
         <Center>
           <Box

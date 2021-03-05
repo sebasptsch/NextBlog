@@ -4,6 +4,7 @@ import {
   Center,
   Divider, Heading, Stack
 } from "@chakra-ui/react";
+import { NextSeo } from "next-seo";
 import React, { useRef } from "react";
 import Layout from "../../components/Layout";
 import { usePosts } from "../../utils";
@@ -25,6 +26,7 @@ export default function Home() {
   const testRef = useRef();
   return (
     <Layout>
+      <NextSeo title={`Blog | Seb's Blog`} />
       <Box mt={10} mb={10}>
         <Heading as="h1" size="4xl" textAlign="center">
           Blog
