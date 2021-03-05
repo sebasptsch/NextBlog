@@ -1,13 +1,7 @@
 import {
-  Avatar,
   Box,
-  Center,
-  Divider,
-  Heading,
-  Text,
-  Image as ChakraImage,
+  Center, Heading, Image as ChakraImage, Text
 } from "@chakra-ui/react";
-import Image from "next/image";
 import React from "react";
 import Layout from "../components/Layout";
 
@@ -35,7 +29,6 @@ export default function Home() {
           experiences.
         </Text>
       </Box>
-      <Divider />
     </Layout>
   );
 }
