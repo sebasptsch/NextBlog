@@ -4,7 +4,7 @@ import Providers from "next-auth/providers";
 const options = {
   providers: [
     Providers.GitHub({
-      clientId: process.env.GTHUB_CLIENT,
+      clientId: process.env.GITHUB_CLIENT,
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
