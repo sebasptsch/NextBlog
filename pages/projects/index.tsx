@@ -1,9 +1,4 @@
-import {
-  Box,
-  Button,
-  Center,
-  Divider, Heading, Stack
-} from "@chakra-ui/react";
+import { Box, Button, Center, Divider, Heading, Stack } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import React, { useRef } from "react";
 import Layout from "../../components/Layout";
@@ -21,7 +16,6 @@ export default function Home() {
     mutate,
     isLoadingMore,
   } = useProjects(10);
-  console.log(projects);
   const testRef = useRef();
   return (
     <Layout>
@@ -33,7 +27,7 @@ export default function Home() {
         <Divider mt={5} />
       </Box>
 
-      <Stack divider={<Divider />}>
+      <Stack>
         {projects?.map((project) => {
           return <PostCard post={project} url={`/projects/${project.slug}`} />;
         })}
@@ -45,7 +39,7 @@ export default function Home() {
             }}
           >
             Load More
-        </Button>
+          </Button>
         </Center>
       </Stack>
     </Layout>

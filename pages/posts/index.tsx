@@ -1,9 +1,4 @@
-import {
-  Box,
-  Button,
-  Center,
-  Divider, Heading, Stack
-} from "@chakra-ui/react";
+import { Box, Button, Center, Divider, Heading, Stack } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import React, { useRef } from "react";
 import Layout from "../../components/Layout";
@@ -34,7 +29,7 @@ export default function Home() {
         <Divider mt={5} />
       </Box>
 
-      <Stack divider={<Divider />}>
+      <Stack>
         {posts?.map((post) => {
           return <PostCard post={post} url={`/posts/${post.slug}`} />;
         })}
@@ -46,10 +41,9 @@ export default function Home() {
             }}
           >
             Load More
-        </Button>
+          </Button>
         </Center>
       </Stack>
-
     </Layout>
   );
 }
