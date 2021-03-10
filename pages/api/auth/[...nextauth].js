@@ -12,6 +12,10 @@ const options = {
       clientId: process.env.GOOGLE_CLIENT,
       clientSecret: process.env.GOOGLE_SECRET,
     }),
+    Providers.Discord({
+      clientId: process.env.DISCORD_CLIENT,
+      clientSecret: process.env.DISCORD_SECRET,
+    }),
   ],
   database: process.env.NEXT_PUBLIC_DATABASE_URL,
   session: {
