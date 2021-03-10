@@ -15,6 +15,7 @@
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "@tryghost/content-api": "^1.4.14",
+    "@types/next-auth": "^3.7.0",
     "axios": "^0.21.1",
     "framer-motion": "^3.5.0",
     "mariadb": "^2.5.3",

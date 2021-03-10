@@ -6,6 +6,11 @@ const options = {
     Providers.GitHub({
       clientId: process.env.GITHUB_CLIENT,
       clientSecret: process.env.GITHUB_SECRET,
+      scope: "user",
+    }),
+    Providers.Google({
+      clientId: process.env.GOOGLE_CLIENT,
+      clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
   database: process.env.NEXT_PUBLIC_DATABASE_URL,
