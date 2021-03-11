@@ -2,15 +2,15 @@ import {
   Alert,
   Box,
   Code,
+  Flex,
   Heading,
+  HStack,
+  ListItem,
   OrderedList,
+  Spacer,
+  Tag,
   Text,
   UnorderedList,
-  ListItem,
-  HStack,
-  Tag,
-  Flex,
-  Spacer,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
@@ -28,23 +28,22 @@ export const Heading2 = (props) => (
 export const Heading3 = (props) => (
   <Heading size="md" as="h3" mt={2} {...props} />
 );
+
 export const CustomParagraph = (props) => <Text mt={2} mb={2} {...props} />;
 export const ImageEmbed = (props) => (
   <Box
     style={{
       position: "relative",
       width: "100%",
+      height: "500px",
     }}
-    overflow="hidden"
-    borderRadius="10px"
-    borderWidth="1px"
   >
     <Image
       layout="fill"
       objectFit="contain"
-      {...props}
       src={`https://blog.sebasptsch.dev${props.src}`}
     />
+    {/* <img src={`https://blog.sebasptsch.dev${props.src}`} /> */}
   </Box>
 );
 export const Blockquote = (props) => (

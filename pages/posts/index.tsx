@@ -7,16 +7,7 @@ import { PostCard } from "../../utils/customElements";
 
 export default function Home() {
   // const { data } = useSWR(`/posts`, fetcher);
-  const {
-    setSize,
-    size,
-    posts,
-    more,
-    isLoading,
-    isError,
-    mutate,
-    isLoadingMore,
-  } = usePosts(10);
+  const { setSize, size, posts, more } = usePosts(10);
   // console.log(posts);
   const testRef = useRef();
   return (
