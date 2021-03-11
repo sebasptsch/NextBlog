@@ -1,7 +1,7 @@
 import {
   Alert,
   Box,
-  Code,
+  Code as ChakraCode,
   Flex,
   Heading,
   HStack,
@@ -28,6 +28,15 @@ export const Heading2 = (props) => (
 export const Heading3 = (props) => (
   <Heading size="md" as="h3" mt={2} {...props} />
 );
+
+export const Code = (props) => {
+  console.log(props);
+  return (
+    <Box overflowX="auto">
+      <ChakraCode {...props} />
+    </Box>
+  );
+};
 
 export const CustomParagraph = (props) => <Text mt={2} mb={2} {...props} />;
 export const ImageEmbed = (props) => (

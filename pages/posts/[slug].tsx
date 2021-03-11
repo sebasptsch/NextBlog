@@ -1,5 +1,4 @@
 import { Box, Heading, HStack, Tag } from "@chakra-ui/react";
-import { rehypeElement } from "../../utils/customElements";
 import { BlogJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
 import React from "react";
@@ -7,6 +6,7 @@ import rehype2react from "rehype-react";
 import remark2rehype from "remark-rehype";
 import Layout from "../../components/Layout";
 import { fetcher } from "../../utils";
+import { rehypeElement } from "../../utils/customElements";
 var unified = require("unified");
 var parse = require("remark-parse");
 
