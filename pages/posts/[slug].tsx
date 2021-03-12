@@ -2,13 +2,11 @@ import { Box, Heading, HStack, Tag } from "@chakra-ui/react";
 import { BlogJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
 import React from "react";
-import rehype2react from "rehype-react";
-import remark2rehype from "remark-rehype";
 import Layout from "../../components/Layout";
 import { fetcher } from "../../utils";
 import { rehypeElement } from "../../utils/customElements";
 var unified = require("unified");
-var parse = require("remark-parse");
+const rehypePrism = require("@mapbox/rehype-prism");
 
 export default function BlogPost(props) {
   const { post } = props;
@@ -81,9 +79,12 @@ export default function BlogPost(props) {
       <article>
         {
           unified()
-            .use(parse)
-            .use(remark2rehype)
-            .use(rehype2react, rehypeElement)
+            .use(require("remark-parse"))
+            .use(require("remark-rehype"))
+            .use(require("rehype-slug"))
+            // .use(require("rehype-toc"))
+            .use(require("rehype-prism"))
+            .use(require("rehype-react"), rehypeElement)
             .processSync(post.content).result
         }
       </article>

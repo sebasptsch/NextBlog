@@ -1,7 +1,6 @@
 import {
   Box,
   Center,
-  Divider,
   Heading,
   HStack,
   IconButton,
@@ -19,7 +18,7 @@ export default function Home() {
   return (
     <Layout>
       <NextSeo title={`Seb's Blog`} />
-      <Stack divider={<Divider />}>
+      <Stack>
         <Center>
           <Box overflow="hidden" borderRadius="full" w={300} h={300}>
             <ChakraImage src="/avatar.jpg" layout="fill" objectFit="contain" />

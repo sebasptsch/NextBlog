@@ -1,12 +1,10 @@
 import { Box, Heading } from "@chakra-ui/react";
 import { BlogJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
-import { rehypeElement } from "../../utils/customElements";
 import React from "react";
-import rehype2react from "rehype-react";
-import remark2rehype from "remark-rehype";
 import Layout from "../../components/Layout";
 import { fetcher } from "../../utils";
+import { rehypeElement } from "../../utils/customElements";
 var unified = require("unified");
 var parse = require("remark-parse");
 
@@ -76,9 +74,12 @@ export default function BlogPost(props) {
       <article>
         {
           unified()
-            .use(parse)
-            .use(remark2rehype)
-            .use(rehype2react, rehypeElement)
+            .use(require("remark-parse"))
+            .use(require("remark-rehype"))
+            .use(require("rehype-slug"))
+            // .use(require("rehype-toc"))
+            .use(require("rehype-prism"))
+            .use(require("rehype-react"), rehypeElement)
             .processSync(project.content).result
         }
       </article>

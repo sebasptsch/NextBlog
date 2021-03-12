@@ -1,7 +1,6 @@
 import {
   Alert,
   Box,
-  Code as ChakraCode,
   Flex,
   Heading,
   HStack,
@@ -30,12 +29,7 @@ export const Heading3 = (props) => (
 );
 
 export const Code = (props) => {
-  console.log(props);
-  return (
-    <Box overflowX="auto">
-      <ChakraCode {...props} />
-    </Box>
-  );
+  return <code {...props} />;
 };
 
 export const CustomParagraph = (props) => <Text mt={2} mb={2} {...props} />;
@@ -73,6 +67,7 @@ export const rehypeElement = {
     blockquote: Blockquote,
     img: ImageEmbed,
     p: CustomParagraph,
+    a: NextChakraLink,
   },
 };
 

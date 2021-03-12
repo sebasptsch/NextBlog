@@ -1,24 +1,23 @@
-import { fetcher } from "../../utils";
 import {
-  Heading,
-  Text,
-  Divider,
   Box,
+  Divider,
   Flex,
-  Center,
-  Stack,
-  Spacer,
+  Heading,
   HStack,
+  Spacer,
+  Stack,
   Tag,
+  Text,
 } from "@chakra-ui/react";
-import React from "react";
-import Layout from "../../components/Layout";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
+import React from "react";
+import Layout from "../../components/Layout";
 import {
   NextChakraLink,
   NextChakraLinkBox,
 } from "../../components/NextChakraLink";
+import { fetcher } from "../../utils";
 
 export default function BlogPost(props) {
   const { tag } = props;
