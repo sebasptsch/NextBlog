@@ -17,9 +17,14 @@ export default function Home({ posts }) {
       </Box>
 
       <Stack>
-        {posts?.map((frontMatter) => {
-          return <ProjectPost {...frontMatter} key={frontMatter.title} />;
-        })}
+        {posts
+          .sort(
+            (a, b) =>
+              Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
+          )
+          .map((frontMatter) => {
+            return <ProjectPost {...frontMatter} key={frontMatter.title} />;
+          })}
       </Stack>
     </Layout>
   );

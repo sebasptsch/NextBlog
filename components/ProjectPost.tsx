@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/layout";
+import { AspectRatio, Box, Flex, Spacer, Text } from "@chakra-ui/layout";
 import { Heading } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
@@ -9,7 +9,8 @@ export default function ProjectPost({
   summary,
   slug,
   image,
-}): JSX.Element {
+  publishedAt,
+}) {
   return (
     <NextChakraLinkBox
       borderWidth="1px"
@@ -18,21 +19,27 @@ export default function ProjectPost({
       w="100%"
       href={`/projects/${slug}`}
     >
-      {image ? (
-        <Box
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "20em",
-          }}
-        >
-          <Image src={image} layout="fill" objectFit="cover" />
+      <Flex>
+        {image ? (
+          <AspectRatio
+            ratio={1}
+            style={{
+              width: "6em",
+              height: "6em",
+            }}
+          >
+            <Image src={image} layout="fill" objectFit="contain" />
+          </AspectRatio>
+        ) : null}
+        <Box p={4} w="100%">
+          <Flex>
+            <Heading size="md">{title}</Heading>
+            <Spacer />
+            <Text>{publishedAt}</Text>
+          </Flex>
+          <Text>{summary}</Text>
         </Box>
-      ) : null}
-      <Box p={4}>
-        <Heading size="md">{title}</Heading>
-        <Text>{summary}</Text>
-      </Box>
+      </Flex>
     </NextChakraLinkBox>
   );
 }
