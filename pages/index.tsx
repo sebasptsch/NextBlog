@@ -39,12 +39,14 @@ export default function Home() {
             aria-label="twitter"
             rightIcon={<FaTwitter />}
             href={"https://twitter.com/sebasptsch"}
+            as="a"
           >
             Twitter
           </Button>
           <Button
             aria-label="github"
             rightIcon={<FaGithub />}
+            as="a"
             href={"https://github.com/sebasptsch/"}
           >
             Github
