@@ -1,11 +1,13 @@
+import GitHub from "@/components/metrics/Github";
 import {
   Box,
+  Button,
   Center,
   Heading,
   HStack,
-  IconButton,
   Image as ChakraImage,
   Stack,
+  StatGroup,
   Text,
 } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
@@ -33,19 +35,27 @@ export default function Home() {
           </Text>
         </Box>
         <HStack spacing={10} justify="center" m={5}>
-          <IconButton
+          <Button
             aria-label="twitter"
-            icon={<FaTwitter />}
+            rightIcon={<FaTwitter />}
             as={NextChakraLink}
             href={"https://twitter.com/sebasptsch"}
-          />
-          <IconButton
+          >
+            Twitter
+          </Button>
+          <Button
             aria-label="github"
-            icon={<FaGithub />}
+            rightIcon={<FaGithub />}
             as={NextChakraLink}
             href={"https://github.com/sebasptsch/"}
-          />
+          >
+            Github
+          </Button>
         </HStack>
+        <StatGroup textAlign="center">
+          <GitHub followers />
+          <GitHub stars />
+        </StatGroup>
       </Stack>
     </Layout>
   );
