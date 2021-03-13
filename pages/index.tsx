@@ -1,3 +1,4 @@
+import NowPlaying from "@/components/metrics/CurrentlyPlaying";
 import GitHub from "@/components/metrics/Github";
 import {
   Box,
@@ -55,6 +56,7 @@ export default function Home() {
         <StatGroup textAlign="center">
           <GitHub followers />
           <GitHub stars />
+          <NowPlaying />
         </StatGroup>
       </Stack>
     </Layout>
