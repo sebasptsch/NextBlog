@@ -18,6 +18,7 @@ export default function ProjectPost({
       overflow="hidden"
       w="100%"
       href={`/projects/${slug}`}
+      p={6}
     >
       <Flex>
         {image ? (
@@ -27,11 +28,12 @@ export default function ProjectPost({
               width: "6em",
               height: "6em",
             }}
+            mr={4}
           >
             <Image src={image} layout="fill" objectFit="contain" />
           </AspectRatio>
         ) : null}
-        <Box p={4} w="100%">
+        <Box w="100%">
           <Flex>
             <Heading size="md">{title}</Heading>
             <Spacer />

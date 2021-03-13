@@ -1,4 +1,4 @@
-import { Box, Flex, Spacer, Text } from "@chakra-ui/layout";
+import { Flex, Spacer, Text } from "@chakra-ui/layout";
 import { Heading } from "@chakra-ui/react";
 import React from "react";
 import { NextChakraLinkBox } from "./NextChakraLink";
@@ -17,15 +17,14 @@ export default function BlogPost({
       overflow="hidden"
       w="100%"
       href={`/posts/${slug}`}
+      p={6}
     >
-      <Box p={4}>
-        <Flex>
-          <Heading size="md">{title}</Heading>
-          <Spacer />
-          <Text>{publishedAt}</Text>
-        </Flex>
-        <Text>{summary}</Text>
-      </Box>
+      <Flex>
+        <Heading size="md">{title}</Heading>
+        <Spacer />
+        <Text>{publishedAt}</Text>
+      </Flex>
+      <Text>{summary}</Text>
     </NextChakraLinkBox>
   );
 }
