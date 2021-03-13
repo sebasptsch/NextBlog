@@ -2,7 +2,6 @@ import { Box, Flex, Spacer } from "@chakra-ui/react";
 import Footer from "./Footer";
 import Nav from "./Nav";
 export default function Layout(props) {
-  // console.log(props.children)
   return (
     <Flex flexDir="column" h="100vh">
       <Nav />

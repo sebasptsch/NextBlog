@@ -1,15 +1,11 @@
-import { Box, Button, Center, Divider, Heading, Stack } from "@chakra-ui/react";
+import BlogPost from "@/components/BlogPost";
+import { getAllFilesFrontMatter } from "@/utils/mdx";
+import { Box, Divider, Heading, Stack } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
-import React, { useRef } from "react";
+import React from "react";
 import Layout from "../../components/Layout";
-import { usePosts } from "../../utils";
-import { PostCard } from "../../utils/customElements";
 
-export default function Home() {
-  // const { data } = useSWR(`/posts`, fetcher);
-  const { setSize, size, posts, more } = usePosts(10);
-  // console.log(posts);
-  const testRef = useRef();
+export default function Home({ posts }) {
   return (
     <Layout>
       <NextSeo title={`Blog | Seb's Blog`} />
@@ -21,20 +17,15 @@ export default function Home() {
       </Box>
 
       <Stack>
-        {posts?.map((post) => {
-          return <PostCard post={post} url={`/posts/${post.slug}`} />;
+        {posts?.map((frontMatter) => {
+          return <BlogPost {...frontMatter} key={frontMatter.title} />;
         })}
-        <Center>
-          <Button
-            disabled={!more}
-            onClick={() => {
-              setSize(size + 1);
-            }}
-          >
-            Load More
-          </Button>
-        </Center>
       </Stack>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const posts = await getAllFilesFrontMatter("blog");
+  return { props: { posts } };
 }

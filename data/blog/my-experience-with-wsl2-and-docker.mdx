@@ -1,0 +1,23 @@
+---
+title: My Experience with WSL2 and Docker
+summary: Exploring the possibilities of linux + windows.
+publishedAt: "2021-03-13"
+---
+
+In the course of making websites and hosting services off of devices in my own home I have become very familiar with Docker and WSL2 (Windows Subsystem for Linux). Despite what many people think, docker containers are not only useful in production environments but also in development. Many services you may be familiar with as a developer rely on docker container management system constantly because it's an easy way to create a new environment with exactly the right programs and code installed with very little effort.
+
+For example, if you wanted to deploy a home automation server like [Hassio](https://www.home-assistant.io/) all you need to do is run the docker image and all of a sudden you have a fully-fledged service without the hassle of installing dependancies that might take forever otherwise.
+
+In a development environment you can use [Microsoft's Devcontainers](https://code.visualstudio.com/docs/remote/containers) to develop your code in a predefined environment that is the same no-matter where it is running whether it be on a development machine or the production server.
+
+### WSL
+
+WSL is by far the most useful feature (in my humble opinion) that Microsoft has added to Windows in the last couple years. It provides a way to run linux applications natively (although without GUI at the moment) and, with integration in VSCode it provides easy-access to an environment with a package manager and any program you could possibly dream of.
+
+The main ways that I'm using this new feature to make my life easier are:
+
+- Java Projects (where `update-alternatives` comes in useful to change between versions)
+- NodeJS Projects (where NPM and NodeJS can be installed easily and without too much effort)
+- Python Projects (where the python version can be changed on the fly)
+
+WSL fits perfectly in my own development process because it provides the fidelity and usefulness of linux but with Windows UI.

@@ -15,7 +15,6 @@ export const fetcher = (url) =>
   axios
     .get(url)
     .then((res) => {
-      // console.log(res.data);
       return res.data;
     })
     .catch((error) => {
@@ -37,7 +36,6 @@ export function usePosts(limit?) {
     var total = data?.flatMap((customerLists) => customerLists);
     setMore(total?.length !== res.data);
   });
-  // console.log(data)
   return {
     mutate,
     posts: data?.flatMap((customerLists) => customerLists),
