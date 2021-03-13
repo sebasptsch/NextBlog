@@ -8,6 +8,7 @@ export default async (_, res) => {
 
   const user = await userResponse.json();
   const repositories = await userReposResponse.json();
+  const repos = repositories.length;
 
   const mine: Array<any> = repositories.filter((repo) => !repo.fork);
   const stars = mine.reduce((accumulator, repository) => {
@@ -22,5 +23,6 @@ export default async (_, res) => {
   return res.status(200).json({
     followers: user.followers,
     stars,
+    repos,
   });
 };

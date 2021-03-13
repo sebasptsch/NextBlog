@@ -12,7 +12,6 @@ export default function Layout(props) {
         w="100%"
         as="main"
         mb={5}
-        // mt={5}
       >
         {props.children}
       </Box>

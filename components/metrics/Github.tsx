@@ -6,24 +6,38 @@ import useSWR from "swr";
 export default function GitHub({
   stars,
   followers,
+  repos,
 }: {
   stars?: boolean;
   followers?: boolean;
+  repos?: boolean;
 }) {
   const { data } = useSWR("/api/github", fetcher);
 
   const followersFormat = format(data?.followers);
   const starsFormat = format(data?.stars);
-  const link = "https://github.com/sebasptsch";
+  const reposFormat = format(data?.repos);
 
-  return (
-    <Stat>
-      <StatLabel>{`Github ${
-        followers ? "Followers" : starsFormat ? "Stars" : ""
-      }`}</StatLabel>
-      <StatNumber>
-        {followers ? followersFormat : stars ? starsFormat : ""}
-      </StatNumber>
-    </Stat>
-  );
+  if (followers) {
+    return (
+      <Stat>
+        <StatLabel>{`Github Followers`}</StatLabel>
+        <StatNumber>{followersFormat}</StatNumber>
+      </Stat>
+    );
+  } else if (stars) {
+    return (
+      <Stat>
+        <StatLabel>{`Github Stars`}</StatLabel>
+        <StatNumber>{starsFormat}</StatNumber>
+      </Stat>
+    );
+  } else if (repos) {
+    return (
+      <Stat>
+        <StatLabel>{`Github (Public) Repositories`}</StatLabel>
+        <StatNumber>{reposFormat}</StatNumber>
+      </Stat>
+    );
+  }
 }

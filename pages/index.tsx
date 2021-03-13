@@ -38,9 +38,6 @@ export default function Home() {
           <Button
             aria-label="twitter"
             rightIcon={<FaTwitter />}
-            // variant={"ghost"}
-            // as={NextChakraLink}
-            // colorScheme="twitter"
             href={"https://twitter.com/sebasptsch"}
           >
             Twitter
@@ -48,9 +45,6 @@ export default function Home() {
           <Button
             aria-label="github"
             rightIcon={<FaGithub />}
-            // variant={"ghost"}
-            // as={NextChakraLink}
-            // colorScheme="black"
             href={"https://github.com/sebasptsch/"}
           >
             Github
@@ -59,6 +53,9 @@ export default function Home() {
         <StatGroup textAlign="center">
           <GitHub followers />
           <GitHub stars />
+          <GitHub repos />
+        </StatGroup>
+        <StatGroup textAlign="center">
           <NowPlaying />
         </StatGroup>
       </Stack>
