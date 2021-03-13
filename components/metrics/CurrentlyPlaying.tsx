@@ -8,10 +8,10 @@ export default function NowPlaying(props) {
   return (
     <Stat {...props}>
       <StatLabel>{`Spotify`}</StatLabel>
-      <StatNumber>{data?.isPlaying ? "Now Playing" : "Not Playing"}</StatNumber>
-      <StatHelpText as="a" href={data?.songUrl}>
-        {data?.title}
-      </StatHelpText>
+      <StatNumber as="a" href={data?.songUrl}>
+        {data?.isPlaying ? data?.title : "Not Playing"}
+      </StatNumber>
+      <StatHelpText>{data?.artist}</StatHelpText>
     </Stat>
   );
 }
