@@ -1,5 +1,5 @@
 import MDXComponents from "@/components/MDXComponents";
-import BlogLayout from "@/layouts/blog";
+import ProjectLayout from "@/layouts/project";
 import { getFileBySlug, getFiles } from "@/utils/mdx";
 import hydrate from "next-mdx-remote/hydrate";
 import React from "react";
@@ -8,7 +8,7 @@ export default function Post({ mdxSource, frontMatter }) {
   const content = hydrate(mdxSource, {
     components: MDXComponents,
   });
-  return <BlogLayout frontMatter={frontMatter}>{content}</BlogLayout>;
+  return <ProjectLayout frontMatter={frontMatter}>{content}</ProjectLayout>;
 }
 
 export async function getStaticProps({ params }) {
