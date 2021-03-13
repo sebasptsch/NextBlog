@@ -24,7 +24,7 @@ export async function getFileBySlug(type, slug) {
       remarkPlugins: [
         require("remark-autolink-headings"),
         require("remark-slug"),
-        require("remark-code-titles"),
+        require("remark-gfm"),
       ],
       rehypePlugins: [mdxPrism],
     },

@@ -19,8 +19,15 @@ const Code = (props) => {
 };
 
 const CustomParagraph = (props) => <Text mt={2} mb={2} {...props} />;
-export const Blockquote = (props) => (
+const Blockquote = (props) => (
   <Alert variant="left-accent" status="info" m={2} {...props} />
+);
+const Link = (props) => (
+  <NextChakraLink
+    colorScheme="blue"
+    {...props}
+    isExternal={new URL(props.href).origin !== "https://sebasptsch.dev"}
+  />
 );
 
 const MDXComponents = {
@@ -34,7 +41,7 @@ const MDXComponents = {
   code: Code,
   blockquote: Blockquote,
   p: CustomParagraph,
-  a: NextChakraLink,
+  a: Link,
   Image,
 };
 
