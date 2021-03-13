@@ -40,7 +40,7 @@ export default function Home() {
             aria-label="twitter"
             rightIcon={<FaTwitter />}
             as={NextChakraLink}
-            colorScheme="twitter"
+            // colorScheme="twitter"
             href={"https://twitter.com/sebasptsch"}
           >
             Twitter
@@ -49,7 +49,7 @@ export default function Home() {
             aria-label="github"
             rightIcon={<FaGithub />}
             as={NextChakraLink}
-            colorScheme="blackAlpha"
+            // colorScheme="black"
             href={"https://github.com/sebasptsch/"}
           >
             Github
