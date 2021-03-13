@@ -16,7 +16,6 @@
     "@chakra-ui/icon": "^1.1.2",
     "@chakra-ui/icons": "^1.0.5",
     "@chakra-ui/react": "^1.3.3",
-    "@chakra-ui/system": "^1.4.0",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "@jsdevtools/rehype-toc": "^3.0.2",
