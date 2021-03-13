@@ -7,8 +7,8 @@ export default function GitHub({
   stars,
   followers,
 }: {
-  stars: boolean;
-  followers: boolean;
+  stars?: boolean;
+  followers?: boolean;
 }) {
   const { data } = useSWR("/api/github", fetcher);
 
