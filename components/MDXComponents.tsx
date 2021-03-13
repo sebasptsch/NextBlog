@@ -20,11 +20,10 @@ const Code = (props) => {
 
 const CustomParagraph = (props) => <Text mt={2} mb={2} {...props} />;
 const Blockquote = (props) => (
-  <Alert variant="left-accent" status="info" m={2} {...props} />
+  <Alert variant="left-accent" status="info" mt={2} mb={2} {...props} />
 );
 const Link = (props) => (
   <NextChakraLink
-    colorScheme="blue"
     {...props}
     isExternal={new URL(props.href).origin !== "https://sebasptsch.dev"}
   />

@@ -4,7 +4,13 @@ import Image from "next/image";
 import React from "react";
 import { NextChakraLinkBox } from "./NextChakraLink";
 
-export default function BlogPost({ title, summary, slug, image }): JSX.Element {
+export default function BlogPost({
+  title,
+  summary,
+  slug,
+  image,
+  publishedAt,
+}): JSX.Element {
   return (
     <NextChakraLinkBox
       borderWidth="1px"
