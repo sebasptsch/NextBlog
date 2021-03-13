@@ -1,5 +1,4 @@
-import { Box, Flex, Spacer } from "@chakra-ui/react";
-import Footer from "./Footer";
+import { Box, Flex } from "@chakra-ui/react";
 import Nav from "./Nav";
 export default function Layout(props) {
   return (
@@ -15,8 +14,6 @@ export default function Layout(props) {
       >
         {props.children}
       </Box>
-      <Spacer />
-      <Footer />
     </Flex>
   );
 }
