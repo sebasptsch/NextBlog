@@ -15,7 +15,6 @@ import { NextSeo } from "next-seo";
 import React from "react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import Layout from "../components/Layout";
-import { NextChakraLink } from "../components/NextChakraLink";
 
 export default function Home() {
   return (
@@ -39,7 +38,8 @@ export default function Home() {
           <Button
             aria-label="twitter"
             rightIcon={<FaTwitter />}
-            as={NextChakraLink}
+            // variant={"ghost"}
+            // as={NextChakraLink}
             // colorScheme="twitter"
             href={"https://twitter.com/sebasptsch"}
           >
@@ -48,7 +48,8 @@ export default function Home() {
           <Button
             aria-label="github"
             rightIcon={<FaGithub />}
-            as={NextChakraLink}
+            // variant={"ghost"}
+            // as={NextChakraLink}
             // colorScheme="black"
             href={"https://github.com/sebasptsch/"}
           >
