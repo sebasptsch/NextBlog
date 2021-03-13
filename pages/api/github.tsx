@@ -1,13 +1,15 @@
 export default async (_, res) => {
-  const userResponse = await fetch("https://api.github.com/users/sebasptsch");
+  const userResponse = await fetch(
+    `https://${process.env.GITHUB_CLIENT}:${process.env.GITHUB_SECRET}@api.github.com/users/sebasptsch`
+  );
   const userReposResponse = await fetch(
-    "https://api.github.com/users/sebasptsch/repos?per_page=100"
+    `https://${process.env.GITHUB_CLIENT}:${process.env.GITHUB_SECRET}@api.github.com/users/sebasptsch/repos?per_page=100`
   );
 
   const user = await userResponse.json();
   const repositories = await userReposResponse.json();
 
-  const mine = repositories.filter((repo) => !repo.fork);
+  const mine: Array<any> = repositories.filter((repo) => !repo.fork);
   const stars = mine.reduce((accumulator, repository) => {
     return accumulator + repository["stargazers_count"];
   }, 0);

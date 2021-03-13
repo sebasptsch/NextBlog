@@ -3,20 +3,26 @@ import { Stat, StatLabel, StatNumber } from "@chakra-ui/stat";
 import format from "comma-number";
 import useSWR from "swr";
 
-export default function GitHub(props) {
+export default function GitHub({
+  stars,
+  followers,
+}: {
+  stars: boolean;
+  followers: boolean;
+}) {
   const { data } = useSWR("/api/github", fetcher);
 
-  const followers = format(data?.followers);
-  const stars = format(data?.stars);
+  const followersFormat = format(data?.followers);
+  const starsFormat = format(data?.stars);
   const link = "https://github.com/sebasptsch";
 
   return (
-    <Stat {...props}>
+    <Stat>
       <StatLabel>{`Github ${
-        props.followers ? "Followers" : props.stars ? "Stars" : ""
+        followers ? "Followers" : starsFormat ? "Stars" : ""
       }`}</StatLabel>
       <StatNumber>
-        {props.followers ? followers : props.stars ? stars : ""}
+        {followers ? followersFormat : stars ? starsFormat : ""}
       </StatNumber>
     </Stat>
   );
