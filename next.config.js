@@ -4,5 +4,4 @@ module.exports = withMDX({
   images: {
     domains: ["blog.sebasptsch.dev"],
   },
-  basePath: "https://sebasptsch.dev",
 });
