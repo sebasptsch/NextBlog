@@ -5,29 +5,51 @@ import {
   OrderedList,
   Text,
   UnorderedList,
+  useColorMode,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
-import { NextChakraLink } from "./NextChakraLink";
+import { NextChakraLink } from "./NextChakra";
 
-const Heading1 = (props) => <Heading size="2xl" as="h1" mt={2} {...props} />;
-const Heading2 = (props) => <Heading size="xl" as="h2" mt={2} {...props} />;
-const Heading3 = (props) => <Heading size="md" as="h3" mt={2} {...props} />;
+const Heading1 = (props) => (
+  <Heading
+    size="2xl"
+    as="h1"
+    mt={"2em"}
+    mb={"1em"}
+    style={{
+      scrollMarginTop: "8em",
+    }}
+    {...props}
+  />
+);
+const Heading2 = (props) => (
+  <Heading size="xl" as="h2" mt={"2em"} mb={"1em"} {...props} />
+);
+const Heading3 = (props) => (
+  <Heading size="md" as="h3" mt={"2em"} mb={"1em"} {...props} />
+);
 
-const Code = (props) => {
-  return <code {...props} />;
-};
-
-const CustomParagraph = (props) => <Text mt={2} mb={2} {...props} />;
+const CustomParagraph = (props) => (
+  <Text
+    mt={2.5}
+    mb={2.5}
+    lineHeight={1.75}
+    fontSize="1rem"
+    color="gray.300"
+    {...props}
+  />
+);
 const Blockquote = (props) => (
   <Alert variant="left-accent" status="info" mt={2} mb={2} {...props} />
 );
-const Link = (props) => (
-  <NextChakraLink
-    {...props}
-    isExternal={new URL(props.href).origin !== "https://sebasptsch.dev"}
-  />
-);
+const Link = (props) => {
+  const { colorMode } = useColorMode();
+  var linkColor = colorMode === "dark" ? "blue.300" : "blue.600";
+  return (
+    <NextChakraLink {...props} color={linkColor} textDecoration="underline" />
+  );
+};
 
 const MDXComponents = {
   h3: Heading3,
@@ -36,8 +58,6 @@ const MDXComponents = {
   ol: OrderedList,
   ul: UnorderedList,
   li: ListItem,
-  inlineCode: Code,
-  code: Code,
   blockquote: Blockquote,
   p: CustomParagraph,
   a: Link,

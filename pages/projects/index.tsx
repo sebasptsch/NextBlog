@@ -10,13 +10,13 @@ export default function Home({ posts }) {
     <Layout>
       <NextSeo title={`Projects | Seb's Blog`} />
       <Box mt={10} mb={10}>
-        <Heading as="h1" size="4xl" textAlign="center">
+        <Heading as="h1" size="2xl">
           Projects
         </Heading>
         <Divider mt={5} />
       </Box>
 
-      <Stack>
+      <Stack divider={<Divider />}>
         {posts
           .sort(
             (a, b) =>

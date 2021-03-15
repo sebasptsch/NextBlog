@@ -2,7 +2,7 @@ import { AspectRatio, Box, Flex, Spacer, Text } from "@chakra-ui/layout";
 import { Heading } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
-import { NextChakraLinkBox } from "./NextChakraLink";
+import { NextChakraLinkBox } from "./NextChakra";
 
 export default function ProjectPost({
   title,
@@ -10,16 +10,10 @@ export default function ProjectPost({
   slug,
   image,
   publishedAt,
+  readingTime,
 }) {
   return (
-    <NextChakraLinkBox
-      borderWidth="1px"
-      borderRadius="10px"
-      overflow="hidden"
-      w="100%"
-      href={`/projects/${slug}`}
-      p={6}
-    >
+    <NextChakraLinkBox href={`/projects/${slug}`} p={6}>
       <Flex>
         {image ? (
           <AspectRatio
@@ -37,7 +31,9 @@ export default function ProjectPost({
           <Flex>
             <Heading size="md">{title}</Heading>
             <Spacer />
-            <Text>{publishedAt}</Text>
+            <Text>
+              {publishedAt} &bull; {readingTime?.text}
+            </Text>
           </Flex>
           <Text>{summary}</Text>
         </Box>

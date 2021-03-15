@@ -1,14 +1,12 @@
-import { HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
-  Button,
   Center,
   Flex,
-  HStack,
   IconButton,
   Spacer,
   useColorMode,
 } from "@chakra-ui/react";
-import { NextChakraLink } from "./NextChakraLink";
+import { NextChakraLink } from "./NextChakra";
 
 const links = [
   {

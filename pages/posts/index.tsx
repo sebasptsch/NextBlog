@@ -10,7 +10,7 @@ export default function Home({ posts }) {
     <Layout>
       <NextSeo title={`Blog | Seb's Blog`} />
       <Box mt={10} mb={10}>
-        <Heading as="h1" size="4xl" textAlign="center">
+        <Heading as="h1" size="2xl">
           Blog
         </Heading>
         <Divider mt={5} />

@@ -4,14 +4,15 @@ import {
   Box,
   Button,
   Center,
+  Divider,
   Heading,
   HStack,
-  Image as ChakraImage,
   Stack,
   StatGroup,
   Text,
 } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
+import Image from "next/image";
 import React from "react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import Layout from "../components/Layout";
@@ -23,7 +24,12 @@ export default function Home() {
       <Stack>
         <Center>
           <Box overflow="hidden" borderRadius="full" w={300} h={300}>
-            <ChakraImage src="/avatar.jpg" layout="fill" objectFit="contain" />
+            <Image
+              src="/avatar.jpg"
+              objectFit="contain"
+              width="940"
+              height="939"
+            />
           </Box>
         </Center>
         <Box textAlign="center">
@@ -57,6 +63,7 @@ export default function Home() {
           <GitHub stars />
           <GitHub repos />
         </StatGroup>
+        <Divider />
         <StatGroup textAlign="center">
           <NowPlaying />
         </StatGroup>
