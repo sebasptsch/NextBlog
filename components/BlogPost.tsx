@@ -12,14 +12,7 @@ export default function BlogPost({
   readingTime,
 }): JSX.Element {
   return (
-    <NextChakraLinkBox
-      borderWidth="1px"
-      borderRadius="10px"
-      overflow="hidden"
-      w="100%"
-      href={`/posts/${slug}`}
-      p={6}
-    >
+    <NextChakraLinkBox w="100%" href={`/posts/${slug}`} p={6}>
       <Flex>
         <Heading size="md">{title}</Heading>
         <Spacer />
