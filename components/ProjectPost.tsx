@@ -31,9 +31,7 @@ export default function ProjectPost({
           <Flex>
             <Heading size="md">{title}</Heading>
             <Spacer />
-            <Text>
-              {publishedAt} &bull; {readingTime?.text}
-            </Text>
+            <Text>{publishedAt}</Text>
           </Flex>
           <Text>{summary}</Text>
         </Box>

@@ -1,19 +1,13 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Container, Flex } from "@chakra-ui/react";
 import Nav from "./Nav";
 export default function Layout(props) {
   return (
     <Flex flexDir="column" h="100vh">
       <Nav />
 
-      <Box
-        pl={["5%", "20%", "25%", "30%"]}
-        pr={["5%", "20%", "25%", "30%"]}
-        w="100%"
-        as="main"
-        mb={5}
-      >
+      <Container maxW="container.md" as="main">
         {props.children}
-      </Box>
+      </Container>
     </Flex>
   );
 }
