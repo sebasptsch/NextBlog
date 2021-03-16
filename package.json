@@ -25,6 +25,7 @@
     "@tryghost/content-api": "^1.4.14",
     "@types/next-auth": "^3.7.0",
     "axios": "^0.21.1",
+    "btoa": "^1.2.1",
     "child_process": "^1.0.2",
     "comma-number": "^2.0.1",
     "framer-motion": "^3.5.0",

@@ -1,7 +1,6 @@
 import MDXComponents from "@/components/MDXComponents";
 import fs from "fs";
 import matter from "gray-matter";
-import mdxPrism from "mdx-prism";
 import renderToString from "next-mdx-remote/render-to-string";
 import path from "path";
 import readingTime from "reading-time";
@@ -21,12 +20,12 @@ export async function getFileBySlug(type, slug) {
   const mdxSource = await renderToString(content, {
     components: MDXComponents,
     mdxOptions: {
-      remarkPlugins: [
-        require("remark-autolink-headings"),
-        require("remark-slug"),
-        require("remark-gfm"),
+      remarkPlugins: [require("remark-gfm")],
+      rehypePlugins: [
+        require("mdx-prism"),
+        require("rehype-slug"),
+        require("rehype-autolink-headings"),
       ],
-      rehypePlugins: [mdxPrism],
     },
   });
 

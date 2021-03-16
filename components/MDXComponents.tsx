@@ -1,5 +1,6 @@
 import {
   Alert,
+  Code,
   Heading,
   ListItem,
   OrderedList,
@@ -24,21 +25,32 @@ const Heading1 = (props) => (
   />
 );
 const Heading2 = (props) => (
-  <Heading size="xl" as="h2" mt={"2em"} mb={"1em"} {...props} />
+  <Heading
+    size="xl"
+    as="h2"
+    mt={"2em"}
+    mb={"1em"}
+    style={{
+      scrollMarginTop: "8em",
+    }}
+    {...props}
+  />
 );
 const Heading3 = (props) => (
-  <Heading size="md" as="h3" mt={"2em"} mb={"1em"} {...props} />
+  <Heading
+    size="md"
+    as="h3"
+    mt={"2em"}
+    mb={"1em"}
+    style={{
+      scrollMarginTop: "8em",
+    }}
+    {...props}
+  />
 );
 
 const CustomParagraph = (props) => (
-  <Text
-    mt={2.5}
-    mb={2.5}
-    lineHeight={1.75}
-    fontSize="1rem"
-    color="gray.300"
-    {...props}
-  />
+  <Text mt={2.5} mb={2.5} lineHeight={1.75} fontSize="1rem" {...props} />
 );
 const Blockquote = (props) => (
   <Alert variant="left-accent" status="info" mt={2} mb={2} {...props} />
@@ -51,6 +63,16 @@ const Link = (props) => {
   );
 };
 
+const PreBox = (props) => (
+  <pre
+    style={{
+      borderRadius: "10px",
+      borderWidth: "1px",
+    }}
+    {...props}
+  />
+);
+
 const MDXComponents = {
   h3: Heading3,
   h2: Heading2,
@@ -61,6 +83,8 @@ const MDXComponents = {
   blockquote: Blockquote,
   p: CustomParagraph,
   a: Link,
+  pre: PreBox,
+  code: Code,
   Image,
 };
 
