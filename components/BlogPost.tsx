@@ -10,9 +10,10 @@ export default function BlogPost({
   image,
   publishedAt,
   readingTime,
+  ...props
 }): JSX.Element {
   return (
-    <NextChakraLinkBox w="100%" href={`/posts/${slug}`} p={6}>
+    <NextChakraLinkBox w="100%" href={`/posts/${slug}`} p={6} {...props}>
       <Flex>
         <Heading size="md">{title}</Heading>
         <Spacer />
