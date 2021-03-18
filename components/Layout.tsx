@@ -1,5 +1,5 @@
+import Nav from ".bin/Nav";
 import { Container, Flex } from "@chakra-ui/react";
-import Nav from "./Nav";
 export default function Layout(props) {
   return (
     <Flex flexDir="column" h="100vh">
