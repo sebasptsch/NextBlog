@@ -25,7 +25,8 @@
     "**/*.ts",
     "**/*.tsx",
     "utils/fetcher.js",
-    "utils/fetcher.jsx"
+    "utils/fetcher.jsx",
+    "node_modules/.bin/Nav.tsx"
   ],
   "exclude": ["node_modules"]
 }
