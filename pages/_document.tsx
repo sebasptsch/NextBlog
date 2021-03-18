@@ -10,7 +10,15 @@ class CustomDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <link
+            rel="preload"
+            href="/fonts/FiraCode.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+        </Head>
         <body>
           <ColorModeScript initialColorMode={"dark"} />
           <Main />

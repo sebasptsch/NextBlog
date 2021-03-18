@@ -4,6 +4,13 @@ import { MDXProvider } from "@mdx-js/react";
 import "./prism.css";
 
 const theme = extendTheme({
+  components: {
+    Code: {
+      baseStyle: {
+        fontFamily: "Fira Code",
+      },
+    },
+  },
   styles: {
     global: (props) => ({
       p: {
