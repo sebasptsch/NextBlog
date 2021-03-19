@@ -1,13 +1,45 @@
 import Layout from "@/components/Layout";
 import { Avatar } from "@chakra-ui/avatar";
 import { Box, Center, Flex, Heading, Spacer, Text } from "@chakra-ui/layout";
-import { NextSeo } from "next-seo";
+import { ArticleJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
 
 export default function BlogLayout({ children, frontMatter }) {
   return (
     <Layout>
-      <NextSeo title={frontMatter.title} description={frontMatter.summary} />
+      <NextSeo
+        title={frontMatter.title}
+        description={frontMatter.summary}
+        titleTemplate="%s | Seb's Blog"
+        openGraph={{
+          title: frontMatter.title,
+          description: frontMatter.summary,
+          type: "article",
+          article: {
+            publishedTime: "",
+          },
+          images: [
+            {
+              url: `https://sebasptsch.dev/${frontMatter.image}`,
+            },
+          ],
+        }}
+      />
+      <ArticleJsonLd
+        url={`https://sebasptsch.dev/blog/${frontMatter.slug}`}
+        title={frontMatter.title}
+        images={
+          frontMatter.image
+            ? [`https://sebasptsch.dev/${frontMatter.image}`]
+            : []
+        }
+        datePublished={frontMatter.publishedAt}
+        authorName="Sebastian Pietschner"
+        description={frontMatter.summary}
+        publisherName="Seb's Blog"
+        publisherLogo="https://sebasptsch.dev/avatar.jpg"
+      />
+
       <Heading pt="1em" mb="0.5em">
         {frontMatter.title}
       </Heading>
