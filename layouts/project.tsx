@@ -27,9 +27,11 @@ export default function ProjectLayout({ children, frontMatter }) {
             publishedTime: "",
           },
           images: [
-            {
-              url: `https://sebasptsch.dev/${frontMatter.image}`,
-            },
+            frontMatter.image
+              ? {
+                  url: `https://sebasptsch.dev/${frontMatter.image}`,
+                }
+              : null,
           ],
         }}
       />
