@@ -22,21 +22,21 @@ export default function GitHub({
     return (
       <Stat>
         <StatLabel>{`Github Followers`}</StatLabel>
-        <StatNumber>{followersFormat}</StatNumber>
+        <StatNumber>{data ? followersFormat : "-"}</StatNumber>
       </Stat>
     );
   } else if (stars) {
     return (
       <Stat>
         <StatLabel>{`Github Stars`}</StatLabel>
-        <StatNumber>{starsFormat}</StatNumber>
+        <StatNumber>{data ? starsFormat : "-"}</StatNumber>
       </Stat>
     );
   } else if (repos) {
     return (
       <Stat>
         <StatLabel>{`Github (Public) Repositories`}</StatLabel>
-        <StatNumber>{reposFormat}</StatNumber>
+        <StatNumber>{data ? reposFormat : "-"}</StatNumber>
       </Stat>
     );
   }
