@@ -10,7 +10,12 @@ export default function Layout(props) {
         url="https://sebasptsch.dev"
         sameAs={["https://twitter.com/sebasptsch"]}
       />
-      <NextSeo defaultTitle="Seb's Blog" />
+      <NextSeo
+        defaultTitle="Seb's Blog"
+        twitter={{
+          handle: "@sebasptsch",
+        }}
+      />
       <Nav />
 
       <Container maxW="container.md" as="main">
