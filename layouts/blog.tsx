@@ -36,7 +36,6 @@ export default function BlogLayout({ children, frontMatter }) {
             : []
         }
         datePublished={frontMatter.publishedAt}
-        dateModified={frontMatter.publishedAt}
         authorName="Sebastian Pietschner"
         description={frontMatter.summary}
         publisherName="Seb's Blog"
