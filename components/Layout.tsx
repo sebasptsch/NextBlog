@@ -1,5 +1,5 @@
 import { Container, Flex } from "@chakra-ui/react";
-import { SocialProfileJsonLd } from "next-seo";
+import { NextSeo, SocialProfileJsonLd } from "next-seo";
 import Nav from "./Nav";
 export default function Layout(props) {
   return (
@@ -10,6 +10,7 @@ export default function Layout(props) {
         url="https://sebasptsch.dev"
         sameAs={["https://twitter.com/sebasptsch"]}
       />
+      <NextSeo defaultTitle="Seb's Blog" />
       <Nav />
 
       <Container maxW="container.md" as="main">
