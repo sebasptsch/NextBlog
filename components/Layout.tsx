@@ -1,9 +1,9 @@
-import { Container, Flex } from "@chakra-ui/react";
 import { NextSeo, SocialProfileJsonLd } from "next-seo";
+import "tailwindcss/tailwind.css";
 import Nav from "./Nav";
 export default function Layout(props) {
   return (
-    <Flex flexDir="column" h="100vh">
+    <div className="flex flex-col h-screen">
       <SocialProfileJsonLd
         type="Person"
         name="Sebastian Pietschner"
@@ -18,9 +18,7 @@ export default function Layout(props) {
       />
       <Nav />
 
-      <Container maxW="container.md" as="main">
-        {props.children}
-      </Container>
-    </Flex>
+      <main className="container mx-auto">{props.children}</main>
+    </div>
   );
 }
