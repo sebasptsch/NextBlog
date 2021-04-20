@@ -48,7 +48,6 @@ export const NextChakraLinkBox = ({
   as,
   replace,
   scroll,
-  shallow,
   prefetch,
   children,
   ...chakraProps
