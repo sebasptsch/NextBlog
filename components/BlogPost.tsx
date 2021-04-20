@@ -1,7 +1,5 @@
-import { Flex, Spacer, Text } from "@chakra-ui/layout";
-import { Heading } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
-import { NextChakraLinkBox } from "./NextChakra";
 
 export default function BlogPost({
   title,
@@ -13,13 +11,15 @@ export default function BlogPost({
   ...props
 }): JSX.Element {
   return (
-    <NextChakraLinkBox w="100%" href={`/posts/${slug}`} p={6} {...props}>
-      <Flex>
-        <Heading size="md">{title}</Heading>
-        <Spacer />
-        <Text>{publishedAt}</Text>
-      </Flex>
-      <Text>{summary}</Text>
-    </NextChakraLinkBox>
+    <Link href={`/posts/${slug}`}>
+      <div className="p-6">
+        <div className="flex">
+          <h2>{title}</h2>
+          <div className="flex-1 self-stretch" />
+          <p>{publishedAt}</p>
+        </div>
+      </div>
+      <p className="font-semibold">{summary}</p>
+    </Link>
   );
 }

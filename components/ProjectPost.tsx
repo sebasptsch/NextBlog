@@ -1,8 +1,6 @@
-import { AspectRatio, Box, Flex, Spacer, Text } from "@chakra-ui/layout";
-import { Heading } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
-import { NextChakraLinkBox } from "./NextChakra";
 
 export default function ProjectPost({
   title,
@@ -13,29 +11,18 @@ export default function ProjectPost({
   readingTime,
 }) {
   return (
-    <NextChakraLinkBox href={`/projects/${slug}`} p={6}>
-      <Flex>
-        {image ? (
-          <AspectRatio
-            ratio={1}
-            style={{
-              width: "6em",
-              height: "6em",
-            }}
-            mr={4}
-          >
-            <Image src={image} layout="fill" objectFit="contain" />
-          </AspectRatio>
-        ) : null}
-        <Box w="100%">
-          <Flex>
-            <Heading size="md">{title}</Heading>
-            <Spacer />
-            <Text>{publishedAt}</Text>
-          </Flex>
-          <Text>{summary}</Text>
-        </Box>
-      </Flex>
-    </NextChakraLinkBox>
+    <Link href={`/projects/${slug}`}>
+      <div className="flex">
+        {image ? <Image src={image} layout="fill" objectFit="contain" /> : null}
+        <div className="w-max">
+          <div className="flex">
+            <h3>{title}</h3>
+          </div>
+          <div className="flex-1 self-stretch" />
+          <p className="font-semibold capitalize">{publishedAt}</p>
+          <p>{summary}</p>
+        </div>
+      </div>
+    </Link>
   );
 }
