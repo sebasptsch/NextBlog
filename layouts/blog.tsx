@@ -18,13 +18,11 @@ export default function BlogLayout({ children, frontMatter }) {
           article: {
             publishedTime: frontMatter.publishedAt,
           },
-          images: [
-            frontMatter.image
-              ? {
-                  url: `https://sebasptsch.dev/${frontMatter.image}`,
-                }
-              : null,
-          ],
+          images: frontMatter.image ? [
+            {
+              url: `https://sebasptsch.dev/${frontMatter.image}`,
+            }
+          ] : undefined
         }}
       />
       <ArticleJsonLd
@@ -33,7 +31,7 @@ export default function BlogLayout({ children, frontMatter }) {
         images={
           frontMatter.image
             ? [`https://sebasptsch.dev/${frontMatter.image}`]
-            : []
+            : undefined
         }
         datePublished={frontMatter.publishedAt}
         authorName="Sebastian Pietschner"

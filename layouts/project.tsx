@@ -7,7 +7,7 @@ import {
   Flex,
   Heading,
   Spacer,
-  Text,
+  Text
 } from "@chakra-ui/layout";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
@@ -26,13 +26,11 @@ export default function ProjectLayout({ children, frontMatter }) {
           article: {
             publishedTime: "",
           },
-          images: [
-            frontMatter.image
-              ? {
-                  url: `https://sebasptsch.dev/${frontMatter.image}`,
-                }
-              : null,
-          ],
+          images: frontMatter.image ? [
+            {
+              url: `https://sebasptsch.dev/${frontMatter.image}`,
+            }
+          ] : undefined
         }}
       />
       <ArticleJsonLd
