@@ -1,7 +1,3 @@
 const withMDX = require("@next/mdx")();
 
-module.exports = withMDX({
-  images: {
-    domains: ["blog.sebasptsch.dev"],
-  },
-});
+module.exports = withMDX();

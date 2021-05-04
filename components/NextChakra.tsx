@@ -2,7 +2,7 @@ import {
   Link as ChakraLink,
   LinkBox as ChakraLinkBox,
   LinkBoxProps as ChakraLinkBoxProps,
-  LinkProps as ChakraLinkProps,
+  LinkProps as ChakraLinkProps
 } from "@chakra-ui/react";
 import { LinkProps as NextLinkProps } from "next/dist/client/link";
 import NextLink from "next/link";
