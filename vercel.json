@@ -1,6 +1,12 @@
 {
     "cleanUrls": true,
     "trailingSlash": false,
+    "rewrites": [
+        {
+            "source": "/og-img",
+            "destination": "/api/og-img"
+        }
+    ],
     "headers": [
         {
             "source": "/fonts/FiraCode.woff2",
