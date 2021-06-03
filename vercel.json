@@ -4,7 +4,7 @@
     "rewrites": [
         {
             "source": "/og-img",
-            "destination": "/api/og-img"
+            "destination": "/pages/api/og-img"
         }
     ],
     "headers": [
