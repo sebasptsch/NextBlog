@@ -1,0 +1,39 @@
+---
+title: Snowpack and React
+publishedAt: "2021-06-03"
+summary: Snowpack is lightning fast but is it ready for prime time?
+---
+
+Recently I delved into the world of Snowpack after hearing about it on the [Syntax](https://syntax.fm/) podcast with glowing reviews coming from the team talking about it's fast compile-times and wealth of different features including but not limited to:
+
+- Plugins
+- Fast Refresh (Multiple frameworks)
+- ESM-Build
+- Skypack (Streaming Imports)
+
+These different features make it great for react projects (as I did with [JaycarSort](https://github.com/sebasptsch/jaycarsort)) as well as projects using other frameworks like [Svelte](https://www.snowpack.dev/tutorials/svelte) and [Vue](https://www.snowpack.dev/tutorials/vue).
+
+### Other Bundlers
+
+The project I mentioned above is designed to be opened using a simple file-browser not hosted on the web or any specific machine but only accessible through the file-system. This presented a few problems when it came to using ESModules and Cors because when a module is loaded rather than a script Cors checks are run than prevent the loading of said scripts if they're accessed using the file-system. To circumvent this issue I ended up using [`@snowpack/plugin-webpack`](https://www.npmjs.com/package/@snowpack/plugin-webpack) which is recommended by the Snowpack site anyway whilst ESBuild is still in development. After adding the Snowpack webpack plugin there were minimal issues which changing the optimize target to `es2018` fixed.
+
+```js
+module.exports = {
+  plugins: ["@snowpack/plugin-webpack"],
+  optimize: {
+    target: "es2018",
+  },
+};
+```
+
+### Skypack
+
+One of the other great features that I neglected as of yet to mention is [Skypack](https://www.skypack.dev/) which is fully supported by Snowpack meaning that production builds don't require the downloading and compiling of every module you plan to use but only that you reference the skypack url or instead with Snowpack's automatic [Streaming Imports](https://www.snowpack.dev/guides/streaming-imports). In a production environment this can remove dependancy managers like NPM or Yarn entirely reducing the complexity of deployment.
+
+### Fast Refresh and HMR
+
+Fast refresh is a feature many people take for granted when it comes to developing a new application with programs like [Create React App](https://create-react-app.dev/) having it built-in. With snowpack fast refresh and hmr is available for a [variety of frameworks](https://www.snowpack.dev/concepts/hot-module-replacement).
+
+### Conclusion
+
+Snowpack is an awesome tool for the ever-evolving world of frameworks with it's revolutionary features catering to a wide audience looking for stability and flexibility in their programming environmentments.
