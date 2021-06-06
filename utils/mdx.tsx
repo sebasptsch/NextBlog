@@ -24,7 +24,7 @@ export async function getFileBySlug(type, slug) {
       rehypePlugins: [
         require("mdx-prism"),
         require("rehype-slug"),
-        require("rehype-autolink-headings"),
+        require("rehype-autolink-headings"), 
       ],
     },
   });

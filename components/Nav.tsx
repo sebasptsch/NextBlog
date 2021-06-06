@@ -1,4 +1,4 @@
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+
 import {
   Center,
   Flex,
@@ -6,6 +6,7 @@ import {
   Spacer,
   useColorMode,
 } from "@chakra-ui/react";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { NextChakraLink } from "./NextChakra";
 
 const links = [
@@ -36,7 +37,7 @@ export default function Nav() {
       </Center>
       <Spacer />
       <IconButton
-        icon={colorMode === "light" ? <SunIcon /> : <MoonIcon />}
+        icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
         aria-label="toggle theme"
         m={4}
         onClick={toggleColorMode}
