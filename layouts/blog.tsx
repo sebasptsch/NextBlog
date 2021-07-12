@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import { Avatar } from "@chakra-ui/avatar";
 import { Box, Center, Flex, Heading, Spacer, Text } from "@chakra-ui/layout";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
@@ -18,11 +17,13 @@ export default function BlogLayout({ children, frontMatter }) {
           article: {
             publishedTime: frontMatter.publishedAt,
           },
-          images: frontMatter.image ? [
-            {
-              url: `https://sebasptsch.dev/${frontMatter.image}`,
-            }
-          ] : undefined
+          images: frontMatter.image
+            ? [
+                {
+                  url: `https://sebasptsch.dev/${frontMatter.image}`,
+                },
+              ]
+            : undefined,
         }}
       />
       <ArticleJsonLd
@@ -37,7 +38,7 @@ export default function BlogLayout({ children, frontMatter }) {
         authorName="Sebastian Pietschner"
         description={frontMatter.summary}
         publisherName="Seb's Blog"
-        publisherLogo="https://sebasptsch.dev/avatar.jpg"
+        publisherLogo="https://sebasptsch.dev/logo.png"
       />
 
       <Heading pt="1em" mb="0.5em">
@@ -45,12 +46,6 @@ export default function BlogLayout({ children, frontMatter }) {
       </Heading>
       <Flex pb="0.5em">
         <Center>
-          <Avatar
-            name="Sebastian Pietschner"
-            src="/avatar.jpg"
-            size="sm"
-            mr="1em"
-          />
           Sebastian Pietschner /{" "}
           {new Date(frontMatter.publishedAt).toDateString()}
         </Center>

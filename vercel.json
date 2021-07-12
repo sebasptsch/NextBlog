@@ -12,7 +12,7 @@
             ]
         },
         {
-            "source": "/avatar.jpg",
+            "source": "/logo.png",
             "headers": [
                 {
                     "key": "Cache-Control",
