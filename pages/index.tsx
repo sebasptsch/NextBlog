@@ -1,5 +1,5 @@
-import NowPlaying from "@/components/metrics/CurrentlyPlaying";
-import GitHub from "@/components/metrics/Github";
+import BlogPost from "@/components/BlogPost";
+import { getAllFilesFrontMatter } from "@/utils/mdx";
 import {
   Box,
   Button,
@@ -7,31 +7,22 @@ import {
   Divider,
   Heading,
   HStack,
+  Input,
+  InputGroup,
   Stack,
-  StatGroup,
   Text,
 } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
-import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import Layout from "../components/Layout";
 
-export default function Home() {
+export default function Home({ posts }) {
+  const [search, setSearch] = useState("");
   return (
     <Layout>
       <NextSeo title={`Seb's Blog`} />
       <Stack>
-        <Center>
-          <Box overflow="hidden" borderRadius="full" w={300} h={300}>
-            <Image
-              src="/avatar.jpg"
-              objectFit="contain"
-              width="940"
-              height="939"
-            />
-          </Box>
-        </Center>
         <Box textAlign="center">
           <Heading as="h1" mt={2} mb={2}>
             Sebastian Pietschner
@@ -40,6 +31,7 @@ export default function Home() {
             An index of my projects and experiences in the wider world.
           </Text>
         </Box>
+        <br />
         <HStack spacing={10} justify="center" m={5}>
           <Button
             aria-label="twitter"
@@ -58,16 +50,44 @@ export default function Home() {
             Github
           </Button>
         </HStack>
-        <StatGroup textAlign="center">
-          <GitHub followers />
-          <GitHub stars />
-          <GitHub repos />
-        </StatGroup>
-        <Divider />
-        <StatGroup textAlign="center">
-          <NowPlaying />
-        </StatGroup>
+      </Stack>
+      <Box mt={10} mb={10}>
+        <Center>
+          <Heading size="lg">Recent Posts</Heading>
+        </Center>
+
+        <Divider mt={5} />
+      </Box>
+      <InputGroup>
+        {/* <InputRightElement children={<SearchIcon />} /> */}
+        <Input
+          placeholder="Search"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          variant="filled"
+          size="lg"
+        />
+      </InputGroup>
+      <Stack>
+        {posts
+          .sort(
+            (a, b) =>
+              Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
+          )
+          .filter((frontMatter) =>
+            frontMatter.title.toLowerCase().includes(search.toLowerCase())
+          )
+          .map((frontMatter) => {
+            return <BlogPost {...frontMatter} key={frontMatter.title} />;
+          })}
       </Stack>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const posts = await getAllFilesFrontMatter("blog");
+  return { props: { posts } };
 }

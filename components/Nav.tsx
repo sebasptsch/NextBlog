@@ -1,4 +1,3 @@
-
 import {
   Center,
   Flex,
@@ -15,12 +14,12 @@ const links = [
     link: "/",
   },
   {
-    name: "Blog",
-    link: "/posts",
-  },
-  {
     name: "Projects",
     link: "/projects",
+  },
+  {
+    name: "Stats",
+    link: "/stats",
   },
 ];
 

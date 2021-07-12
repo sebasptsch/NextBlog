@@ -1,5 +1,6 @@
 import {
   Alert,
+  Divider,
   Heading,
   ListItem,
   OrderedList,
@@ -83,6 +84,7 @@ const MDXComponents = {
   p: CustomParagraph,
   a: Link,
   pre: PreBox,
+  hr: Divider,
   Image,
 };
 

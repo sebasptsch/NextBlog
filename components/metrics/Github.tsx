@@ -35,7 +35,7 @@ export default function GitHub({
   } else if (repos) {
     return (
       <Stat>
-        <StatLabel>{`Github (Public) Repositories`}</StatLabel>
+        <StatLabel>{`Github Repos`}</StatLabel>
         <StatNumber>{data ? reposFormat : "-"}</StatNumber>
       </Stat>
     );

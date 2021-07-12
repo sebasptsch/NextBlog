@@ -1,5 +1,6 @@
 import { Container, Flex } from "@chakra-ui/react";
 import { NextSeo, SocialProfileJsonLd } from "next-seo";
+import React from "react";
 import Nav from "./Nav";
 export default function Layout(props) {
   return (
