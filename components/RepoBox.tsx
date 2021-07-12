@@ -7,7 +7,8 @@ export default function RepoBox({ repo }) {
       <Flex>
         <Heading size="md">
           <a href={repo.url}>{repo.name}</a>{" "}
-          {repo.language ? <Tag colorScheme="blue">{repo.language}</Tag> : null}
+          {repo.language ? <Tag colorScheme="blue">{repo.language}</Tag> : null}{" "}
+          {repo.archived ? <Tag colorScheme="yellow">Archived</Tag> : null}
         </Heading>
         <Spacer />
         {repo.homepage ? (

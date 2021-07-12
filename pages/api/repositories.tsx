@@ -15,6 +15,7 @@ export default async (_, res) => {
       stars: repo.stargazers_count,
       homepage: repo.homepage,
       language: repo.language,
+      archived: repo.archived,
     }));
 
   res.setHeader(
