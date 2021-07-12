@@ -1,4 +1,5 @@
 import MDXComponents from "@/components/MDXComponents";
+import GithubRepos from "@/components/metrics/GithubRepos";
 import { getFileBySlug } from "@/utils/mdx";
 import { Box, Divider, Heading } from "@chakra-ui/react";
 import hydrate from "next-mdx-remote/hydrate";
@@ -19,6 +20,12 @@ export default function Home({ mdxSource, frontMatter }) {
         </Heading>
         <Divider mt={5} mb={5} />
         {content}
+        <Divider mt={5} mb={5} />
+        <Heading as="h1" size="2xl">
+          Github Repositories
+        </Heading>
+        <br />
+        <GithubRepos />
       </Box>
     </Layout>
   );
