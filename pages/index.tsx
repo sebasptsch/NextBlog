@@ -1,4 +1,5 @@
 import BlogPost from "@/components/BlogPost";
+import Layout from "@/components/Layout";
 import { getAllFilesFrontMatter } from "@/utils/mdx";
 import {
   Box,
@@ -15,7 +16,6 @@ import {
 import { NextSeo } from "next-seo";
 import React, { useState } from "react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
-import Layout from "../components/Layout";
 
 export default function Home({ posts }) {
   const [search, setSearch] = useState("");

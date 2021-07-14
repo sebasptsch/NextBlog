@@ -4,7 +4,13 @@ import {
   Heading,
   ListItem,
   OrderedList,
+  Table,
+  Tbody,
+  Td,
   Text,
+  Th,
+  Thead,
+  Tr,
   UnorderedList,
   useColorMode,
 } from "@chakra-ui/react";
@@ -13,28 +19,32 @@ import React from "react";
 import { NextChakraLink } from "./NextChakra";
 
 const Heading1 = (props) => (
-  <Heading
-    size="2xl"
-    as="h1"
-    mt={"2em"}
-    mb={"1em"}
-    style={{
-      scrollMarginTop: "8em",
-    }}
-    {...props}
-  />
+  <>
+    <Heading
+      size="xl"
+      as="h1"
+      mt={"2em"}
+      style={{
+        scrollMarginTop: "8em",
+      }}
+      {...props}
+    />
+    <Divider mb={"1em"} />
+  </>
 );
 const Heading2 = (props) => (
-  <Heading
-    size="xl"
-    as="h2"
-    mt={"2em"}
-    mb={"1em"}
-    style={{
-      scrollMarginTop: "8em",
-    }}
-    {...props}
-  />
+  <>
+    <Heading
+      size="lg"
+      as="h2"
+      mt={"2em"}
+      style={{
+        scrollMarginTop: "8em",
+      }}
+      {...props}
+    />
+    <Divider mb={"1em"} />
+  </>
 );
 const Heading3 = (props) => (
   <Heading
@@ -86,6 +96,12 @@ const MDXComponents = {
   pre: PreBox,
   hr: Divider,
   Image,
+  table: Table,
+  thead: Thead,
+  tr: Tr,
+  th: Th,
+  tbody: Tbody,
+  td: Td,
 };
 
 export default MDXComponents;

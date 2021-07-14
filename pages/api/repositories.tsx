@@ -4,7 +4,7 @@ export default async (_, res) => {
   );
 
   const repositories = await userReposResponse.json();
-
+  // console.log(repositories);
   const mappedRepositories = repositories
     .filter((repo) => !repo.fork)
     .map((repo) => ({

@@ -4,7 +4,7 @@ publishedAt: "2021-06-03"
 summary: The issues and cool discoveries I've had setting up Zigbee with Home Assistant
 ---
 
-### Intro
+## Intro
 
 In early 2020 I started to buy into smart-lights for my up and coming smart home which I had some high goals for in the future. The first purchase was a set of 4 Ikea lightbulbs and 2 remotes that came with them. Two for the master bedroom and one for my own use (and a spare should anything go wrong).
 
@@ -14,7 +14,7 @@ As with any project in development there's always one thing that you may be unab
 
 The first purchase I made in attempt to fix these teething issues with our Zigbee network was the purchase of a Zigbee Usb Dongle from [Itead.CC](https://www.itead.cc/zigbee-3-0-usb-dongle.html) which was relatively cheap at the time. 2 months later I received my package, shipped from China to the Netherlands and from there all the way to where I live in Australia.
 
-### Setup
+## Setup
 
 On receiving the adapter I attempted to set it up within my existing Home-Assistant install (it was advertised as compatible out of the box). Due to the limited documentation on this specific adapter it took some time to figure out how it worked and why it initially wasn't recognised by Home-Assistant. The reason as a discovered later was an incorrect serial frequency which I later found in the documentation.
 
@@ -22,7 +22,7 @@ Another point that wasn't too well documented was how Ikea devices were paired t
 
 The other hiccup that I had during setup was that I apparently had some other Zigbee devices in the house that I had forgotten about. WEMO Smart Bulbs. I only discovered this because whilst I was pairing the Ikea devices I paired an unknown device which I toggled on and off because I though it was a faulty Ikea light and subsequently got yelled at from someone in the room next to mine. Despite this the setup was almost painless (with the exception that every Ikea device had to be in contact with the dongle to pair).
 
-### Experience
+## Experience
 
 Other than the small issues stated above the experience of pairing new devices was relatively straight forward with [Home Assistant](https://home-assistant.io) having a handy wizard to guide new users.
 
@@ -32,6 +32,6 @@ Once all my devices were paired devices on the network were responsive with mini
 
 The final grip that I have with this new process if that sometimes when a device was accidentally toggled at the wall it would cause the entire network to become unresponsive despite the user being able to see the state (current color) but unable to change it. This has happened a few times and every time it means that I have to delete the network and re-pair all the devices one-by-one.
 
-### Conclusion
+## Conclusion
 
 In conclusion Home Assistant makes Zigbee setup easy (if you can find the right documentation for your devices) and intuitive but has a few small issues which prevent it from being the be-all-end-all of smart home communication protocols.
