@@ -83,6 +83,8 @@ const PreBox = (props) => (
   />
 );
 
+const CustomImage = (props) => <img {...props}></img>;
+
 const MDXComponents = {
   h3: Heading3,
   h2: Heading2,
@@ -102,6 +104,7 @@ const MDXComponents = {
   th: Th,
   tbody: Tbody,
   td: Td,
+  img: CustomImage,
 };
 
 export default MDXComponents;

@@ -18,7 +18,7 @@ export default function Repo({ source, name }) {
 
 export async function getStaticProps({ params }) {
   const res = await fetch(
-    `https://${process.env.GITHUB_CLIENT}:${process.env.GITHUB_SECRET}@api.github.com/repos/sebasptsch/${params.name}/readme`
+    `https://api.github.com/repos/sebasptsch/${params.name}/readme`
   );
   const readme = await res.json();
   let buff = Buffer.from(readme.content, "base64");
