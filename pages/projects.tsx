@@ -1,5 +1,6 @@
 import MDXComponents from "@/components/MDXComponents";
 import GithubRepos from "@/components/metrics/GithubRepos";
+import fetcher from "@/utils/fetcher";
 import { getFileBySlug } from "@/utils/mdx";
 import { Box, Divider, Heading } from "@chakra-ui/react";
 import hydrate from "next-mdx-remote/hydrate";
@@ -7,7 +8,8 @@ import { NextSeo } from "next-seo";
 import React from "react";
 import Layout from "../components/Layout";
 
-export default function Home({ mdxSource, frontMatter }) {
+export default function Home({ projects, githubrepos }) {
+  const { mdxSource, frontMatter } = projects;
   const content = hydrate(mdxSource, {
     components: MDXComponents,
   });
@@ -25,7 +27,7 @@ export default function Home({ mdxSource, frontMatter }) {
           Github Repositories
         </Heading>
         <br />
-        <GithubRepos />
+        <GithubRepos initial={githubrepos} />
       </Box>
     </Layout>
   );
@@ -33,5 +35,6 @@ export default function Home({ mdxSource, frontMatter }) {
 
 export async function getStaticProps() {
   const projects = await getFileBySlug("projects");
-  return { props: projects };
+  const githubrepos = await fetcher("https://sebasptsch.dev/api/repositories");
+  return { props: { projects, githubrepos } };
 }
