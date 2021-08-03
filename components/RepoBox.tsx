@@ -38,7 +38,6 @@ export default function RepoBox({ repo }) {
                 <Link href={`${repo.homepage}`}>Homepage/Demo</Link>
               </>
             ) : null}
-            <Link href={`/repos/${repo.name}`}>Readme</Link>
           </Stack>
         </Flex>
       </Box>
