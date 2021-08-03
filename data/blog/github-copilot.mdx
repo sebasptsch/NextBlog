@@ -1,0 +1,31 @@
+---
+title: Github Copilot. Risky or Rewarding?
+publishedAt: "2019-08-04"
+summary: Short analysis of Github Copilot.
+---
+
+The first thing that comes to mind when you read about new technology is the use of AI. Every new product that comes to market in this day and age always claims to use AI or some form of machine learning to help users achieve their goals. Most of these products will implement it in a limited scope but with Copilot Github has made another step forward. Creating a program that can autocomplete code.
+
+And, that's exactly what it is at the moment. Futuristic autocomplete.
+
+## My Experience
+
+The language that I keep coming back to is TypeScript used in conjunction with NodeJS to write websites like the one you're on right now or even discord bots. And, what I've found is that although the bot's suggestions are applicable to the code that I'm writing it often autocompletes with an old version of the library. For example, DiscordJS just had a major version change which means that what Copilot has learnt so far won't run or result in errors.
+
+What I have found useful is general functions like this \/ which was entirely made using Copilot.
+
+```ts
+// input unix date and output 7 days before
+const daysAgo = (date: Date) =>
+  new Date(date.getTime() - 1000 * 60 * 60 * 24 * 7);
+```
+
+If I didn't know how to perform an complex operation like this I would normally go straight to google to find out how to. In this sense it really is a great "pair-programming" tool as it knows stuff that I don't and can help me get my thoughts straight into the code.
+
+## Disadvantages
+
+At the moment there's quite a bit of scandal as people are unsure where the code is coming from. The other day it autocompleted channel and user ids from someone else's discord bot and, in the past it has autocompleted private keys from other people's projects. During the composition of this article I was autosuggested snippets from other articles talking about Copilot and I have no way of knowing where they've come from or what context they were used in.
+
+## Conclusion
+
+I summary I believe that whilst Copilot is a great tool for the individual programmer who doesn't want to go to Stack Overflow every time they're looking to create a new function. The fact that it learns from code on the internet may make it unsuitable for corporations as you may never know if you've directly copied someone else's code.
