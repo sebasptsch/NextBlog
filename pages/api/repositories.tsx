@@ -1,4 +1,6 @@
-export default async (_, res) => {
+import type { NextApiRequest, NextApiResponse } from "next";
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const userReposResponse = await fetch(
     `https://${process.env.GITHUB_CLIENT}:${process.env.GITHUB_SECRET}@api.github.com/users/sebasptsch/repos?per_page=100`
   );

@@ -1,6 +1,7 @@
 import { getNowPlaying } from "@/utils/spotify";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async (_, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const response = await getNowPlaying();
   if (response.status === 204 || response.status > 400) {
     return res.status(200).json({ isPlaying: false });

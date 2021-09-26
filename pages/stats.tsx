@@ -35,6 +35,7 @@ export default function Stats() {
             <GitHub stars />
             <GitHub repos />
             <NowPlaying />
+            {/* <Followers /> */}
           </StatGroup>
         </Container>
       </Box>
