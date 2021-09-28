@@ -1,6 +1,6 @@
 import fs from "fs";
 import matter from "gray-matter";
-import { serialize } from "next-mdx-remote/serialize";
+import { bundleMDX } from "mdx-bundler";
 import path from "path";
 import readingTime from "reading-time";
 
@@ -15,25 +15,34 @@ export async function getFileBySlug(type, slug?) {
     ? fs.readFileSync(path.join(root, "data", type, `${slug}.mdx`), "utf8")
     : fs.readFileSync(path.join(root, "data", `${type}.mdx`), "utf8");
 
-  const { data, content } = matter(source);
-  const mdxSource = await serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [require("remark-gfm")],
-      rehypePlugins: [
-        require("mdx-prism"),
+  const { code, frontmatter } = await bundleMDX(source, {
+    xdmOptions(options) {
+      options.remarkPlugins = [
+        ...(options?.remarkPlugins ?? []),
+        require("remark-gfm"),
+      ];
+      options.rehypePlugins = [
+        ...(options?.rehypePlugins ?? []),
         require("rehype-slug"),
-        require("rehype-autolink-headings"),
-      ],
+        require("mdx-prism"),
+        [
+          require("rehype-autolink-headings"),
+          {
+            behavior: "wrap",
+          },
+        ],
+      ] as any;
+      return options;
     },
   });
 
   return {
-    mdxSource,
+    code,
     frontMatter: {
-      wordCount: content.split(/\s+/gu).length,
-      readingTime: readingTime(content),
+      wordCount: code.split(/\s+/gu).length,
+      readingTime: readingTime(code),
       slug: slug || null,
-      ...data,
+      ...frontmatter,
     },
   };
 }

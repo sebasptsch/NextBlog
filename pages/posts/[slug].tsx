@@ -1,13 +1,14 @@
 import MDXComponents from "@/components/MDXComponents";
 import BlogLayout from "@/layouts/blog";
 import { getFileBySlug, getFiles } from "@/utils/mdx";
-import { MDXRemote } from "next-mdx-remote";
-import React from "react";
+import { getMDXComponent } from "mdx-bundler/client";
+import React, { useMemo } from "react";
 
-export default function Post({ mdxSource, frontMatter }) {
+export default function Post({ code, frontMatter }) {
+  const Component = useMemo(() => getMDXComponent(code), [code]);
   return (
     <BlogLayout frontMatter={frontMatter}>
-      <MDXRemote {...mdxSource} components={MDXComponents} />
+      <Component components={MDXComponents} />
     </BlogLayout>
   );
 }
