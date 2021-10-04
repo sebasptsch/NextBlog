@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "postinstall": "keystone-next postinstall"
   },
   "browser": {
     "child_process": false
@@ -14,6 +15,8 @@
     "@chakra-ui/react": "^1.6.3",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
+    "@keystone-next/fields-document": "^9.0.0",
+    "@keystone-next/keystone": "^25.0.4",
     "@mapbox/rehype-prism": "^0.6.0",
     "axios": "^0.21.1",
     "comma-number": "^2.0.2",
@@ -35,7 +38,8 @@
     "rehype-autolink-headings": "^5.1.0",
     "rehype-slug": "^4.0.1",
     "remark-gfm": "^1.0.0",
-    "swr": "^0.5.6"
+    "swr": "^0.5.6",
+    "underscore-contrib": "^0.3.0"
   },
   "devDependencies": {
     "@types/node": "^15.0.1",
