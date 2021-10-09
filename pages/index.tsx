@@ -1,6 +1,6 @@
+import { lists } from ".keystone/api";
 import BlogPost from "@/components/BlogPost";
 import Layout from "@/components/Layout";
-import { getAllFilesFrontMatter } from "@/utils/mdx";
 import {
   Box,
   Button,
@@ -13,11 +13,14 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { InferGetStaticPropsType } from "next";
 import { NextSeo } from "next-seo";
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 
-export default function Home({ posts }) {
+export default function Home({
+  posts,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const [search, setSearch] = useState("");
   return (
     <Layout>
@@ -72,15 +75,11 @@ export default function Home({ posts }) {
       </InputGroup>
       <Stack>
         {posts
-          .sort(
-            (a, b) =>
-              Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
+          .filter((post) =>
+            post.title.toLowerCase().includes(search.toLowerCase())
           )
-          .filter((frontMatter) =>
-            frontMatter.title.toLowerCase().includes(search.toLowerCase())
-          )
-          .map((frontMatter) => {
-            return <BlogPost {...frontMatter} key={frontMatter.title} />;
+          .map((post) => {
+            return <BlogPost {...post} key={post.id} />;
           })}
       </Stack>
     </Layout>
@@ -88,6 +87,9 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
-  const posts = await getAllFilesFrontMatter("blog");
+  const posts = await lists.Post.findMany({
+    query: "id title slug summary published_at",
+    orderBy: { published_at: "desc" },
+  });
   return { props: { posts } };
 }

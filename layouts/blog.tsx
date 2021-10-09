@@ -1,63 +1,64 @@
 import Layout from "@/components/Layout";
-import { Box, Center, Flex, Heading, Spacer, Text } from "@chakra-ui/layout";
+import { componentBlockRenderers, renderers } from "@/utils/renderers";
+import { Box, Center, Flex, Heading, Spacer } from "@chakra-ui/layout";
+import { DocumentRenderer } from "@keystone-next/document-renderer";
+import moment from "moment";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
 
-export default function BlogLayout({ children, frontMatter }) {
+export default function BlogLayout({ post }) {
   return (
     <Layout>
       <NextSeo
-        title={frontMatter.title}
-        description={frontMatter.summary}
+        title={post.title}
+        description={post.summary}
         titleTemplate="%s | Seb's Blog"
         openGraph={{
-          title: frontMatter.title,
-          description: frontMatter.summary,
+          title: post.title,
+          description: post.summary,
           type: "article",
           article: {
-            publishedTime: frontMatter.publishedAt,
+            publishedTime: post.published_at,
           },
-          images: frontMatter.image
+          images: post.image
             ? [
                 {
-                  url: `https://sebasptsch.dev/${frontMatter.image}`,
+                  url: `https://sebasptsch.dev${post.image.src}`,
                 },
               ]
             : undefined,
         }}
       />
       <ArticleJsonLd
-        url={`https://sebasptsch.dev/blog/${frontMatter.slug}`}
-        title={frontMatter.title}
+        url={`https://sebasptsch.dev/post/${post.slug}`}
+        title={post.title}
         images={
-          frontMatter.image
-            ? [`https://sebasptsch.dev/${frontMatter.image}`]
-            : undefined
+          post.image ? [`https://sebasptsch.dev${post.image.src}`] : undefined
         }
-        datePublished={frontMatter.publishedAt}
+        datePublished={post.published_at}
         authorName="Sebastian Pietschner"
-        description={frontMatter.summary}
+        description={post.summary}
         publisherName="Seb's Blog"
         publisherLogo="https://sebasptsch.dev/logo.png"
       />
 
       <Heading pt="1em" mb="0.5em">
-        {frontMatter.title}
+        {post.title}
       </Heading>
       <Flex pb="0.5em">
         <Center>
           Sebastian Pietschner /{" "}
-          {new Date(frontMatter.publishedAt).toDateString()}
+          {moment(post.published_at).format("MMM Do YYYY")}
         </Center>
         <Spacer />
-        <Center>
+        {/* <Center>
           <Text textAlign="center" size="sm" fontWeight="semibold">
             {frontMatter.readingTime.text}
           </Text>
-        </Center>
+        </Center> */}
       </Flex>
 
-      {frontMatter.image ? (
+      {post.image ? (
         <Box
           style={{
             position: "relative",
@@ -69,11 +70,20 @@ export default function BlogLayout({ children, frontMatter }) {
           pt="1em"
           pb="2em"
         >
-          <Image src={frontMatter.image} layout="fill" objectFit="cover" />
+          <Image
+            src={post.image.src}
+            width={post.image.width}
+            height={post.image.height}
+            objectFit="cover"
+          />
         </Box>
       ) : null}
 
-      {children}
+      <DocumentRenderer
+        document={post.content.document}
+        renderers={renderers}
+        componentBlocks={componentBlockRenderers}
+      />
     </Layout>
   );
 }

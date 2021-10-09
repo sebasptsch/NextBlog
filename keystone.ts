@@ -4,6 +4,7 @@ import { config, list } from "@keystone-next/keystone";
 import { text, image, timestamp } from "@keystone-next/keystone/fields";
 
 import { document } from "@keystone-next/fields-document";
+import { componentBlocks } from "./utils/codeblocks";
 
 const Post = list({
   fields: {
@@ -12,7 +13,15 @@ const Post = list({
     summary: text({ isRequired: true }),
     image: image({ isRequired: false }),
     published_at: timestamp({ isOrderable: true, isRequired: true }),
-    content: document({ formatting: true }),
+    content: document({
+      formatting: true,
+      dividers: true,
+      links: true,
+      ui: {
+        views: require.resolve("./utils/codeblocks.tsx"),
+      },
+      componentBlocks,
+    }),
   },
 });
 
