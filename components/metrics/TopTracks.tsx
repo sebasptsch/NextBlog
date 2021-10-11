@@ -4,22 +4,22 @@ import { Stat, StatHelpText, StatNumber } from "@chakra-ui/stat";
 import useSWR from "swr";
 
 export default function TopTracks(props) {
-  const { data } = useSWR("/api/top-tracks", fetcher);
-  const { tracks } = data;
-  return (
-    <>
-      <Heading size="lg">My Top Ten</Heading>
-      <Divider />
-      <Stack>
-        {tracks?.map((track) => (
-          <Stat>
-            <StatNumber as="a" href={track.songUrl}>
-              {track.title}
-            </StatNumber>
-            <StatHelpText>{track.artist}</StatHelpText>
-          </Stat>
-        ))}
-      </Stack>
-    </>
-  );
+	const { data } = useSWR("/api/top-tracks", fetcher);
+	const { tracks } = data;
+	return (
+		<>
+			<Heading size="lg">My Top Ten</Heading>
+			<Divider />
+			<Stack>
+				{tracks?.map((track) => (
+					<Stat>
+						<StatNumber as="a" href={track.songUrl}>
+							{track.title}
+						</StatNumber>
+						<StatHelpText>{track.artist}</StatHelpText>
+					</Stat>
+				))}
+			</Stack>
+		</>
+	);
 }

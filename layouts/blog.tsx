@@ -1,79 +1,89 @@
 import Layout from "@/components/Layout";
-import { Box, Center, Flex, Heading, Spacer, Text } from "@chakra-ui/layout";
+import { componentBlockRenderers, renderers } from "@/utils/renderers";
+import { Box, Center, Flex, Heading, Spacer } from "@chakra-ui/layout";
+import { DocumentRenderer } from "@keystone-next/document-renderer";
+import moment from "moment";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
 
-export default function BlogLayout({ children, frontMatter }) {
-  return (
-    <Layout>
-      <NextSeo
-        title={frontMatter.title}
-        description={frontMatter.summary}
-        titleTemplate="%s | Seb's Blog"
-        openGraph={{
-          title: frontMatter.title,
-          description: frontMatter.summary,
-          type: "article",
-          article: {
-            publishedTime: frontMatter.publishedAt,
-          },
-          images: frontMatter.image
-            ? [
-                {
-                  url: `https://sebasptsch.dev/${frontMatter.image}`,
-                },
-              ]
-            : undefined,
-        }}
-      />
-      <ArticleJsonLd
-        url={`https://sebasptsch.dev/blog/${frontMatter.slug}`}
-        title={frontMatter.title}
-        images={
-          frontMatter.image
-            ? [`https://sebasptsch.dev/${frontMatter.image}`]
-            : undefined
-        }
-        datePublished={frontMatter.publishedAt}
-        authorName="Sebastian Pietschner"
-        description={frontMatter.summary}
-        publisherName="Seb's Blog"
-        publisherLogo="https://sebasptsch.dev/logo.png"
-      />
+export default function BlogLayout({ post }) {
+	return (
+		<Layout>
+			<NextSeo
+				title={post.title}
+				description={post.summary}
+				titleTemplate="%s | Seb's Blog"
+				openGraph={{
+					title: post.title,
+					description: post.summary,
+					type: "article",
+					article: {
+						publishedTime: post.published_at,
+					},
+					images: post.image
+						? [
+								{
+									url: `https://sebasptsch.dev${post.image.src}`,
+								},
+						  ]
+						: undefined,
+				}}
+			/>
+			<ArticleJsonLd
+				url={`https://sebasptsch.dev/post/${post.slug}`}
+				title={post.title}
+				images={
+					post.image ? [`https://sebasptsch.dev${post.image.src}`] : undefined
+				}
+				datePublished={post.published_at}
+				authorName="Sebastian Pietschner"
+				description={post.summary}
+				publisherName="Seb's Blog"
+				publisherLogo="https://sebasptsch.dev/logo.png"
+			/>
 
-      <Heading pt="1em" mb="0.5em">
-        {frontMatter.title}
-      </Heading>
-      <Flex pb="0.5em">
-        <Center>
-          Sebastian Pietschner /{" "}
-          {new Date(frontMatter.publishedAt).toDateString()}
-        </Center>
-        <Spacer />
-        <Center>
+			<Heading pt="1em" mb="0.5em">
+				{post.title}
+			</Heading>
+			<Flex pb="0.5em">
+				<Center>
+					Sebastian Pietschner /{" "}
+					{moment(post.published_at).format("MMM Do YYYY")}
+				</Center>
+				<Spacer />
+				{/* <Center>
           <Text textAlign="center" size="sm" fontWeight="semibold">
             {frontMatter.readingTime.text}
           </Text>
-        </Center>
-      </Flex>
+        </Center> */}
+			</Flex>
 
-      {frontMatter.image ? (
-        <Box
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "20em",
-          }}
-          overflow="hidden"
-          borderRadius="10px"
-          pt="1em"
-          pb="2em"
-        >
-          <Image src={frontMatter.image} layout="fill" objectFit="cover" />
-        </Box>
-      ) : null}
+			{post.image ? (
+				<Box
+					style={{
+						position: "relative",
+						width: "100%",
+						height: "20em",
+					}}
+					overflow="hidden"
+					borderRadius="10px"
+					pt="1em"
+					pb="2em"
+				>
+					<Image
+						src={post.image.src}
+						width={post.image.width}
+						height={post.image.height}
+						objectFit="cover"
+					/>
+				</Box>
+			) : null}
 
-      {children}
-    </Layout>
-  );
+			<DocumentRenderer
+				document={post.content.document}
+				renderers={renderers}
+				componentBlocks={componentBlockRenderers}
+			/>
+		</Layout>
+	);
 }

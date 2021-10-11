@@ -1,28 +1,25 @@
 import { Flex, Spacer, Text } from "@chakra-ui/layout";
-import { Heading, Tag } from "@chakra-ui/react";
-import React from "react";
+import { Heading } from "@chakra-ui/react";
+import moment from "moment";
 import { NextChakraLinkBox } from "./NextChakra";
 
 export default function BlogPost({
-  title,
-  summary,
-  tag,
-  slug,
-  image,
-  publishedAt,
-  readingTime,
-  ...props
-}): JSX.Element {
-  return (
-    <NextChakraLinkBox w="100%" href={`/posts/${slug}`} p={6} {...props}>
-      <Flex>
-        <Heading size="md">{title}</Heading>{" "}
-        <Tag ml={2}>{tag ? tag : "Post"}</Tag>
-        <Spacer />
-        <Text>{publishedAt}</Text>
-      </Flex>
+	title,
+	summary,
+	slug,
+	image,
+	published_at,
+	...props
+}: any): JSX.Element {
+	return (
+		<NextChakraLinkBox w="100%" href={`/post/${slug}`} p={6} {...props}>
+			<Flex>
+				<Heading size="md">{title}</Heading>
+				<Spacer />
+				<Text>{moment(published_at).format("MMM Do YYYY")}</Text>
+			</Flex>
 
-      <Text>{summary}</Text>
-    </NextChakraLinkBox>
-  );
+			<Text>{summary}</Text>
+		</NextChakraLinkBox>
+	);
 }
