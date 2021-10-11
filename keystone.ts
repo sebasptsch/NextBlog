@@ -4,7 +4,7 @@ import { config, list } from "@keystone-next/keystone";
 import { text, image, timestamp } from "@keystone-next/keystone/fields";
 
 import { document } from "@keystone-next/fields-document";
-import { componentBlocks } from "./utils/codeblocks";
+import { componentBlocks } from "./utils/componentBlocks";
 
 const Post = list({
   fields: {
@@ -18,7 +18,7 @@ const Post = list({
       dividers: true,
       links: true,
       ui: {
-        views: require.resolve("./utils/codeblocks.tsx"),
+        views: require.resolve("./utils/componentBlocks.tsx"),
       },
       componentBlocks,
     }),

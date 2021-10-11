@@ -1,25 +1,38 @@
 import {
-  Heading,
+  Box, Button, Heading,
   ListItem,
   OrderedList,
   Text,
   UnorderedList,
+  useClipboard
 } from "@chakra-ui/react";
 import { DocumentRendererProps } from "@keystone-next/document-renderer";
 import { InferRenderersForComponentBlocks } from "@keystone-next/fields-document/component-blocks";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import atomOneDark from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark";
-import { componentBlocks } from "./codeblocks";
+import { componentBlocks } from "./componentBlocks";
+
 
 export const componentBlockRenderers: InferRenderersForComponentBlocks<
   typeof componentBlocks
 > = {
   code: (props) => {
     const { content, language } = props;
+    const { hasCopied, onCopy } = useClipboard(content)
     return (
-      <SyntaxHighlighter language={language} style={atomOneDark}>
-        {content}
-      </SyntaxHighlighter>
+      <Box w="100%" position="relative">
+        <Button onClick={onCopy} m={2} size="sm" style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          zIndex: 9
+        }}>
+          {hasCopied ? "Copied" : "Copy"}
+        </Button>
+        <SyntaxHighlighter language={language} style={atomOneDark}>
+          {content}
+        </SyntaxHighlighter>
+      </Box>
     );
   },
 };
@@ -46,13 +59,13 @@ export const renderers: DocumentRendererProps["renderers"] = {
       return type === "ordered" ? (
         <OrderedList>
           {children.map((li) => (
-            <ListItem fontFamily="serif">{li}</ListItem>
+            <ListItem fontFamily="serif" key={li.key}>{li}</ListItem>
           ))}
         </OrderedList>
       ) : (
         <UnorderedList>
           {children.map((li) => (
-            <ListItem fontFamily="serif">{li}</ListItem>
+            <ListItem fontFamily="serif" key={li.key}>{li}</ListItem>
           ))}
         </UnorderedList>
       );
@@ -60,11 +73,12 @@ export const renderers: DocumentRendererProps["renderers"] = {
     code: ({ children }) => {
       // console.log(children);
       return (
-        <SyntaxHighlighter language="javascript" style={atomOneDark}>
+        <SyntaxHighlighter style={atomOneDark}>
           {children}
         </SyntaxHighlighter>
       );
     },
+
     heading: ({ children, textAlign, level }) => {
       const size = {
         1: "xl",
