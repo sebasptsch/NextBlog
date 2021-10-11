@@ -39,7 +39,7 @@ const Post = list({
 	},
 	hooks: {
 		resolveInput: ({ resolvedData }) => {
-			console.log(resolvedData);
+			// console.log(resolvedData);
 			const { title } = resolvedData;
 			if (title) {
 				// Ensure the first letter of the title is capitalised
