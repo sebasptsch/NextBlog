@@ -5,21 +5,21 @@ import { NextSeo } from "next-seo";
 import Layout from "../components/Layout";
 
 export default function Home({ githubrepos }) {
-  return (
-    <Layout>
-      <NextSeo title={`Projects | Seb's Blog`} />
-      <Box mt={10} mb={10}>
-        <Heading as="h1" size="2xl">
-          Projects
-        </Heading>
-        <br />
-        <GithubRepos initial={githubrepos} />
-      </Box>
-    </Layout>
-  );
+	return (
+		<Layout>
+			<NextSeo title={`Projects | Seb's Blog`} />
+			<Box mt={10} mb={10}>
+				<Heading as="h1" size="2xl">
+					Projects
+				</Heading>
+				<br />
+				<GithubRepos initial={githubrepos} />
+			</Box>
+		</Layout>
+	);
 }
 
 export async function getStaticProps() {
-  const githubrepos = await fetcher("https://sebasptsch.dev/api/repositories");
-  return { props: { githubrepos } };
+	const githubrepos = await fetcher("https://sebasptsch.dev/api/repositories");
+	return { props: { githubrepos } };
 }
