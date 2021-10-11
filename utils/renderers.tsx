@@ -63,17 +63,17 @@ export const renderers: DocumentRendererProps["renderers"] = {
     },
     list: ({ children, type }) => {
       return type === "ordered" ? (
-        <OrderedList>
+        <OrderedList fontSize="larger">
           {children.map((li) => (
-            <ListItem fontFamily="serif" key={li.key}>
+            <ListItem fontFamily="serif" key={li.key} fontSize="larger">
               {li}
             </ListItem>
           ))}
         </OrderedList>
       ) : (
-        <UnorderedList>
+        <UnorderedList fontSize="larger">
           {children.map((li) => (
-            <ListItem fontFamily="serif" key={li.key}>
+            <ListItem fontFamily="serif" key={li.key} fontSize="larger">
               {li}
             </ListItem>
           ))}
