@@ -7,7 +7,7 @@
 
 # keystone
 .keystone
-yarn.lock
+
 # testing
 /coverage
 
