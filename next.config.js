@@ -4,8 +4,4 @@
 
 const { withKeystone } = require("@keystone-next/keystone/next");
 
-module.exports = withKeystone({
-	images: {
-		domains: ["pbs.twimg.com"],
-	},
-});
+module.exports = withKeystone();

@@ -1,4 +1,4 @@
-import { lists } from ".keystone/api";
+import { query } from '.keystone/api';
 import BlogPost from "@/components/BlogPost";
 import Layout from "@/components/Layout";
 import {
@@ -11,7 +11,7 @@ import {
 	Input,
 	InputGroup,
 	Stack,
-	Text,
+	Text
 } from "@chakra-ui/react";
 import { InferGetStaticPropsType } from "next";
 import { NextSeo } from "next-seo";
@@ -87,7 +87,7 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-	const posts = await lists.Post.findMany({
+	const posts = await query.Post.findMany({
 		query: "id title slug summary published_at",
 		orderBy: { published_at: "desc" },
 	});
