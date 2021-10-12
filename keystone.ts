@@ -58,9 +58,7 @@ export default config({
 	db: { provider: "sqlite", url: "file:./app.db" },
 	experimental: {
 		enableNextJsGraphqlApiEndpoint: true,
-		/** Creates a file at `node_modules/.keystone/api` with a `lists` export */
 		generateNodeAPI: true,
-		/** Creates a file at `node_modules/.keystone/next/graphql-api` with `default` and `config` exports that can be re-exported in a Next API route */
 		generateNextGraphqlAPI: true,
 	},
 	lists: { Post },
