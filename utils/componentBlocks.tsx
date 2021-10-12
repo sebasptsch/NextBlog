@@ -4,6 +4,7 @@ import {
   NotEditable
 } from "@keystone-next/fields-document/component-blocks";
 import Gist from "react-gist";
+import { Tweet } from "react-static-tweets";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import atomOneDark from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark";
 import textarea from "./codeField";
@@ -41,11 +42,11 @@ export const componentBlocks = {
       file: fields.text({ label: "File", defaultValue: "" })
     }
   }),
-  // tweet: component({
-  // 	component: ({ id }) => <Tweet id={id.value} />,
-  // 	label: "Tweet",
-  // 	props: {
-  // 		id: fields.text({ label: "Id", defaultValue: "" })
-  // 	}
-  // })
+  tweet: component({
+    component: ({ id }) => <NotEditable><Tweet id={id.value} /></NotEditable>,
+    label: "Tweet",
+    props: {
+      id: fields.text({ label: "Id", defaultValue: "" })
+    }
+  })
 };

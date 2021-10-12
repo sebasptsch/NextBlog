@@ -1,4 +1,5 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import 'react-static-tweets/styles.css';
 // import "./prism.css";
 
 const theme = extendTheme({

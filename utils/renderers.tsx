@@ -11,6 +11,7 @@ import {
 import { DocumentRendererProps } from "@keystone-next/document-renderer";
 import { InferRenderersForComponentBlocks } from "@keystone-next/fields-document/component-blocks";
 import Gist from 'react-gist';
+import { Tweet } from "react-static-tweets";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import atomOneDark from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark";
 import { componentBlocks } from "./componentBlocks";
@@ -18,7 +19,7 @@ import { componentBlocks } from "./componentBlocks";
 export const componentBlockRenderers: InferRenderersForComponentBlocks<
   typeof componentBlocks
 > = {
-  // tweet: ({ id }) => <Tweet id={id} />,
+  tweet: ({ id }) => <Tweet id={id} />,
   gist: ({ id, file }) => <Gist id={id} file={file} />,
   code: (props) => {
     const { content, language } = props;
