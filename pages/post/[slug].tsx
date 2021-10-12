@@ -1,9 +1,9 @@
-import { lists } from ".keystone/api";
+import { query } from ".keystone/api";
 import BlogLayout from "@/layouts/blog";
 import {
 	GetStaticPathsResult,
 	GetStaticPropsContext,
-	InferGetStaticPropsType,
+	InferGetStaticPropsType
 } from "next";
 
 export default function Post({
@@ -13,7 +13,7 @@ export default function Post({
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-	const posts = await lists.Post.findMany({
+	const posts = await query.Post.findMany({
 		query: `slug`,
 	});
 
@@ -29,7 +29,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 }
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
-	const post = await lists.Post.findOne({
+	const post = await query.Post.findOne({
 		where: { slug: params!.slug as string },
 		query:
 			"id title content { document } image { src width height } published_at summary",
