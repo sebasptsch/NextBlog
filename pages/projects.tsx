@@ -18,7 +18,7 @@ export default function Home({ githubrepos }) {
 	);
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const userReposResponse = await fetch(
 		`https://${process.env.GITHUB_CLIENT}:${process.env.GITHUB_SECRET}@api.github.com/users/sebasptsch/repos?per_page=100`
 	);
