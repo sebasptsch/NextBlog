@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { DocumentRendererProps } from "@keystone-next/document-renderer";
 import { InferRenderersForComponentBlocks } from "@keystone-next/fields-document/component-blocks";
+import Gist from 'react-gist';
 import SyntaxHighlighter from "react-syntax-highlighter";
 import atomOneDark from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark";
 import { componentBlocks } from "./componentBlocks";
@@ -17,6 +18,8 @@ import { componentBlocks } from "./componentBlocks";
 export const componentBlockRenderers: InferRenderersForComponentBlocks<
   typeof componentBlocks
 > = {
+  // tweet: ({ id }) => <Tweet id={id} />,
+  gist: ({ id, file }) => <Gist id={id} file={file} />,
   code: (props) => {
     const { content, language } = props;
     const { hasCopied, onCopy } = useClipboard(content);

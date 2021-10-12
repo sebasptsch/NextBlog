@@ -7,8 +7,8 @@ type Post {
   slug: String
   summary: String
   image: ImageFieldOutput
-  published_at: String
-  content: Post_content_DocumentField
+  published_at: DateTime
+  content: Post_content_Document
 }
 
 interface ImageFieldOutput {
@@ -28,7 +28,10 @@ enum ImageExtension {
   gif
 }
 
-type Post_content_DocumentField {
+scalar DateTime
+  @specifiedBy(url: "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6")
+
+type Post_content_Document {
   document(hydrateRelationships: Boolean! = false): JSON!
 }
 
@@ -52,7 +55,10 @@ input PostWhereInput {
   OR: [PostWhereInput!]
   NOT: [PostWhereInput!]
   id: IDFilter
-  slug: StringNullableFilter
+  title: StringNullableFilter
+  slug: StringFilter
+  summary: StringFilter
+  published_at: DateTimeFilter
 }
 
 input IDFilter {
@@ -94,8 +100,50 @@ input NestedStringNullableFilter {
   not: NestedStringNullableFilter
 }
 
+input StringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
+}
+
+input NestedStringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: DateTimeFilter
+}
+
 input PostOrderByInput {
   id: OrderDirection
+  title: OrderDirection
+  slug: OrderDirection
+  summary: OrderDirection
   published_at: OrderDirection
 }
 
@@ -109,7 +157,7 @@ input PostUpdateInput {
   slug: String
   summary: String
   image: ImageFieldInput
-  published_at: String
+  published_at: DateTime
   content: JSON
 }
 
@@ -133,7 +181,7 @@ input PostCreateInput {
   slug: String
   summary: String
   image: ImageFieldInput
-  published_at: String
+  published_at: DateTime
   content: JSON
 }
 
@@ -206,7 +254,7 @@ type KeystoneAdminUIFieldMeta {
   customViewsIndex: Int
   createView: KeystoneAdminUIFieldMetaCreateView!
   listView: KeystoneAdminUIFieldMetaListView!
-  itemView(id: ID!): KeystoneAdminUIFieldMetaItemView
+  itemView(id: ID): KeystoneAdminUIFieldMetaItemView
   search: QueryMode
 }
 
@@ -229,7 +277,7 @@ enum KeystoneAdminUIFieldMetaListViewFieldMode {
 }
 
 type KeystoneAdminUIFieldMetaItemView {
-  fieldMode: KeystoneAdminUIFieldMetaItemViewFieldMode!
+  fieldMode: KeystoneAdminUIFieldMetaItemViewFieldMode
 }
 
 enum KeystoneAdminUIFieldMetaItemViewFieldMode {

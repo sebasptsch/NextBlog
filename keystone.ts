@@ -10,7 +10,7 @@ import { kebabCase } from "lodash";
 const Post = list({
 	fields: {
 		title: text({
-			isRequired: true,
+			db: { isNullable: true },
 		}),
 		slug: text({
 			isIndexed: "unique",
@@ -20,13 +20,16 @@ const Post = list({
 					fieldMode: "hidden",
 				},
 				itemView: {
-					fieldMode: "hidden",
+					fieldMode: "read",
+				},
+				listView: {
+					fieldMode: "read",
 				},
 			},
 		}),
-		summary: text({ isRequired: true }),
-		image: image({ isRequired: false }),
-		published_at: timestamp({ isOrderable: true, isRequired: true }),
+		summary: text({ db: { isNullable: false } }),
+		image: image(),
+		published_at: timestamp({ isOrderable: true, db: { isNullable: false } }),
 		content: document({
 			formatting: true,
 			dividers: true,
