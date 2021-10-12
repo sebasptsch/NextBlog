@@ -7,7 +7,7 @@
 
 # keystone
 .keystone
-
+yarn.lock
 # testing
 /coverage
 
@@ -35,3 +35,4 @@ yarn-error.log*
 
 # vercel
 .vercel
+yarn.lock
