@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { componentBlockRenderers, renderers } from "@/utils/renderers";
-import { Box, Center, Flex, Heading, Spacer } from "@chakra-ui/layout";
+import { Center, Flex, Heading, Spacer } from "@chakra-ui/layout";
 import { DocumentRenderer } from "@keystone-next/document-renderer";
 import moment from "moment";
 import { ArticleJsonLd, NextSeo } from "next-seo";
@@ -61,23 +61,12 @@ export default function BlogLayout({ post }: {
 			</Flex>
 
 			{post.image ? (
-				<Box
-					style={{
-						position: "relative",
-						width: "100%",
-						height: "20em",
-					}}
-					overflow="hidden"
-					borderRadius="10px"
-					pt="1em"
-					pb="2em"
-				>
-					<Image
-						{...post.image}
-						objectFit="cover"
-						placeholder="blur"
-					/>
-				</Box>
+
+				<Image
+					{...post.image}
+					placeholder="blur"
+					layout="responsive"
+				/>
 			) : null}
 
 			<DocumentRenderer
