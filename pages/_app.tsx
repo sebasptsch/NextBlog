@@ -1,29 +1,15 @@
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { Chakra } from "@/utils/chakra";
 import 'react-static-tweets/styles.css';
 // import "./prism.css";
 
-const theme = extendTheme({
-	styles: {
-		global: (props) => ({
-			// code: {
-			//   fontFamily: "Fira Code",
-			// },
-			p: {
-				color: props.colorMode === "dark" ? "gray.300" : "gray.700",
-			},
-			li: {
-				color: props.colorMode === "dark" ? "gray.300" : "gray.700",
-			},
-		}),
-	},
-});
+
 
 function MyApp({ Component, pageProps }) {
 	return (
-		<ChakraProvider theme={theme}>
+		<Chakra cookies={pageProps.cookies}>
 			<Component {...pageProps} />
-		</ChakraProvider>
+		</Chakra>
 	);
 }
-
+export { getServerSideProps } from "@/utils/chakra";
 export default MyApp;
