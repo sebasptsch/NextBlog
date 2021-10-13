@@ -11,7 +11,6 @@ export default function BlogLayout({ post, image }: {
 	image: IGetPlaiceholderReturn
 	post: Record<string, any>
 }) {
-	console.log(image)
 	return (
 		<Layout>
 			<NextSeo
