@@ -3,5 +3,7 @@
 /** @type {import('next').NextConfig} */
 
 const { withKeystone } = require("@keystone-next/keystone/next");
-
-module.exports = withKeystone({ images: { domains: ["pbs.twimg.com"] } });
+const { withPlaiceholder } = require("@plaiceholder/next");
+module.exports = withKeystone(
+  withPlaiceholder({ images: { domains: ["pbs.twimg.com"] } })
+);

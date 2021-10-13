@@ -5,11 +5,12 @@ import {
 	GetStaticPropsContext,
 	InferGetStaticPropsType
 } from "next";
+import { getPlaiceholder } from "plaiceholder";
 
 export default function Post({
-	post,
+	post, image
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-	return <BlogLayout post={post}></BlogLayout>;
+	return <BlogLayout post={post} image={image}></BlogLayout>;
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
@@ -34,5 +35,14 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
 		query:
 			"id title content { document } image { src width height } published_at summary",
 	});
-	return { props: { post } };
+	// console.log({
+	// 	...img,
+	// 	blurDataURL: base64
+	// })
+	return {
+		props: {
+			post,
+			image: await getPlaiceholder(post.image.src, { size: 10 })
+		}
+	};
 }

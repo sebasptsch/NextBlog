@@ -5,8 +5,13 @@ import { DocumentRenderer } from "@keystone-next/document-renderer";
 import moment from "moment";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
+import { IGetPlaiceholderReturn } from "plaiceholder";
 
-export default function BlogLayout({ post }) {
+export default function BlogLayout({ post, image }: {
+	image: IGetPlaiceholderReturn
+	post: Record<string, any>
+}) {
+	console.log(image)
 	return (
 		<Layout>
 			<NextSeo
@@ -22,10 +27,10 @@ export default function BlogLayout({ post }) {
 					},
 					images: post.image
 						? [
-								{
-									url: `https://sebasptsch.dev${post.image.src}`,
-								},
-						  ]
+							{
+								url: `https://sebasptsch.dev${post.image.src}`,
+							},
+						]
 						: undefined,
 				}}
 			/>
@@ -58,7 +63,7 @@ export default function BlogLayout({ post }) {
         </Center> */}
 			</Flex>
 
-			{post.image ? (
+			{image ? (
 				<Box
 					style={{
 						position: "relative",
@@ -71,10 +76,12 @@ export default function BlogLayout({ post }) {
 					pb="2em"
 				>
 					<Image
-						src={post.image.src}
-						width={post.image.width}
-						height={post.image.height}
+						src={image.img.src}
+						width={image.img.width}
+						height={image.img.height}
+						blurDataURL={image.base64}
 						objectFit="cover"
+						placeholder="blur"
 					/>
 				</Box>
 			) : null}

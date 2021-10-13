@@ -18,6 +18,7 @@
     "@keystone-next/document-renderer": "^4.0.1",
     "@keystone-next/fields-document": "^11.0.0",
     "@keystone-next/keystone": "^26.1.1",
+    "@plaiceholder/next": "^2.1.0",
     "@types/react-syntax-highlighter": "^13.5.2",
     "axios": "^0.21.1",
     "comma-number": "^2.0.2",
@@ -31,6 +32,7 @@
     "next-api-og-image": "^1.1.7",
     "next-seo": "^4.24.0",
     "path": "^0.12.7",
+    "plaiceholder": "^2.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-gist": "^1.2.2",
@@ -38,6 +40,7 @@
     "react-static-tweets": "^0.5.4",
     "react-syntax-highlighter": "^15.4.4",
     "reading-time": "^1.3.0",
+    "sharp": "^0.29.1",
     "static-tweets": "^0.5.5",
     "swr": "^0.5.6"
   },
