@@ -8,9 +8,9 @@ import {
 import { getPlaiceholder } from "plaiceholder";
 
 export default function Post({
-	post, image
+	post
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-	return <BlogLayout post={post} image={image}></BlogLayout>;
+	return <BlogLayout post={post}></BlogLayout>;
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
@@ -30,19 +30,34 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 }
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
-	const post = await query.Post.findOne({
-		where: { slug: params!.slug as string },
-		query:
-			"id title content { document } image { src width height } published_at summary",
-	});
+
+	const imagePost = async () => {
+		const post = await query.Post.findOne({
+			where: { slug: params!.slug as string },
+			query:
+				"id title content { document } image { src width height } published_at summary",
+		});
+
+		if (post.image) {
+			const { img, base64 } = await getPlaiceholder(post.image.src)
+			return {
+				...post, image: {
+					...img,
+					blurDataURL: base64
+				}
+			}
+		} else {
+			return post
+		}
+	}
 	// console.log({
 	// 	...img,
 	// 	blurDataURL: base64
 	// })
 	return {
 		props: {
-			post,
-			image: await getPlaiceholder(post.image.src, { size: 10 })
+			post: await imagePost()
+
 		}
 	};
 }
