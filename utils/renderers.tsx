@@ -63,7 +63,7 @@ export const renderers: DocumentRendererProps["renderers"] = {
   block: {
     paragraph: ({ children, textAlign }) => {
       return (
-        <Text style={{ textAlign }} py={4} lineHeight={2} fontSize={"larger"} fontFamily={"serif"}>
+        <Text style={{ textAlign }} py={4} fontSize="large" fontFamily={"serif"}>
           {children}
         </Text>
       );
