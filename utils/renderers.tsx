@@ -1,8 +1,8 @@
+import { NextChakraLink } from "@/components/NextChakra";
 import {
   Box,
   Button,
-  Heading,
-  ListItem,
+  Heading, ListItem,
   OrderedList,
   Text,
   UnorderedList,
@@ -56,6 +56,9 @@ export const renderers: DocumentRendererProps["renderers"] = {
     code: ({ children }) => {
       return <code>{children}</code>;
     },
+    link: ({ children, href }) => {
+      return <NextChakraLink href={href} color="blue.400">{children}</NextChakraLink>
+    }
   },
   block: {
     paragraph: ({ children, textAlign }) => {
