@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://sebasptsch.dev</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/projects</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/stats</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/getting-my-first-3d-printer</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/github-copilot</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/home-assistant-and-zigbee</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/my-3d-printing-experience-a-year-and-a-half-later</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/my-experience-with-highschool-robotics</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/my-experience-with-wsl2-and-docker</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/my-nextjs-impressions</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/next-invoice</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/snowpack-and-react</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/tdu-website</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/work-experience-at-microsoft</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/working-with-gatsby</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/keystone-js-and-next-js</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+<url><loc>https://sebasptsch.dev/post/frigate-nvr</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-10-27T10:38:07.546Z</lastmod></url>
+</urlset>

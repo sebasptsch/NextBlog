@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://sebasptsch.dev
+
+# Sitemaps
+Sitemap: https://sebasptsch.dev/sitemap.xml

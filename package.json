@@ -6,7 +6,8 @@
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
-    "postinstall": "keystone-next postinstall"
+    "postinstall": "keystone-next postinstall",
+    "postbuild": "next-sitemap --config genSitemap.js"
   },
   "browser": {
     "child_process": false
@@ -47,6 +48,7 @@
   "devDependencies": {
     "@types/node": "^15.0.1",
     "@types/react": "^17.0.4",
+    "next-sitemap": "^1.6.192",
     "typescript": "^4.2.4"
   }
 }
