@@ -1,6 +1,11 @@
 ---
 - hosts: all
   tasks:
+    - name: where am I
+      command: "ls"
+      register: dir_out
+    - ansible.builtin.debug:
+        var: dir_out
     - name: Copy Project
       copy:
         src: .ansible/project/
