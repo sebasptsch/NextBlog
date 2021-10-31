@@ -60,6 +60,10 @@ volumes:
   - name: cache
     host:
       path: /tmp/cache
+trigger:
+  event:
+    exclude:
+      - promote
 ---
 kind: pipeline
 type: docker
