@@ -1,5 +1,5 @@
 kind: pipeline
-name: Build and Deploy
+name: Build and Publish
 type: docker
 
 steps:
@@ -14,7 +14,7 @@ steps:
       mount:
         - ./node_modules
         - ./.next/cache
-  - name: Install Dependancies
+  - name: Build
     pull: if-not-exists
     image: node:lts-alpine
     depends_on:
@@ -29,7 +29,7 @@ steps:
   - name: Publish
     image: plugins/docker
     depends_on:
-      - "Install Dependancies"
+      - "Build"
     when:
       branch:
         - master
@@ -42,20 +42,6 @@ steps:
       repo: ghcr.io/sebasptsch/nextblog
       registry: ghcr.io
       auto_tag: true
-
-  - name: apply ansible playbook
-    image: plugins/ansible
-    depends_on:
-      - "Publish"
-    settings:
-      playbook: .ansible/playbook.yml
-      ssh_extra_args:
-        - "-o StrictHostKeyChecking=no"
-      galaxy: .ansible/requirements.yml
-      inventory: .ansible/inventory
-      user: sebas
-      private_key:
-        from_secret: ansible_private_key
   - name: Rebuild Cache
     image: drillster/drone-volume-cache
     pull: if-not-exists
@@ -74,3 +60,26 @@ volumes:
   - name: cache
     host:
       path: /tmp/cache
+---
+kind: pipeline
+type: docker
+name: Deploy
+steps:
+  - name: Deploy Using Ansible
+    image: plugins/ansible
+    depends_on:
+      - "Publish"
+    settings:
+      playbook: .ansible/playbook.yml
+      ssh_extra_args:
+        - "-o StrictHostKeyChecking=no"
+      galaxy: .ansible/requirements.yml
+      inventory: .ansible/inventory
+      user: sebas
+      private_key:
+        from_secret: ansible_private_key
+trigger:
+  event:
+    - promote
+  target:
+    - production

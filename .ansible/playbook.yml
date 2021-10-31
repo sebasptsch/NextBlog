@@ -1,16 +1,13 @@
 ---
 - hosts: all
   tasks:
-    - name: where am I
-      command: "ls"
-      register: dir_out
     - ansible.builtin.debug:
         var: dir_out
     - name: Copy Project
       copy:
-        src: files/project/
+        src: files/
         dest: Blog/
-    - name: Create Stack
+    - name: Deploy Compose
       community.docker.docker_compose:
         project_name: blog
         recreate: always
