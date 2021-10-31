@@ -17,6 +17,8 @@ steps:
   - name: Install Dependancies
     pull: if-not-exists
     image: node:lts-alpine
+    depends_on:
+      - "Restore Cache"
     environment:
       PRISMA_CLI_QUERY_ENGINE_TYPE: binary
       PRISMA_CLIENT_ENGINE_TYPE: binary
@@ -26,6 +28,8 @@ steps:
       - yarn build
   - name: Publish
     image: plugins/docker
+    depends_on:
+      - "Install Dependancies"
     when:
       branch:
         - master
@@ -41,6 +45,8 @@ steps:
 
   - name: apply ansible playbook
     image: plugins/ansible
+    depends_on:
+      - "Publish"
     settings:
       playbook: .ansible/playbook.yml
       galaxy: .ansible/requirements.yml
@@ -51,6 +57,8 @@ steps:
   - name: Rebuild Cache
     image: drillster/drone-volume-cache
     pull: if-not-exists
+    depends_on:
+      - "Install Dependancies"
     volumes:
       - name: cache
         path: /cache
