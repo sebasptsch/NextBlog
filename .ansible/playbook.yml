@@ -6,7 +6,7 @@
         project_name: blog
         recreate: always
         definition:
-          blog:
+          nextjs:
             image: ghcr.io/sebasptsch/nextblog
             ports:
               - "3001:3000"
