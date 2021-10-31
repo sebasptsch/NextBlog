@@ -46,7 +46,7 @@ steps:
     image: drillster/drone-volume-cache
     pull: if-not-exists
     depends_on:
-      - "Install Dependancies"
+      - "Build"
     volumes:
       - name: cache
         path: /cache
