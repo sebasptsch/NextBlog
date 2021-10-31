@@ -1,5 +1,5 @@
 FROM node:alpine
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat bash
 WORKDIR /app
 COPY ./public ./public
 COPY  ./.next ./.next
@@ -9,5 +9,6 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
 EXPOSE 3000
-CMD ["/app/node_modules/.bin/next start"]
+SHELL [ "/bin/bash -c" ]
+CMD ["yarn start"]
  
