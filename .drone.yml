@@ -45,6 +45,7 @@ steps:
       playbook: .ansible/playbook.yml
       galaxy: .ansible/requirements.yml
       inventory: .ansible/inventory
+      user: sebas
       private_key:
         from_secret: ansible_private_key
   - name: Rebuild Cache
