@@ -5,6 +5,7 @@
       community.docker.docker_compose:
         project_name: blog
         recreate: always
+        remove_orphans: true
         definition:
           nextjs:
             image: ghcr.io/sebasptsch/nextblog
