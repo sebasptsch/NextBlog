@@ -28,6 +28,7 @@ steps:
       - yarn build
   - name: Publish
     image: plugins/docker
+
     depends_on:
       - "Build"
     when:
@@ -35,6 +36,7 @@ steps:
         - master
     pull: if-not-exists
     settings:
+      cache_from: ghcr.io/sebasptsch/nextblog
       username:
         from_secret: github_username
       password:
