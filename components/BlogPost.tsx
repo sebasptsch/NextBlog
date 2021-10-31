@@ -12,10 +12,10 @@ export default function BlogPost({
 	...props
 }: any): JSX.Element {
 	return (
-		<Link href={`/post/${slug}`}>
-			<a>
-				<Box w="100%" p={6} {...props}>
 
+		<Box w="100%" p={6} {...props}>
+			<Link href={`/post/${slug}`}>
+				<a>
 					<Flex>
 						<Heading size="md">{title}</Heading>
 						<Spacer />
@@ -23,9 +23,9 @@ export default function BlogPost({
 					</Flex>
 
 					<Text>{summary}</Text>
+				</a>
+			</Link>
+		</Box>
 
-				</Box>
-			</a>
-		</Link>
 	);
 }
