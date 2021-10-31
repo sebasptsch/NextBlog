@@ -40,7 +40,7 @@ steps:
       auto_tag: true
 
   - name: apply ansible playbook
-    image: plugins/ansible:1
+    image: plugins/ansible
     settings:
       playbook: .ansible/playbook.yml
       galaxy: .ansible/requirements.yml
