@@ -1,14 +1,13 @@
 ---
 - hosts: all
   tasks:
+    - name: Copy Project
+      copy:
+        src: .ansible/project/
+        dest: Blog/
     - name: Create Stack
       community.docker.docker_compose:
         project_name: blog
         recreate: always
         remove_orphans: true
-        definition:
-          nextjs:
-            image: ghcr.io/sebasptsch/nextblog
-            ports:
-              - "3001:3000"
-            restart: unless-stopped
+        project_src: Blog/
