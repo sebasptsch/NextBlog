@@ -1,0 +1,13 @@
+---
+- hosts: all
+  tasks:
+    - name: Create Stack
+      community.docker.docker_compose:
+        project_name: blog
+        recreate: always
+        definition:
+          blog:
+            image: ghcr.io/sebasptsch/nextblog
+            ports:
+              - "3001:3000"
+            restart: unless-stopped
