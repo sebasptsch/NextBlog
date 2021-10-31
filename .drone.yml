@@ -38,6 +38,15 @@ steps:
       repo: ghcr.io/sebasptsch/nextblog
       registry: ghcr.io
       auto_tag: true
+
+  - name: apply ansible playbook
+    image: plugins/ansible:1
+    settings:
+      playbook: .ansible/playbook.yml
+      galaxy: .ansible/requirements.yml
+      inventory: .ansible/inventory
+      private_key:
+        from_secret: ansible_private_key
   - name: Rebuild Cache
     image: drillster/drone-volume-cache
     pull: if-not-exists
@@ -49,16 +58,6 @@ steps:
       mount:
         - ./node_modules
         - ./.next/cache
-
-  - name: apply ansible playbook
-    image: plugins/ansible:1
-    depends_on: ["Publish"]
-    settings:
-      playbook: .ansible/playbook.yml
-      galaxy: .ansible/requirements.yml
-      inventory: .ansible/inventory
-      private_key:
-        from_secret: ansible_private_key
 
 volumes:
   - name: cache
