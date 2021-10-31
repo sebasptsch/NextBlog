@@ -1,8 +1,6 @@
 ---
 - hosts: all
   tasks:
-    - ansible.builtin.debug:
-        var: dir_out
     - name: Copy Project
       copy:
         src: files/
@@ -13,3 +11,6 @@
         recreate: always
         remove_orphans: true
         project_src: Blog/
+      register: compose_out
+    - ansible.builtin.debug:
+        var: compose_out
