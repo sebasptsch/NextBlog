@@ -1,3 +1,1 @@
----
-collections:
-  - community.docker
+- src: community.docker.docker_compose
