@@ -49,6 +49,8 @@ steps:
       - "Publish"
     settings:
       playbook: .ansible/playbook.yml
+      ssh_extra_args:
+        - "-o StrictHostKeyChecking=no"
       galaxy: .ansible/requirements.yml
       inventory: .ansible/inventory
       user: sebas
