@@ -8,7 +8,7 @@
         var: dir_out
     - name: Copy Project
       copy:
-        src: ./.ansible/project/
+        src: .ansible/project/
         dest: Blog/
     - name: Create Stack
       community.docker.docker_compose:
