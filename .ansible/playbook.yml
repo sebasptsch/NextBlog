@@ -8,6 +8,8 @@
         remove_orphans: true
         pull: yes
         definition:
+          volumes:
+            db:
           networks:
             nextblog:
               driver: bridge
