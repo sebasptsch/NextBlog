@@ -6,7 +6,7 @@ export default NextAuth({
   adapter:
     process.env.NODE_ENV === "production"
       ? TypeORMLegacyAdapter(
-          `postgresql://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/nextauth`
+          `postgres://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/nextauth`
         )
       : TypeORMLegacyAdapter("./db.sql"),
   providers: [

@@ -36,7 +36,7 @@ steps:
         - master
     pull: if-not-exists
     settings:
-      cache_from: ghcr.io/sebasptsch/nextblog
+      # cache_from: ghcr.io/sebasptsch/nextblog
       username:
         from_secret: github_username
       password:
