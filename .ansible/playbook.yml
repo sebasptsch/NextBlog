@@ -8,7 +8,7 @@
         remove_orphans: true
         definition:
           networks:
-            - name: nextblog
+            nextblog:
               driver: bridge
           services:
             nextjs:
@@ -19,7 +19,7 @@
                 - "3001:3000"
               restart: unless-stopped
               networks:
-                - nextblog
+                nextblog:
               environment:
                 - NODE_ENV=production
                 - SITE_URL={{ lookup('env', 'SITE_URL') }}
@@ -36,7 +36,7 @@
               volumes:
                 - "./Blog/db:/var/lib/postgresql/data"
               networks:
-                - nextblog
+                nextblog:
               environment:
                 - POSTGRES_PASSWORD={{ lookup('env', 'DB_PASSWORD') }}
                 - POSTGRES_USER={{ lookup('env', 'DB_USERNAME') }}
