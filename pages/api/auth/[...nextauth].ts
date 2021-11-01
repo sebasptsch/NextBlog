@@ -11,7 +11,7 @@ export default NextAuth({
       : TypeORMLegacyAdapter("./db.sql"),
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_ID,
+      clientId: process.env.GITHUB_CLIENT,
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
