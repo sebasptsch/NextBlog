@@ -73,6 +73,18 @@ name: Deploy
 steps:
   - name: Deploy Using Ansible
     image: plugins/ansible
+    environment:
+      SITE_URL:
+        from_secret: SITE_URL
+      GITHUB_CLIENT:
+        from_secret: GITHUB_CLIENT
+      GITHUB_SECRET:
+        from_secret: GITHUB_SECRET
+      DB_USERNAME:
+        from_secret: DB_USERNAME
+      DB_PASSWORD:
+        from_secret: DB_PASSWORD
+    another_var: foo
     settings:
       playbook: .ansible/playbook.yml
       ssh_extra_args:

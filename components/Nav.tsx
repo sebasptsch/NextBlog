@@ -3,9 +3,10 @@ import {
 	Flex,
 	IconButton,
 	Spacer,
-	useColorMode,
+	useColorMode
 } from "@chakra-ui/react";
 import { FaMoon, FaSun } from "react-icons/fa";
+import Auth from "./Auth";
 import { NextChakraLink } from "./NextChakra";
 
 const links = [
@@ -41,6 +42,7 @@ export default function Nav() {
 				m={4}
 				onClick={toggleColorMode}
 			/>
+			<Auth />
 		</Flex>
 	);
 }
