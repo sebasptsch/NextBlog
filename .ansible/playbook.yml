@@ -6,6 +6,7 @@
         project_name: blog
         recreate: always
         remove_orphans: true
+        pull: yes
         definition:
           networks:
             nextblog:
