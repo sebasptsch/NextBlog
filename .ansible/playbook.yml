@@ -43,6 +43,7 @@
               environment:
                 - POSTGRES_PASSWORD={{ lookup('env', 'DB_PASSWORD') }}
                 - POSTGRES_USER={{ lookup('env', 'DB_USERNAME') }}
+                - POSTGRES_DB=nextauth
 
       register: compose_out
     - ansible.builtin.debug:
