@@ -29,9 +29,7 @@
                 - GITHUB_CLIENT={{ lookup('env', 'GITHUB_CLIENT') }}
                 - GITHUB_SECRET={{ lookup('env', 'GITHUB_SECRET') }}
                 - NEXTAUTH_URL={{ lookup('env', 'SITE_URL') }}/api/auth
-                - DB_HOST=db
-                - DB_USERNAME={{ lookup('env', 'DB_USERNAME') }}
-                - DB_PASSWORD={{ lookup('env', 'DB_PASSWORD') }}
+                - DATABASE_URL=postgres://{{ lookup('env', 'DB_USERNAME') }}:{{ lookup('env', 'DB_PASSWORD') }}@db/nextauth
             db:
               image: postgres:9.6
               restart: unless-stopped
