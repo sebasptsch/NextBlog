@@ -5,6 +5,7 @@ COPY ./public ./public
 COPY  ./.next ./.next
 COPY  ./node_modules ./node_modules
 COPY  ./package.json ./package.json
+COPY  ./next.config.js ./next.config.js
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
