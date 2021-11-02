@@ -23,7 +23,7 @@ export default function BlogLayout({ post }: { post: any }) {
           images: post.image
             ? [
                 {
-                  url: `https://cms.sebasptsch.dev${post.image.src}`,
+                  url: `${post.image.src}`,
                 },
               ]
             : undefined,
@@ -32,11 +32,7 @@ export default function BlogLayout({ post }: { post: any }) {
       <ArticleJsonLd
         url={`https://sebasptsch.dev/post/${post.slug}`}
         title={post.title}
-        images={
-          post.image
-            ? [`https://cms.sebasptsch.dev${post.image.src}`]
-            : undefined
-        }
+        images={post.image ? [`${post.image.src}`] : undefined}
         datePublished={post.published_at}
         authorName="Sebastian Pietschner"
         description={post.summary}
