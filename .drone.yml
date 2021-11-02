@@ -76,6 +76,7 @@ name: Deploy
 steps:
   - name: Deploy Using Ansible
     image: plugins/ansible
+    pull: if-not-exists
     environment:
       SITE_URL:
         from_secret: SITE_URL
