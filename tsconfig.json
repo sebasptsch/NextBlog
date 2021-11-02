@@ -18,14 +18,16 @@
       "@": ["./"],
       "@/*": ["./*"],
       "@components": ["./components"]
-    }
+    },
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "utils/fetcher.js",
-    "utils/fetcher.jsx"
+    "utils/fetcher.jsx",
+    "test.js"
   ],
   "exclude": ["node_modules"]
 }
