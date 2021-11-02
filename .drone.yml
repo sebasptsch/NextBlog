@@ -34,6 +34,9 @@ steps:
     when:
       branch:
         - master
+      event:
+        exclude:
+          - pull_request
     pull: if-not-exists
     settings:
       # cache_from: ghcr.io/sebasptsch/nextblog
