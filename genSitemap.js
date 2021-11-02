@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: process.env.SITE_URL || "https://sebasptsch.dev",
+  siteUrl: "https://sebasptsch.dev",
   generateRobotsTxt: true, // (optional)
   // ...other options
 };
