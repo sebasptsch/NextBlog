@@ -77,7 +77,9 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     );
 
     if (post.image) {
-      const { img, base64 } = await getPlaiceholder(post.image.src);
+      const { img, base64 } = await getPlaiceholder(
+        `https://cms.sebasptsch.dev${post.image.src}`
+      );
       return {
         ...post,
         image: {
