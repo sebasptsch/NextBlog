@@ -14,7 +14,7 @@ export default function Tag({
   posts,
   tag,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(tag);
+  // console.log(tag);
   return (
     <Layout>
       <NextSeo title={tag.name} />

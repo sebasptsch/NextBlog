@@ -77,7 +77,18 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     );
 
     if (post.image) {
-      const { img, base64 } = await getPlaiceholder(`${post.image.src}`);
+      console.log(post.image, "found image");
+      const { img, base64 } = await getPlaiceholder(post.image.src);
+      console.log(
+        {
+          ...post,
+          image: {
+            ...img,
+            blurDataURL: base64,
+          },
+        },
+        "generated image"
+      );
       return {
         ...post,
         image: {
