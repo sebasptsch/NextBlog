@@ -24,6 +24,7 @@
     "date-fns": "^2.25.0",
     "esbuild": "^0.13.2",
     "framer-motion": "^4.1.17",
+    "graphql": "^16.0.1",
     "graphql-request": "^3.6.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
