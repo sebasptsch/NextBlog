@@ -6,7 +6,7 @@
         name: blog
     - name: Deploy Blog
       community.docker.docker_container:
-        name: cms
+        name: blog
         image: ghcr.io/sebasptsch/nextblog
         pull: true
         recreate: true
