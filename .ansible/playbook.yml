@@ -1,48 +1,17 @@
 ---
 - hosts: all
   tasks:
-    - name: Deploy Compose
-      community.docker.docker_compose:
-        project_name: blog
-        recreate: always
-        remove_orphans: true
-        pull: yes
-        definition:
-          volumes:
-            db:
-          networks:
-            nextblog:
-              driver: bridge
-          services:
-            nextjs:
-              image: ghcr.io/sebasptsch/nextblog
-              depends_on:
-                - db
-              ports:
-                - "3001:3000"
-              restart: unless-stopped
-              networks:
-                nextblog:
-              environment:
-                - NODE_ENV=production
-                - SITE_URL={{ lookup('env', 'SITE_URL') }}
-                - GITHUB_CLIENT={{ lookup('env', 'GITHUB_CLIENT') }}
-                - GITHUB_SECRET={{ lookup('env', 'GITHUB_SECRET') }}
-                - NEXTAUTH_URL={{ lookup('env', 'SITE_URL') }}/api/auth
-                - DATABASE_URL=postgres://{{ lookup('env', 'DB_USERNAME') }}:{{ lookup('env', 'DB_PASSWORD') }}@db/nextauth
-            db:
-              image: postgres:9.6
-              restart: unless-stopped
-              container_name: db
-              volumes:
-                - db:/var/lib/postgresql/data
-              networks:
-                nextblog:
-              environment:
-                - POSTGRES_PASSWORD={{ lookup('env', 'DB_PASSWORD') }}
-                - POSTGRES_USER={{ lookup('env', 'DB_USERNAME') }}
-                - POSTGRES_DB=nextauth
-
-      register: compose_out
-    - ansible.builtin.debug:
-        var: compose_out
+    - name: Create Network
+      community.docker.docker_network:
+        name: blog
+    - name: Deploy Blog
+      community.docker.docker_container:
+        name: cms
+        image: ghcr.io/sebasptsch/nextblog
+        pull: true
+        recreate: true
+        networks:
+          - blog
+        ports:
+          - "3001:3000"
+        restart_policy: unless-stopped
