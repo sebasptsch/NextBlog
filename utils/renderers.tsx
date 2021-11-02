@@ -2,23 +2,20 @@ import { NextChakraLink } from "@/components/NextChakra";
 import {
   Box,
   Button,
-  Heading, ListItem,
+  Heading,
+  ListItem,
   OrderedList,
   Text,
   UnorderedList,
-  useClipboard
+  useClipboard,
 } from "@chakra-ui/react";
 import { DocumentRendererProps } from "@keystone-next/document-renderer";
-import { InferRenderersForComponentBlocks } from "@keystone-next/fields-document/component-blocks";
-import Gist from 'react-gist';
+import Gist from "react-gist";
 import { Tweet } from "react-static-tweets";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import atomOneDark from "react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark";
-import { componentBlocks } from "./componentBlocks";
 
-export const componentBlockRenderers: InferRenderersForComponentBlocks<
-  typeof componentBlocks
-> = {
+export const componentBlockRenderers = {
   tweet: ({ id }) => <Tweet id={id} />,
   gist: ({ id, file }) => <Gist id={id} file={file} />,
   code: (props) => {
@@ -57,13 +54,22 @@ export const renderers: DocumentRendererProps["renderers"] = {
       return <code>{children}</code>;
     },
     link: ({ children, href }) => {
-      return <NextChakraLink href={href} color="blue.400">{children}</NextChakraLink>
-    }
+      return (
+        <NextChakraLink href={href} color="blue.400">
+          {children}
+        </NextChakraLink>
+      );
+    },
   },
   block: {
     paragraph: ({ children, textAlign }) => {
       return (
-        <Text style={{ textAlign }} py={4} fontSize="large" fontFamily={"serif"}>
+        <Text
+          style={{ textAlign }}
+          py={4}
+          fontSize="large"
+          fontFamily={"serif"}
+        >
           {children}
         </Text>
       );
@@ -72,7 +78,7 @@ export const renderers: DocumentRendererProps["renderers"] = {
       return type === "ordered" ? (
         <OrderedList fontSize="larger">
           {children.map((li) => (
-            <ListItem fontFamily="serif" key={li.key} >
+            <ListItem fontFamily="serif" key={li.key}>
               {li}
             </ListItem>
           ))}

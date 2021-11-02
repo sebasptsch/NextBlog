@@ -15,6 +15,7 @@
     "@chakra-ui/react": "^1.6.3",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
+    "@keystone-next/document-renderer": "^4.0.1",
     "@plaiceholder/next": "^2.1.0",
     "@prisma/client": "^3.3.0",
     "@types/react-syntax-highlighter": "^13.5.2",
