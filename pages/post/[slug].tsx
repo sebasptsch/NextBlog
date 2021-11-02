@@ -33,7 +33,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -93,5 +93,6 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     props: {
       post: await imagePost(),
     },
+    revalidate: 10,
   };
 }

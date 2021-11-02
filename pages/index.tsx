@@ -105,5 +105,5 @@ export async function getStaticProps() {
     }
   `;
   const { posts } = await request(endpoint, query);
-  return { props: { posts } };
+  return { props: { posts }, revalidate: 10 };
 }

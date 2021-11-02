@@ -57,7 +57,7 @@ export async function getStaticPaths({
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -94,15 +94,11 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     variables
   );
   const { posts } = tag;
-
-  // console.log({
-  // 	...img,
-  // 	blurDataURL: base64
-  // })
   return {
     props: {
       posts,
       tag,
     },
+    revalidate: 10,
   };
 }
