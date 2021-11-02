@@ -1,63 +1,97 @@
-import { query } from ".keystone/api";
 import BlogLayout from "@/layouts/blog";
+import request, { gql } from "graphql-request";
 import {
-	GetStaticPathsResult,
-	GetStaticPropsContext,
-	InferGetStaticPropsType
+  GetStaticPathsResult,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
 } from "next";
 import { getPlaiceholder } from "plaiceholder";
 
 export default function Post({
-	post
+  post,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-	return <BlogLayout post={post}></BlogLayout>;
+  return <BlogLayout post={post}></BlogLayout>;
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-	const posts = await query.Post.findMany({
-		query: `slug`,
-	});
+  const query = gql`
+    query Query {
+      posts {
+        slug
+      }
+    }
+  `;
+  const { posts } = await request(
+    "https://cms.sebasptsch.dev/api/graphql",
+    query
+  );
 
-	const paths = posts
-		.map((post) => post.slug)
-		.filter((slug): slug is string => !!slug)
-		.map((slug) => `/post/${slug}`);
+  const paths = posts
+    .map((post) => post.slug)
+    .filter((slug): slug is string => !!slug)
+    .map((slug) => `/post/${slug}`);
 
-	return {
-		paths,
-		fallback: false,
-	};
+  return {
+    paths,
+    fallback: false,
+  };
 }
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
+  const imagePost = async () => {
+    const variables = {
+      where: {
+        slug: params!.slug as string,
+      },
+    };
+    const query = gql`
+      query Query($where: PostWhereUniqueInput!) {
+        post(where: $where) {
+          slug
+          id
+          title
+          summary
+          image {
+            src
+            width
+            height
+          }
+          published_at
+          author {
+            name
+          }
+          tags {
+            name
+            id
+          }
+          content {
+            document
+          }
+        }
+      }
+    `;
+    const { post } = await request(
+      "https://cms.sebasptsch.dev/api/graphql",
+      query,
+      variables
+    );
 
-	const imagePost = async () => {
-		const post = await query.Post.findOne({
-			where: { slug: params!.slug as string },
-			query:
-				"id title content { document } image { src width height } published_at summary",
-		});
-
-		if (post.image) {
-			const { img, base64 } = await getPlaiceholder(post.image.src)
-			return {
-				...post, image: {
-					...img,
-					blurDataURL: base64
-				}
-			}
-		} else {
-			return post
-		}
-	}
-	// console.log({
-	// 	...img,
-	// 	blurDataURL: base64
-	// })
-	return {
-		props: {
-			post: await imagePost()
-
-		}
-	};
+    if (post.image) {
+      const { img, base64 } = await getPlaiceholder(post.image.src);
+      return {
+        ...post,
+        image: {
+          ...img,
+          blurDataURL: base64,
+        },
+      };
+    } else {
+      return post;
+    }
+  };
+  return {
+    props: {
+      post: await imagePost(),
+    },
+  };
 }

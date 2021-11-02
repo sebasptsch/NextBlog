@@ -6,7 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "postinstall": "keystone-next postinstall",
     "postbuild": "next-sitemap --config genSitemap.js"
   },
   "browser": {
@@ -29,6 +28,8 @@
     "date-fns": "^2.25.0",
     "esbuild": "^0.13.2",
     "framer-motion": "^4.1.17",
+    "graphql-config": "^4.1.0",
+    "graphql-request": "^3.6.1",
     "lodash": "^4.17.21",
     "millify": "^4.0.0",
     "moment": "^2.29.1",
