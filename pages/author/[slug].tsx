@@ -48,12 +48,12 @@ export async function getStaticPaths({
       }
     }
   `;
-  const { tags } = await request(
+  const { users } = await request(
     "https://cms.sebasptsch.dev/api/graphql",
     query
   );
 
-  const paths = tags
+  const paths = users
     .map((user) => user.slug)
     .filter((slug): slug is string => !!slug)
     .map((slug) => `/author/${slug}`);
