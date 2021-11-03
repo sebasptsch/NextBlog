@@ -75,7 +75,6 @@ export default function Home({
         </Center>
       </Box>
       <InputGroup>
-        {/* <InputRightElement children={<SearchIcon />} /> */}
         <Input
           placeholder="Search"
           value={search}

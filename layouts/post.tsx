@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import { PostQuery } from "@/utils/gql/query";
 import { componentBlockRenderers, renderers } from "@/utils/renderers";
 import { Flex, Heading, Spacer } from "@chakra-ui/layout";
 import { DocumentRenderer } from "@keystone-next/document-renderer";
@@ -7,7 +8,7 @@ import { ArticleJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function BlogLayout({ post }: { post: any }) {
+export default function PostLayout({ post }: PostQuery) {
   const { title, summary, published_at, image, slug, author, readingtime } =
     post;
   return (

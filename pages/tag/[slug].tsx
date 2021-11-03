@@ -1,52 +1,23 @@
-import BlogPost from "@/components/BlogPost";
-import Layout from "@/components/Layout";
+import TagLayout from "@/layouts/tag";
 import {
   TagDocument,
   TagPathsDocument,
   TagPathsQuery,
   TagQuery,
 } from "@/utils/gql/query";
-import { Box, Heading, Stack, Text } from "@chakra-ui/layout";
 import { request } from "graphql-request";
 import {
   GetStaticPathsResult,
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from "next";
-import { NextSeo } from "next-seo";
 import React from "react";
 
-export default function Tag({
-  posts,
-  tag,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { description, name } = tag;
-  return (
-    <Layout>
-      <NextSeo
-        noindex
-        title={name}
-        titleTemplate="%s | Tag"
-        description={description}
-      />
-      <Box textAlign="center">
-        <Heading as="h1" mt={2} mb={2}>
-          {name}
-        </Heading>
-        {description ? <Text as="h2">{description}</Text> : null}
-      </Box>
-      <Stack>
-        {posts.map((post) => (
-          <BlogPost {...post} key={post.id} />
-        ))}
-      </Stack>
-    </Layout>
-  );
-}
+const Tag = ({ tag }: InferGetStaticPropsType<typeof getStaticProps>) => (
+  <TagLayout tag={tag} />
+);
 
-export async function getStaticPaths({
-  params,
-}: GetStaticPropsContext): Promise<GetStaticPathsResult> {
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
   const { tags }: TagPathsQuery = await request(
     "https://cms.sebasptsch.dev/api/graphql",
     TagPathsDocument
@@ -74,12 +45,12 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     TagDocument,
     variables
   );
-  const { posts } = tag;
   return {
     props: {
-      posts,
       tag,
     },
     revalidate: 10,
   };
 }
+
+export default Tag;

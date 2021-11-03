@@ -721,14 +721,14 @@ export type UserWhereUniqueInput = {
 export type AllPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, title?: string | null | undefined, slug?: string | null | undefined, summary?: string | null | undefined, published_at?: any | null | undefined, tags?: Array<{ __typename?: 'Tag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> | null | undefined }> | null | undefined };
+export type AllPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, title?: string | null | undefined, slug?: string | null | undefined, summary?: string | null | undefined, published_at?: any | null | undefined, readingtime?: string | null | undefined, tags?: Array<{ __typename?: 'Tag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> | null | undefined }> | null | undefined };
 
 export type AuthorQueryVariables = Exact<{
   where: UserWhereUniqueInput;
 }>;
 
 
-export type AuthorQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, name?: string | null | undefined, bio?: string | null | undefined, posts?: Array<{ __typename?: 'Post', id: string, title?: string | null | undefined, slug?: string | null | undefined, summary?: string | null | undefined, published_at?: any | null | undefined, tags?: Array<{ __typename?: 'Tag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> | null | undefined }> | null | undefined } | null | undefined };
+export type AuthorQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, name?: string | null | undefined, bio?: string | null | undefined, posts?: Array<{ __typename?: 'Post', id: string, title?: string | null | undefined, slug?: string | null | undefined, summary?: string | null | undefined, published_at?: any | null | undefined, readingtime?: string | null | undefined, tags?: Array<{ __typename?: 'Tag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> | null | undefined }> | null | undefined } | null | undefined };
 
 export type AuthorPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -740,7 +740,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post?: { __typename?: 'Post', slug?: string | null | undefined, id: string, title?: string | null | undefined, summary?: string | null | undefined, published_at?: any | null | undefined, image?: { __typename?: 'LocalImageFieldOutput', src: string, width: number, height: number } | null | undefined, author?: { __typename?: 'User', name?: string | null | undefined, slug?: string | null | undefined } | null | undefined, tags?: Array<{ __typename?: 'Tag', name?: string | null | undefined, id: string }> | null | undefined, content?: { __typename?: 'Post_content_Document', document: any } | null | undefined } | null | undefined };
+export type PostQuery = { __typename?: 'Query', post?: { __typename?: 'Post', slug?: string | null | undefined, id: string, title?: string | null | undefined, summary?: string | null | undefined, published_at?: any | null | undefined, readingtime?: string | null | undefined, image?: { __typename?: 'LocalImageFieldOutput', src: string, width: number, height: number } | null | undefined, author?: { __typename?: 'User', name?: string | null | undefined, slug?: string | null | undefined } | null | undefined, tags?: Array<{ __typename?: 'Tag', name?: string | null | undefined, id: string }> | null | undefined, content?: { __typename?: 'Post_content_Document', document: any } | null | undefined } | null | undefined };
 
 export type PostPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -752,7 +752,7 @@ export type TagQueryVariables = Exact<{
 }>;
 
 
-export type TagQuery = { __typename?: 'Query', tag?: { __typename?: 'Tag', id: string, name?: string | null | undefined, description?: string | null | undefined, posts?: Array<{ __typename?: 'Post', id: string, title?: string | null | undefined, slug?: string | null | undefined, summary?: string | null | undefined, published_at?: any | null | undefined, tags?: Array<{ __typename?: 'Tag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> | null | undefined }> | null | undefined } | null | undefined };
+export type TagQuery = { __typename?: 'Query', tag?: { __typename?: 'Tag', id: string, name?: string | null | undefined, description?: string | null | undefined, posts?: Array<{ __typename?: 'Post', id: string, title?: string | null | undefined, slug?: string | null | undefined, summary?: string | null | undefined, published_at?: any | null | undefined, readingtime?: string | null | undefined, tags?: Array<{ __typename?: 'Tag', id: string, name?: string | null | undefined, slug?: string | null | undefined }> | null | undefined }> | null | undefined } | null | undefined };
 
 export type TagPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -768,6 +768,7 @@ export const AllPostsDocument = gql`
     slug
     summary
     published_at
+    readingtime
     tags {
       id
       name
@@ -788,6 +789,7 @@ export const AuthorDocument = gql`
       slug
       summary
       published_at
+      readingtime
       tags {
         id
         name
@@ -825,6 +827,7 @@ export const PostDocument = gql`
       name
       id
     }
+    readingtime
     content {
       document
     }
@@ -850,6 +853,7 @@ export const TagDocument = gql`
       slug
       summary
       published_at
+      readingtime
       tags {
         id
         name

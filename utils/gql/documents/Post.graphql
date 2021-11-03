@@ -18,6 +18,7 @@ query Post($where: PostWhereUniqueInput!) {
       name
       id
     }
+    readingtime
     content {
       document
     }

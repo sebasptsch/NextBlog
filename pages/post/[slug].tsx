@@ -1,4 +1,4 @@
-import BlogLayout from "@/layouts/blog";
+import PostLayout from "@/layouts/post";
 import {
   PostDocument,
   PostPathsDocument,
@@ -13,11 +13,9 @@ import {
 } from "next";
 import { getPlaiceholder } from "plaiceholder";
 
-export default function Post({
-  post,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <BlogLayout post={post}></BlogLayout>;
-}
+const Post = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => (
+  <PostLayout post={post} />
+);
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
   const { posts }: PostPathsQuery = await request(
@@ -80,3 +78,5 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     revalidate: 10,
   };
 }
+
+export default Post;

@@ -5,6 +5,7 @@ query AllPosts {
     slug
     summary
     published_at
+    readingtime
     tags {
       id
       name
