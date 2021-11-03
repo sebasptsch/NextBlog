@@ -12,18 +12,21 @@ import React from "react";
 
 export default function Tag({
   posts,
-  tag,
+  user,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   // console.log(tag);
   return (
     <Layout>
-      <NextSeo title={`${tag.name} | Tag`} titleTemplate="%s | Seb's Blog" />
+      <NextSeo
+        title={`${user.name} | Author`}
+        titleTemplate="%s | Seb's Blog"
+      />
 
       <Box textAlign="center">
         <Heading as="h1" mt={2} mb={2}>
-          {tag.name}
+          {user.name}
         </Heading>
-        {tag.description ? <Text as="h2">{tag.description}</Text> : null}
+        {user.bio ? <Text as="h2">{user.bio}</Text> : null}
       </Box>
 
       <Stack>
@@ -40,7 +43,7 @@ export async function getStaticPaths({
 }: GetStaticPropsContext): Promise<GetStaticPathsResult> {
   const query = gql`
     query Query {
-      tags {
+      users {
         slug
       }
     }
@@ -51,9 +54,9 @@ export async function getStaticPaths({
   );
 
   const paths = tags
-    .map((tag) => tag.slug)
+    .map((user) => user.slug)
     .filter((slug): slug is string => !!slug)
-    .map((slug) => `/tag/${slug}`);
+    .map((slug) => `/author/${slug}`);
 
   return {
     paths,
@@ -68,11 +71,11 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     },
   };
   const query = gql`
-    query Query($where: TagWhereUniqueInput!) {
-      tag(where: $where) {
+    query Query($where: UserWhereUniqueInput!) {
+      user(where: $where) {
         id
         name
-        description
+        bio
         posts(orderBy: [{ published_at: desc }]) {
           id
           title
@@ -88,16 +91,16 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
       }
     }
   `;
-  const { tag } = await request(
+  const { user } = await request(
     "https://cms.sebasptsch.dev/api/graphql",
     query,
     variables
   );
-  const { posts } = tag;
+  const { posts } = user;
   return {
     props: {
       posts,
-      tag,
+      user,
     },
     revalidate: 10,
   };

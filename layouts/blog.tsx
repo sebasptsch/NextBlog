@@ -10,7 +10,7 @@ export default function BlogLayout({ post }: { post: any }) {
   return (
     <Layout>
       <NextSeo
-        title={post.title}
+        title={`${post.title} | Post`}
         description={post.summary}
         titleTemplate="%s | Seb's Blog"
         openGraph={{
