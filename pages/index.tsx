@@ -7,21 +7,24 @@ import {
   Divider,
   Heading,
   HStack,
+  IconButton,
   Input,
   InputGroup,
   Stack,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
 import { gql, request } from "graphql-request";
 import { InferGetStaticPropsType } from "next";
 import { NextSeo } from "next-seo";
-import { useState } from "react";
-import { FaGithub, FaTwitter } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaGithub, FaMoon, FaSun, FaTwitter } from "react-icons/fa";
 
 export default function Home({
   posts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [search, setSearch] = useState("");
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Layout>
       <NextSeo
@@ -56,6 +59,12 @@ export default function Home({
           >
             Github
           </Button>
+          <IconButton
+            icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
+            aria-label="toggle theme"
+            m={4}
+            onClick={toggleColorMode}
+          />
         </HStack>
       </Stack>
       <Box mt={10} mb={10}>

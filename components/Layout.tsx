@@ -1,9 +1,8 @@
 import { Container, Flex, StatGroup } from "@chakra-ui/react";
-import { NextSeo, SocialProfileJsonLd } from "next-seo";
+import { SocialProfileJsonLd } from "next-seo";
 import React from "react";
 import NowPlaying from "./metrics/CurrentlyPlaying";
 import GitHub from "./metrics/Github";
-import Nav from "./Nav";
 export default function Layout(props) {
   return (
     <Flex flexDir="column" h="100vh">
@@ -13,14 +12,6 @@ export default function Layout(props) {
         url="https://sebasptsch.dev"
         sameAs={["https://twitter.com/sebasptsch"]}
       />
-      <NextSeo
-        defaultTitle="Seb's Blog"
-        twitter={{
-          handle: "@sebasptsch",
-        }}
-      />
-      <Nav />
-
       <Container maxW="container.md" as="main">
         {props.children}
       </Container>
@@ -36,7 +27,6 @@ export default function Layout(props) {
           <GitHub stars />
           <GitHub repos />
           <NowPlaying />
-          {/* <Followers /> */}
         </StatGroup>
       </Container>
     </Flex>
