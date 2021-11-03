@@ -1,7 +1,13 @@
 import BlogPost from "@/components/BlogPost";
 import Layout from "@/components/Layout";
+import {
+  AuthorDocument,
+  AuthorPathsDocument,
+  AuthorPathsQuery,
+  AuthorQuery,
+} from "@/utils/gql/query";
 import { Box, Heading, Stack, Text } from "@chakra-ui/layout";
-import { gql, request } from "graphql-request";
+import { request } from "graphql-request";
 import {
   GetStaticPathsResult,
   GetStaticPropsContext,
@@ -38,16 +44,9 @@ export default function Tag({
 export async function getStaticPaths({
   params,
 }: GetStaticPropsContext): Promise<GetStaticPathsResult> {
-  const query = gql`
-    query Query {
-      users {
-        slug
-      }
-    }
-  `;
-  const { users } = await request(
+  const { users }: AuthorPathsQuery = await request(
     "https://cms.sebasptsch.dev/api/graphql",
-    query
+    AuthorPathsDocument
   );
 
   const paths = users
@@ -67,30 +66,9 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
       slug: params!.slug as string,
     },
   };
-  const query = gql`
-    query Query($where: UserWhereUniqueInput!) {
-      user(where: $where) {
-        id
-        name
-        bio
-        posts(orderBy: [{ published_at: desc }]) {
-          id
-          title
-          slug
-          summary
-          published_at
-          tags {
-            id
-            name
-            slug
-          }
-        }
-      }
-    }
-  `;
-  const { user } = await request(
+  const { user }: AuthorQuery = await request(
     "https://cms.sebasptsch.dev/api/graphql",
-    query,
+    AuthorDocument,
     variables
   );
   const { posts } = user;

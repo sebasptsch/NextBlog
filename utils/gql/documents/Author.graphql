@@ -1,0 +1,19 @@
+query Author($where: UserWhereUniqueInput!) {
+  user(where: $where) {
+    id
+    name
+    bio
+    posts(orderBy: [{ published_at: desc }]) {
+      id
+      title
+      slug
+      summary
+      published_at
+      tags {
+        id
+        name
+        slug
+      }
+    }
+  }
+}

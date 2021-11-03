@@ -1,5 +1,11 @@
 import BlogLayout from "@/layouts/blog";
-import request, { gql } from "graphql-request";
+import {
+  PostDocument,
+  PostPathsDocument,
+  PostPathsQuery,
+  PostQuery,
+} from "@/utils/gql/query";
+import request from "graphql-request";
 import {
   GetStaticPathsResult,
   GetStaticPropsContext,
@@ -14,16 +20,9 @@ export default function Post({
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-  const query = gql`
-    query Query {
-      posts {
-        slug
-      }
-    }
-  `;
-  const { posts } = await request(
+  const { posts }: PostPathsQuery = await request(
     "https://cms.sebasptsch.dev/api/graphql",
-    query
+    PostPathsDocument
   );
 
   const paths = posts
@@ -44,36 +43,9 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
         slug: params!.slug as string,
       },
     };
-    const query = gql`
-      query Query($where: PostWhereUniqueInput!) {
-        post(where: $where) {
-          slug
-          id
-          title
-          summary
-          image {
-            src
-            width
-            height
-          }
-          published_at
-          author {
-            name
-            slug
-          }
-          tags {
-            name
-            id
-          }
-          content {
-            document
-          }
-        }
-      }
-    `;
-    const { post } = await request(
+    const { post }: PostQuery = await request(
       "https://cms.sebasptsch.dev/api/graphql",
-      query,
+      PostDocument,
       variables
     );
 

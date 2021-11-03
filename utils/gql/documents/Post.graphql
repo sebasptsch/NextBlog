@@ -1,0 +1,25 @@
+query Post($where: PostWhereUniqueInput!) {
+  post(where: $where) {
+    slug
+    id
+    title
+    summary
+    image {
+      src
+      width
+      height
+    }
+    published_at
+    author {
+      name
+      slug
+    }
+    tags {
+      name
+      id
+    }
+    content {
+      document
+    }
+  }
+}

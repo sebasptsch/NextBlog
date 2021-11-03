@@ -1,5 +1,6 @@
 import BlogPost from "@/components/BlogPost";
 import Layout from "@/components/Layout";
+import { AllPostsDocument, AllPostsQuery } from "@/utils/gql/query";
 import {
   Box,
   Button,
@@ -14,7 +15,7 @@ import {
   Text,
   useColorMode,
 } from "@chakra-ui/react";
-import { gql, request } from "graphql-request";
+import { request } from "graphql-request";
 import { InferGetStaticPropsType } from "next";
 import { NextSeo } from "next-seo";
 import React, { useState } from "react";
@@ -100,22 +101,6 @@ export default function Home({
 
 export async function getStaticProps() {
   const endpoint = "https://cms.sebasptsch.dev/api/graphql";
-  const query = gql`
-    query Query {
-      posts(orderBy: [{ published_at: desc }]) {
-        id
-        title
-        slug
-        summary
-        published_at
-        tags {
-          id
-          name
-          slug
-        }
-      }
-    }
-  `;
-  const { posts } = await request(endpoint, query);
+  const { posts }: AllPostsQuery = await request(endpoint, AllPostsDocument);
   return { props: { posts }, revalidate: 10 };
 }

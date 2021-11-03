@@ -1,0 +1,19 @@
+query Tag($where: TagWhereUniqueInput!) {
+  tag(where: $where) {
+    id
+    name
+    description
+    posts(orderBy: [{ published_at: desc }]) {
+      id
+      title
+      slug
+      summary
+      published_at
+      tags {
+        id
+        name
+        slug
+      }
+    }
+  }
+}

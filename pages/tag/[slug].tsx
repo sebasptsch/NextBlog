@@ -1,7 +1,13 @@
 import BlogPost from "@/components/BlogPost";
 import Layout from "@/components/Layout";
+import {
+  TagDocument,
+  TagPathsDocument,
+  TagPathsQuery,
+  TagQuery,
+} from "@/utils/gql/query";
 import { Box, Heading, Stack, Text } from "@chakra-ui/layout";
-import { gql, request } from "graphql-request";
+import { request } from "graphql-request";
 import {
   GetStaticPathsResult,
   GetStaticPropsContext,
@@ -41,16 +47,9 @@ export default function Tag({
 export async function getStaticPaths({
   params,
 }: GetStaticPropsContext): Promise<GetStaticPathsResult> {
-  const query = gql`
-    query Query {
-      tags {
-        slug
-      }
-    }
-  `;
-  const { tags } = await request(
+  const { tags }: TagPathsQuery = await request(
     "https://cms.sebasptsch.dev/api/graphql",
-    query
+    TagPathsDocument
   );
 
   const paths = tags
@@ -70,30 +69,9 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
       slug: params!.slug as string,
     },
   };
-  const query = gql`
-    query Query($where: TagWhereUniqueInput!) {
-      tag(where: $where) {
-        id
-        name
-        description
-        posts(orderBy: [{ published_at: desc }]) {
-          id
-          title
-          slug
-          summary
-          published_at
-          tags {
-            id
-            name
-            slug
-          }
-        }
-      }
-    }
-  `;
-  const { tag } = await request(
+  const { tag }: TagQuery = await request(
     "https://cms.sebasptsch.dev/api/graphql",
-    query,
+    TagDocument,
     variables
   );
   const { posts } = tag;
