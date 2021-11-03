@@ -1,64 +1,7 @@
 {
-  "name": "ghostblog",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "postbuild": "next-sitemap --config genSitemap.js",
-    "generate": "graphql-codegen --config codegen.yml"
-  },
-  "browser": {
-    "child_process": false
-  },
-  "dependencies": {
-    "@apollo/client": "^3.4.16",
-    "@chakra-ui/react": "^1.6.3",
-    "@emotion/react": "^11.4.0",
-    "@emotion/styled": "^11.3.0",
-    "@keystone-next/document-renderer": "^4.0.1",
-    "@plaiceholder/next": "^2.1.0",
-    "@prisma/client": "^3.3.0",
-    "@types/react-syntax-highlighter": "^13.5.2",
-    "axios": "^0.21.1",
-    "comma-number": "^2.0.2",
-    "date-fns": "^2.25.0",
-    "esbuild": "^0.13.2",
-    "framer-motion": "^4.1.17",
-    "graphql": "^16.0.1",
-    "graphql-request": "^3.6.1",
-    "lodash": "^4.17.21",
-    "moment": "^2.29.1",
-    "next": "12.0.1",
-    "next-api-og-image": "^1.1.7",
-    "next-auth": "^4.0.0-beta.6",
-    "next-seo": "^4.24.0",
-    "plaiceholder": "^2.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-gist": "^1.2.2",
-    "react-icons": "^4.2.0",
-    "react-static-tweets": "^0.5.4",
-    "react-syntax-highlighter": "^15.4.4",
-    "reading-time": "^1.3.0",
-    "sharp": "^0.29.1",
-    "static-tweets": "^0.5.5",
-    "swr": "^0.5.6",
-    "typeorm": "^0.2.38"
-  },
-  "devDependencies": {
-    "@graphql-codegen/cli": "2.2.2",
-    "@graphql-codegen/introspection": "2.1.0",
-    "@graphql-codegen/typescript": "2.3.0",
-    "@graphql-codegen/typescript-graphql-request": "^4.2.0",
-    "@graphql-codegen/typescript-operations": "2.2.0",
-    "@graphql-codegen/typescript-react-apollo": "3.2.0",
-    "@types/node": "^15.0.1",
-    "@types/react": "^17.0.4",
-    "graphql-codegen-apollo-next-ssr": "^1.7.1",
-    "next-sitemap": "^1.6.192",
-    "prisma": "^3.3.0",
-    "typescript": "^4.2.4"
-  }
+    "private": true,
+    "workspaces": [
+        "frontend",
+        "backend"
+    ]
 }
