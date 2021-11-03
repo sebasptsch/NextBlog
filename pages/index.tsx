@@ -51,6 +51,12 @@ export default function Home({
           >
             Twitter
           </Button>
+          <IconButton
+            icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
+            aria-label="toggle theme"
+            m={4}
+            onClick={toggleColorMode}
+          />
           <Button
             aria-label="github"
             rightIcon={<FaGithub />}
@@ -59,12 +65,6 @@ export default function Home({
           >
             Github
           </Button>
-          <IconButton
-            icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
-            aria-label="toggle theme"
-            m={4}
-            onClick={toggleColorMode}
-          />
         </HStack>
       </Stack>
       <Box mt={10} mb={10}>
