@@ -9,7 +9,7 @@ export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Flex pl={["5%", "20%", "25%", "30%"]} pr={["5%", "20%", "25%", "30%"]}>
-      <Image src={logo} height={4} />
+      <Image src={logo} height={"4em"} />
       <Text fontWeight="semibold">Sebastian's Blog</Text>
       <Spacer />
       <IconButton
