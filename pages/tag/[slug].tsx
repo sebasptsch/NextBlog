@@ -14,22 +14,25 @@ export default function Tag({
   posts,
   tag,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  // console.log(tag);
+  const { description, name } = tag;
   return (
     <Layout>
-      <NextSeo title={`${tag.name} | Tag`} titleTemplate="%s | Seb's Blog" />
-
+      <NextSeo
+        noindex
+        title={name}
+        titleTemplate="%s | Tag"
+        description={description}
+      />
       <Box textAlign="center">
         <Heading as="h1" mt={2} mb={2}>
-          {tag.name}
+          {name}
         </Heading>
-        {tag.description ? <Text as="h2">{tag.description}</Text> : null}
+        {description ? <Text as="h2">{description}</Text> : null}
       </Box>
-
       <Stack>
-        {posts.map((post) => {
-          return <BlogPost {...post} key={post.id} />;
-        })}
+        {posts.map((post) => (
+          <BlogPost {...post} key={post.id} />
+        ))}
       </Stack>
     </Layout>
   );

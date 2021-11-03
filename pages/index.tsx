@@ -24,7 +24,7 @@ export default function Home({
   const [search, setSearch] = useState("");
   return (
     <Layout>
-      <NextSeo title={`Seb's Blog`} />
+      <NextSeo title="Sebastian Pietschner - Developer and Student" />
       <Stack>
         <Box textAlign="center">
           <Heading as="h1" mt={2} mb={2}>
