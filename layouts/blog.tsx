@@ -48,9 +48,9 @@ export default function BlogLayout({ post }: { post: any }) {
       </Heading>
       <Flex pb="0.5em">
         <Link href={`/author/${author.slug}`}>
-          <a>{author.name}</a> /
+          <a>{author.name}</a>
         </Link>{" "}
-        {moment(published_at).format("MMM Do YYYY")}
+        / {moment(published_at).format("MMM Do YYYY")}
         <Spacer />
         {readingtime}
       </Flex>
