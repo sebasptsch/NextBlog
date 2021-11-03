@@ -31,7 +31,7 @@ export default function Home({
         title="Sebastian Pietschner - Developer and Student"
         description="My personal site that I use to develop and share new skills and projects."
       />
-      <Stack height="100vh">
+      <Center height="100vh">
         <Box textAlign="center">
           <Heading as="h1" mt={2} mb={2}>
             Sebastian Pietschner
@@ -40,33 +40,33 @@ export default function Home({
             My personal site that I use to develop and share new skills and
             projects.
           </Text>
+          <br />
+          <HStack spacing={6} justify="center" m={5}>
+            <Button
+              aria-label="twitter"
+              rightIcon={<FaTwitter />}
+              href={"https://twitter.com/sebasptsch"}
+              as="a"
+            >
+              Twitter
+            </Button>
+            <IconButton
+              icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
+              aria-label="toggle theme"
+              m={4}
+              onClick={toggleColorMode}
+            />
+            <Button
+              aria-label="github"
+              rightIcon={<FaGithub />}
+              as="a"
+              href={"https://github.com/sebasptsch/"}
+            >
+              Github
+            </Button>
+          </HStack>
         </Box>
-        <br />
-        <HStack spacing={6} justify="center" m={5}>
-          <Button
-            aria-label="twitter"
-            rightIcon={<FaTwitter />}
-            href={"https://twitter.com/sebasptsch"}
-            as="a"
-          >
-            Twitter
-          </Button>
-          <IconButton
-            icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
-            aria-label="toggle theme"
-            m={4}
-            onClick={toggleColorMode}
-          />
-          <Button
-            aria-label="github"
-            rightIcon={<FaGithub />}
-            as="a"
-            href={"https://github.com/sebasptsch/"}
-          >
-            Github
-          </Button>
-        </HStack>
-      </Stack>
+      </Center>
       <Divider />
       <Box mt={10} mb={10}>
         <Center>
