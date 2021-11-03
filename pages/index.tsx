@@ -24,14 +24,18 @@ export default function Home({
   const [search, setSearch] = useState("");
   return (
     <Layout>
-      <NextSeo title="Sebastian Pietschner - Developer and Student" />
+      <NextSeo
+        title="Sebastian Pietschner - Developer and Student"
+        description="My personal site that I use to develop and share new skills and projects."
+      />
       <Stack>
         <Box textAlign="center">
           <Heading as="h1" mt={2} mb={2}>
             Sebastian Pietschner
           </Heading>
           <Text as="h2">
-            An index of my projects and experiences in the wider world.
+            My personal site that I use to develop and share new skills and
+            projects.
           </Text>
         </Box>
         <br />
