@@ -34,7 +34,7 @@ export default function BlogLayout({ post }: { post: any }) {
         title={post.title}
         images={post.image ? [`${post.image.src}`] : undefined}
         datePublished={post.published_at}
-        authorName="Sebastian Pietschner"
+        authorName={post.author.name}
         description={post.summary}
         publisherName="Seb's Blog"
         publisherLogo="https://sebasptsch.dev/logo.png"
@@ -45,8 +45,7 @@ export default function BlogLayout({ post }: { post: any }) {
       </Heading>
       <Flex pb="0.5em">
         <Center>
-          Sebastian Pietschner /{" "}
-          {moment(post.published_at).format("MMM Do YYYY")}
+          {post.author.name} / {moment(post.published_at).format("MMM Do YYYY")}
         </Center>
         <Spacer />
         {/* <Center>
