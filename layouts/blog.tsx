@@ -5,6 +5,7 @@ import { DocumentRenderer } from "@keystone-next/document-renderer";
 import moment from "moment";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function BlogLayout({ post }: { post: any }) {
   return (
@@ -45,7 +46,10 @@ export default function BlogLayout({ post }: { post: any }) {
       </Heading>
       <Flex pb="0.5em">
         <Center>
-          {post.author.name} / {moment(post.published_at).format("MMM Do YYYY")}
+          <Link href={`/author/${post.author.slug}`}>
+            <a>{post.author.name}</a>
+          </Link>{" "}
+          / {moment(post.published_at).format("MMM Do YYYY")}
         </Center>
         <Spacer />
         {/* <Center>

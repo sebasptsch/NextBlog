@@ -59,6 +59,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
           published_at
           author {
             name
+            slug
           }
           tags {
             name
