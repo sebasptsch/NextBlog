@@ -16,7 +16,7 @@ export default function Nav() {
   return (
     <Flex pl={["5%", "20%", "25%", "30%"]} pr={["5%", "20%", "25%", "30%"]}>
       <Center>
-        <Image src={logo} height={"4em"} layout="responsive" />
+        <Image src={logo} height={"4em"} width={"4em"} layout="responsive" />
       </Center>
       <Spacer />
       <Center>
