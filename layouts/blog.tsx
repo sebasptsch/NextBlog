@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { componentBlockRenderers, renderers } from "@/utils/renderers";
-import { Center, Flex, Heading, Spacer } from "@chakra-ui/layout";
+import { Flex, Heading, Spacer } from "@chakra-ui/layout";
 import { DocumentRenderer } from "@keystone-next/document-renderer";
 import moment from "moment";
 import { ArticleJsonLd, NextSeo } from "next-seo";
@@ -8,55 +8,51 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function BlogLayout({ post }: { post: any }) {
+  const { title, summary, published_at, image, slug, author, readingtime } =
+    post;
   return (
     <Layout>
       <NextSeo
-        title={post.title}
-        description={post.summary}
+        title={title}
+        description={summary}
         titleTemplate="%s - Sebastian Pietschner"
         openGraph={{
-          title: post.title,
-          description: post.summary,
+          title: title,
+          description: summary,
           type: "article",
           article: {
-            publishedTime: post.published_at,
+            publishedTime: published_at,
           },
-          images: post.image
+          images: image
             ? [
                 {
-                  url: `${post.image.src}`,
+                  url: `${image.src}`,
                 },
               ]
             : undefined,
         }}
       />
       <ArticleJsonLd
-        url={`https://sebasptsch.dev/post/${post.slug}`}
-        title={post.title}
-        images={post.image ? [`${post.image.src}`] : undefined}
-        datePublished={post.published_at}
-        authorName={post.author.name}
-        description={post.summary}
+        url={`https://sebasptsch.dev/post/${slug}`}
+        title={title}
+        images={image ? [`${image.src}`] : undefined}
+        datePublished={published_at}
+        authorName={author.name}
+        description={summary}
         publisherName="Seb's Blog"
         publisherLogo="https://sebasptsch.dev/logo.png"
       />
 
-      <Heading pt="1em" mb="0.5em">
-        {post.title}
+      <Heading pt="1em" mb="0.5em" as="h1">
+        {title}
       </Heading>
       <Flex pb="0.5em">
-        <Center>
-          <Link href={`/author/${post.author.slug}`}>
-            <a>{post.author.name}</a>
-          </Link>{" "}
-          / {moment(post.published_at).format("MMM Do YYYY")}
-        </Center>
+        <Link href={`/author/${author.slug}`}>
+          <a>{author.name}</a> /
+        </Link>{" "}
+        {moment(published_at).format("MMM Do YYYY")}
         <Spacer />
-        {/* <Center>
-          <Text textAlign="center" size="sm" fontWeight="semibold">
-            {frontMatter.readingTime.text}
-          </Text>
-        </Center> */}
+        {readingtime}
       </Flex>
 
       {post.image ? (

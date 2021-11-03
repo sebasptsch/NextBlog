@@ -1,47 +1,24 @@
-import {
-	Center,
-	Flex,
-	IconButton,
-	Spacer,
-	useColorMode
-} from "@chakra-ui/react";
+import logo from "@/public/logo.png";
+import { Flex, IconButton, Spacer, Text, useColorMode } from "@chakra-ui/react";
+import Image from "next/image";
 import { FaMoon, FaSun } from "react-icons/fa";
-import { NextChakraLink } from "./NextChakra";
 
-const links = [
-	{
-		name: "Home",
-		link: "/",
-	},
-	{
-		name: "Projects",
-		link: "/projects",
-	},
-	{
-		name: "Stats",
-		link: "/stats",
-	},
-];
+const links = [];
 
 export default function Nav() {
-	const { colorMode, toggleColorMode } = useColorMode();
-	return (
-		<Flex pl={["5%", "20%", "25%", "30%"]} pr={["5%", "20%", "25%", "30%"]}>
-			<Center>
-				{links.map((link, index) => (
-					<NextChakraLink key={index} href={link.link} p={2}>
-						{link.name}
-					</NextChakraLink>
-				))}
-			</Center>
-			<Spacer />
-			<IconButton
-				icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
-				aria-label="toggle theme"
-				m={4}
-				onClick={toggleColorMode}
-			/>
-			{/* <Auth /> */}
-		</Flex>
-	);
+  const { colorMode, toggleColorMode } = useColorMode();
+  return (
+    <Flex pl={["5%", "20%", "25%", "30%"]} pr={["5%", "20%", "25%", "30%"]}>
+      <Image src={logo} height={4} />
+      <Text fontWeight="semibold">Sebastian's Blog</Text>
+      <Spacer />
+      <IconButton
+        icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
+        aria-label="toggle theme"
+        m={4}
+        onClick={toggleColorMode}
+      />
+      {/* <Auth /> */}
+    </Flex>
+  );
 }
