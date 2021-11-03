@@ -31,7 +31,7 @@ export default function Home({
         title="Sebastian Pietschner - Developer and Student"
         description="My personal site that I use to develop and share new skills and projects."
       />
-      <Stack>
+      <Stack height="100vh">
         <Box textAlign="center">
           <Heading as="h1" mt={2} mb={2}>
             Sebastian Pietschner
@@ -42,7 +42,7 @@ export default function Home({
           </Text>
         </Box>
         <br />
-        <HStack spacing={10} justify="center" m={5}>
+        <HStack spacing={6} justify="center" m={5}>
           <Button
             aria-label="twitter"
             rightIcon={<FaTwitter />}
@@ -67,12 +67,11 @@ export default function Home({
           </Button>
         </HStack>
       </Stack>
+      <Divider />
       <Box mt={10} mb={10}>
         <Center>
           <Heading size="lg">Recent Posts</Heading>
         </Center>
-
-        <Divider mt={5} />
       </Box>
       <InputGroup>
         {/* <InputRightElement children={<SearchIcon />} /> */}
